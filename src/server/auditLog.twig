@@ -4,8 +4,8 @@
 	<div class="row">
 		<div class="col-lg-6 offset-lg-3 col-md-12">
 			<div class="alert alert-warning alert-dismissible">
-				<h5><i class="icon fas fa-info"></i> Server-Wide Configuration</h5>
-				You are modifying settings and configuration that affect the whole of the {{ CONFIG.PROJECT_NAME }} Server, including all businesses (instances) running on it. Please be careful when making changes here.
+				<h5><i class="icon fas fa-info"></i> Настройки для всего сервера</h5>
+				Вы изменяете параметры, влияющие на весь сервер {{ CONFIG.PROJECT_NAME }}, включая все компании (инстансы). Будьте осторожны при внесении изменений.
 			</div>
 		</div>
 	</div>
@@ -15,18 +15,18 @@
                 <div class="card-header">
                     <h3 class="card-title">
                         {% if search|length > 0 %}
-                            Search results for events matching <b>{{ search }}</b>
+                            Результаты поиска событий по запросу <b>{{ search }}</b>
                         {% elseif pageConfig.userby %}
-                            Events filtered by user (<a href="?">Clear</a>)
+                            События отфильтрованы по пользователю (<a href="?">Сбросить</a>)
                         {% elseif pageConfig.userto %}
-                            Events filtered by target user (<a href="?">Clear</a>)
+                            События отфильтрованы по целевому пользователю (<a href="?">Сбросить</a>)
                         {% else %}
-                            {{ pagination.total|number_format }} Audit Log Events
+                            {{ pagination.total|number_format }} событий журнала аудита
                         {% endif %}
                     </h3>
                     <div class="card-tools pull-right">
                         <form class="input-group input-group-sm" style="width: 150px;" method="GET">
-                            <input type="text" name="q" class="form-control" placeholder="Search" value="{{ search }}" />
+                            <input type="text" name="q" class="form-control" placeholder="Поиск" value="{{ search }}" />
                             <div class="input-group-append">
                                 <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
                             </div>
@@ -40,12 +40,12 @@
                             <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Type</th>
-                                <th>Table Affected</th>
-                                <th>Timestamp</th>
-                                <th>Action performed by</th>
-                                <th>Action performed against user</th>
-                                <th>Data</th>
+                                <th>Тип</th>
+                                <th>Затронутая таблица</th>
+                                <th>Метка времени</th>
+                                <th>Действие выполнил</th>
+                                <th>Действие в отношении пользователя</th>
+                                <th>Данные</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -71,7 +71,7 @@
                             </tbody>
                         </table>
                     {% else %}
-                        <center><p style="margin: 10px;"><i>No results</i><br/><a href="?">Remove any filters</a></p></center>
+                        <center><p style="margin: 10px;"><i>Ничего не найдено</i><br/><a href="?">Сбросить фильтры</a></p></center>
                     {% endif %}
                 </div>
                 {% if pagination.total > 1 %}

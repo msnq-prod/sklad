@@ -13,18 +13,18 @@
             <div class="card ">
                 <div class="card-header">
                     <h3 class="card-title">
-                        {{ (includeArchived ? "Archived")}} CMS Pages
+                        {{ (includeArchived ? "Архивные" : "")}} страницы CMS
                     </h3>
                     <div class="card-tools pull-right">
-<a href="{{ CONFIG.LINKS_USERGUIDEURL }}cms/cms-pages" target="_blank" type="button" class="btn btn-info btn-sm">Help</a>
+<a href="{{ CONFIG.LINKS_USERGUIDEURL }}cms/cms-pages" target="_blank" type="button" class="btn btn-info btn-sm">Помощь</a>
 
                         {% if "CMS:CMS_PAGES:EDIT:CUSTOM_DASHBOARDS"|instancePermissions %}
-                            <a href="customDashboards.php" type="button" class="btn btn-secondary btn-sm">Custom Dashboards</a>
+                            <a href="customDashboards.php" type="button" class="btn btn-secondary btn-sm">Пользовательские дашборды</a>
                         {% endif %}
                         {% if includeArchived %}
-                            <a href="?" type="button" class="btn btn-default btn-sm">View Published Pages</a>
+                            <a href="?" type="button" class="btn btn-default btn-sm">Опубликованные страницы</a>
                         {% else %}
-                            <a href="?archive=1" type="button" class="btn btn-default  btn-sm">View Archived Pages</a>
+                            <a href="?archive=1" type="button" class="btn btn-default  btn-sm">Архивные страницы</a>
                         {% endif %}
                         <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#editModalNEW"><i class="fa fa-plus"></i></button>
                     </div>
@@ -34,12 +34,12 @@
                         <thead>
                             <tr>
                                 <th></th>
-                                <th>Page ID</th>
-                                <th>Icon</th>
-                                <th>Name</th>
-                                <th>Security</th>
-                                <th>Page URL</th>
-                                <th>Views</th>
+                                <th>ID страницы</th>
+                                <th>Иконка</th>
+                                <th>Название</th>
+                                <th>Доступ</th>
+                                <th>URL страницы</th>
+                                <th>Просмотры</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -65,20 +65,20 @@
                                 </td>
                                 <td>
                                     {% if page.cmsPages_visibleToGroups %}
-                                        Only {{ CONFIG.PROJECT_NAME }} users with role
+                                        Только пользователи {{ CONFIG.PROJECT_NAME }} с ролью
                                         {% set first = true %}
                                         {% for position in positions %}
                                             {% if position.instancePositions_id in page.cmsPages_visibleToGroups|split(',') %}
                                                 {% if first %}
                                                     {% set first = false %}
                                                 {% else %}
-                                                    {{ " or " }}
+                                                    {{ " или " }}
                                                 {% endif %}
                                                 {{ position.instancePositions_displayName }}
                                             {% endif %}
                                         {% endfor %}
                                     {% else %}
-                                        All users in {{ USERDATA.instance.instances_name }}
+                                        Все пользователи в {{ USERDATA.instance.instances_name }}
                                     {% endif %}
                                 </td>
                                 <td>
@@ -206,9 +206,9 @@
                                         
                                     </div>
                                     <hr/>
-                                    <h3>{{ CONFIG.PROJECT_NAME }} Dashboard</h3>
+                                    <h3>Дашборд {{ CONFIG.PROJECT_NAME }}</h3>
                                     <div class="form-group">
-                                        <label>Limit visibility to:</label>
+                                        <label>Ограничить видимость для:</label>
                                         <select multiple class="form-control select2 select2bs4" name="cmsPages_visibleToGroups">
                                             {% for position in positions %}
                                                 <option value="{{ position.instancePositions_id }}" {% if position.instancePositions_id in page.cmsPages_visibleToGroups|split(',') %}selected{% endif %}>{{ position.instancePositions_displayName }}</option>
@@ -216,13 +216,13 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label>Show in Navigation Menu</label>
+                                        <label>Показывать в меню</label>
                                         <input type="checkbox" class="form-control" name="cmsPages_showNav" {{ page.cmsPages_showNav == 1 or page.NEW ? 'checked' : ''  }}  />
                                     </div>
                                     <div class="form-group">
-                                        <label>Sub-page of</label>
+                                        <label>Подстраница для</label>
                                         <select class="form-control select2 select2bs4" name="cmsPages_subOf">
-                                            <option value="">None</option>
+                                            <option value="">Нет</option>
                                             {% for pageList in CMSPages %}
                                                 {% if pageList.cmsPages_id != page.cmsPages_id %}
                                                     <option value="{{ pageList.cmsPages_id }}" {% if pageList.cmsPages_id == page.cmsPages_subOf %}selected{% endif %}>{{ pageList.cmsPages_name }}</option>
@@ -232,8 +232,8 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer justify-content-between">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary saveEdit">Save</button>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                                    <button type="submit" class="btn btn-primary saveEdit">Сохранить</button>
                                 </div>
                             </div>
                         </form>
@@ -251,7 +251,7 @@
                         theme: "bootstrap4",
                         minimumInputLength: 1,
                         minimumResultsForSearch: 1,
-                        placeholder: "Search for an Icon",
+                        placeholder: "Найдите иконку",
                         ajax: {
                             url: "{{ CONFIG.ROOTURL }}/api/icons/getIcons.php",
                             dataType: "json",
@@ -312,14 +312,14 @@
                 $(".archiveButton").click(function () {
                     var id = $(this).data("id");
                     bootbox.confirm({
-                        message: "Are you sure you want to archive this page?",
+                        message: "Архивировать эту страницу?",
                         buttons: {
                             confirm: {
-                                label: 'Yes',
+                                label: 'Да',
                                 className: 'btn-danger'
                             },
                             cancel: {
-                                label: 'No',
+                                label: 'Нет',
                                 className: 'btn-success'
                             }
                         },
@@ -336,14 +336,14 @@
                 $(".unArchiveButton").click(function () {
                     var id = $(this).data("id");
                     bootbox.confirm({
-                        message: "Are you sure you want to remove this page from the archive?",
+                        message: "Убрать эту страницу из архива?",
                         buttons: {
                             confirm: {
-                                label: 'Yes',
+                                label: 'Да',
                                 className: 'btn-danger'
                             },
                             cancel: {
-                                label: 'No',
+                                label: 'Нет',
                                 className: 'btn-success'
                             }
                         },

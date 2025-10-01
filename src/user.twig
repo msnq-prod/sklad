@@ -20,11 +20,11 @@
 
                     <ul class="list-group list-group-unbordered mb-3">
                         <li class="list-group-item">
-                            <b>Crew Roles</b> <a href="#roles" data-toggle="tab"
+                            <b>Роли в команде</b> <a href="#roles" data-toggle="tab"
                                     class="float-right">{{ user.crewAssignments|length }}</a>
                         </li>
                         <li class="list-group-item">
-                            <b>Projects Managed</b> <a href="#projects" data-toggle="tab"
+                            <b>Проекты под управлением</b> <a href="#projects" data-toggle="tab"
                                     class="float-right">{{ user.projectManagement|length }}</a>
                         </li>
                         {% if user.users_social_facebook != "" %}
@@ -78,8 +78,8 @@
                 <div class="card-header p-2">
                     <ul class="nav nav-pills">
                         {% if user.users_userid == USERDATA.users_userid or "USERS:EDIT"|serverPermissions %}
-                            <li class="nav-item"><a class="nav-link" href="#account" data-toggle="tab">Account Settings</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#notifications" data-toggle="tab">Notifications</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#account" data-toggle="tab">Настройки аккаунта</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#notifications" data-toggle="tab">Уведомления</a></li>
                             <li class="nav-item"><a class="nav-link" href="#profilepicture" data-toggle="tab">Profile Picture</a></li>
                         {% endif %}
                         {% if user.users_userid == USERDATA.users_userid %}
@@ -91,7 +91,7 @@
                         {% if user.crewAssignments|length > 0 %}<li class="nav-item"><a class="nav-link" href="#roles" data-toggle="tab">Crew Roles</a></li>{% endif %}
                         {% if user.projectManagement|length > 0 %}<li class="nav-item"><a class="nav-link" href="#projects" data-toggle="tab">Projects Managed</a></li>{% endif %}
                         {% if user.users_userid == USERDATA.users_userid %}
-                        <li class="nav-item"><a class="nav-link" href="#export" data-toggle="tab">Export Calendar</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#export" data-toggle="tab">Экспорт календаря</a></li>
                         {% endif %}
                         <li class="nav-item"><a class="nav-link active" href="#calendar" data-toggle="tab"><i class="far fa-calendar-alt"></i></a></li>
                     </ul>
@@ -114,10 +114,10 @@
                                         <input type="text" class="form-control" name="users_name2" required  value="{{user['users_name2']}}" />
                                     </div>
                                     <div class="form-group">
-                                        <label>Email address:</label>
+                                        <label>Адрес эл. почты:</label>
                                         <input type="email" class="form-control" name="users_email" required value="{{user['users_email']}}" />
                                     </div>
-                                    <p>Share links to your social media profiles to be displayed on your user profile page</p>
+                                    <p>Добавьте ссылки на социальные сети, которые будут отображаться в вашем профиле</p>
                                     <label>Facebook</label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
@@ -153,7 +153,7 @@
                                         <input type="text" class="form-control" name="users_social_snapchat" value="{{ user.users_social_snapchat }}">
                                     </div><br/>
                                     <input type="hidden" name="users_userid" value="{{ user.users_userid }}" />
-                                    <button type="submit" class="btn btn-default">Save</button>
+                                    <button type="submit" class="btn btn-default">Сохранить</button>
                                 </form>
                                 <script>
                                     $(document).ready(function() {
@@ -169,7 +169,7 @@
                                 <table class="table table-striped">
                                     <thead>
                                     <tr>
-                                        <th><button type="button" id="save-notification-settings" class="btn btn-success btn-sm">Save</button></th>
+                                        <th><button type="button" id="save-notification-settings" class="btn btn-success btn-sm">Сохранить</button></th>
                                         {% for method in NOTIFICATIONTYPES.METHODS %}
                                             <th>{{method}}</th>
                                         {% endfor %}
@@ -247,9 +247,9 @@
                                 <input type="password" placeholder="Current Password" class="form-control" id="current_pass" />
                             </div>
                             <div class="form-group">
-                                <label for="username">New Password</label>
-                                <input type="password" placeholder="New Password" class="form-control" id="passnew" /><br/>
-                                <input type="password" placeholder="Confirm New Password" class="form-control" id="passconf" />
+                                <label for="username">Новый пароль</label>
+                                <input type="password" placeholder="Новый пароль" class="form-control" id="passnew" /><br/>
+                                <input type="password" placeholder="Подтвердите новый пароль" class="form-control" id="passconf" />
                             </div>
                             <button id="save-password-settings" class="btn btn-default">Change Password</button>
                             <script>
@@ -309,7 +309,7 @@
                                         });
                                     </script>
                                 {% else %}
-                                    <a href="{{ CONFIG.ROOTURL }}/api/account/oauth-link/microsoft.php" class="btn btn-default"><i class="fab fa-microsoft"></i> Link to Microsoft Account</a>
+                                    <a href="{{ CONFIG.ROOTURL }}/api/account/oauth-link/microsoft.php" class="btn btn-default"><i class="fab fa-microsoft"></i> Привязать аккаунт Microsoft</a>
                                 {% endif %}
                             {% endif %}
                         </div>
@@ -319,9 +319,9 @@
                             <table class="table" border="0" style="overflow-x: scroll;">
                                 <thead>
                                 <tr>
-                                    <th>Title</th>
-                                    <th>From</th>
-                                    <th>To</th>
+                                    <th>Должность</th>
+                                    <th>С</th>
+                                    <th>По</th>
                                     {% if user.users_userid != USERDATA.users_userid and "PERMISSIONS:EDIT:USER_POSITION"|serverPermissions %}
                                         <th></th>
                                     {% endif %}
@@ -359,8 +359,8 @@
                                             </td>#}
                                             <td>
                                                 <div class="btn-group">
-                                                    <button type="button" title="Delete" data-positionid="{{ position.userPositions_id }}" class="btn btn-danger deletePermissionEdit"><i class="fa fa-trash"></i></button>
-                                                    <button type="button" title="Save" data-positionid="{{ position.userPositions_id }}" class="btn btn-default savePermissionEdit"><i class="fa fa-save"></i></button>
+                                                    <button type="button" title="Удалить" data-positionid="{{ position.userPositions_id }}" class="btn btn-danger deletePermissionEdit"><i class="fa fa-trash"></i></button>
+                                                    <button type="button" title="Сохранить" data-positionid="{{ position.userPositions_id }}" class="btn btn-default savePermissionEdit"><i class="fa fa-save"></i></button>
                                                 </div>
                                             </td>
                                         {% else %}
@@ -379,7 +379,7 @@
                                     </tr>
                                     {% endfor %}
                                 {% if user.users_userid != USERDATA.users_userid and "PERMISSIONS:EDIT:USER_POSITION"|serverPermissions %}
-                                    <tr><td colspan="999" style="font-weight: bold;">Add position</td></tr>
+                                    <tr><td colspan="999" style="font-weight: bold;">Добавить позицию</td></tr>
                                     <tr>
                                         <td>
                                             <div class="form-group">
@@ -407,7 +407,7 @@
                                             </div>
                                         </td> #}
                                         <td>
-                                            <button type="button" title="Save" data-positionid="new" class="btn btn-default savePermissionEdit"><i class="fa fa-plus"></i></button>
+                                            <button type="button" title="Сохранить" data-positionid="new" class="btn btn-default savePermissionEdit"><i class="fa fa-plus"></i></button>
                                         </td>
                                     </tr>
                                 {% endif %}
@@ -431,14 +431,14 @@
                                         $('.deletePermissionEdit').on('click', function() {
                                             thispositonid = $(this).data("positionid");
                                             bootbox.confirm({
-                                                message: "Are you sure you wish to delete this position record? <br/> Positions should be normally kept as an important matter of record - if this user has now left the position please instead set the end date as appropriate",
+                                                message: "Удалить запись о должности? <br/>Обычно записи о позициях сохраняются как важная информация. Если пользователь больше не занимает позицию, лучше установить дату окончания.",
                                                 buttons: {
                                                     confirm: {
-                                                        label: 'Yes',
+                                                        label: 'Да',
                                                         className: 'btn-success'
                                                     },
                                                     cancel: {
-                                                        label: 'No',
+                                                        label: 'Нет',
                                                         className: 'btn-danger'
                                                     }
                                                 },
@@ -465,7 +465,7 @@
                         <div class="tab-pane table-responsive p-0" id="roles" style="height: 600px;">
                             <table class="table table-head-fixed">
                                 <tr>
-                                    <th>Project</th>
+                                    <th>Проект</th>
                                     <th></th>
                                     <th>Role</th>
                                 </tr>
@@ -487,7 +487,7 @@
                         <div class="tab-pane table-responsive p-0" id="projects" style="height: 600px;">
                             <table class="table table-head-fixed">
                                 <tr>
-                                    <th>Project</th>
+                                    <th>Проект</th>
                                     <th></th>
                                 </tr>
                                 {% for project in user.projectManagement %}
@@ -519,7 +519,7 @@
                                     click the <em>+</em> above <em>My calendars</em> and choose <em>From URL</em>.
                                 </li>
                                 <li>Paste the URL into the field named <em>URL of calendar</em> that appears and click
-                                    <em>Add calendar</em>.
+                                    <em>Добавьте календарь</em>.
                                 </li>
                                 <li>After a few seconds, it should appear in your calendar. If it does not, try
                                     reloading Google Calendar.
@@ -528,7 +528,7 @@
                             <h2>Apple Calendar</h2>
                             <ol>
                                 <li>Copy the URL at the top.</li>
-                                <li>In Apple Calendar, click the <em>File</em> menu and choose <em>New Calendar
+                                <li>В Apple Calendar откройте меню <em>Файл</em> и выберите <em>Новый календарь
                                         Subscription…</em>.
                                 </li>
                                 <li>Paste the URL into the dialog that appears and click <em>Subscribe</em>.</li>
@@ -542,7 +542,7 @@
                                 <li>In Outlook, click <em>Open Calendar</em> and choose <em>From Internet…</em>.</li>
                                 <li>Paste the URL into the Outlook dialog that appears and click <em>OK</em>.</li>
                                 <li>After a few seconds, Outlook will ask if the internet calendar should be added.
-                                    Click <em>Yes</em>.
+                                    Нажмите <em>Да</em>.
                                 </li>
                             </ol>
                         </div>

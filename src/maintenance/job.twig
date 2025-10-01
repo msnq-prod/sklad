@@ -56,10 +56,10 @@
         <div class="col-12 col-md-12 col-lg-4">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Job Detail - #{{ job.maintenanceJobs_id }}</h3>
+                    <h3 class="card-title">Заявка — #{{ job.maintenanceJobs_id }}</h3>
 
                     <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Свернуть">
                             <i class="fas fa-minus"></i></button>
                     </div>
                 </div>
@@ -79,12 +79,12 @@
                                 {{job.maintenanceJobs_title}}</h3>
                             <p class="text-muted"></p>
                             <div class="text-muted">
-                                <p class="text-sm">Fault Report
+                                <p class="text-sm">Описание неисправности
                                     <b class="d-block">
                                         {{ job.maintenanceJobs_faultDescription|nl2br }}
                                     </b>
                                 </p>
-                                <p class="text-sm">Creator
+                                <p class="text-sm">Создатель
                                     <b class="d-block">
                                         {% if "BUSINESS:USERS:VIEW:INDIVIDUAL_USER"|instancePermissions %}
                                         <a style="color: inherit; text-decoration: inherit;" href="{{ CONFIG.ROOTURL }}/user.php?id={{ job.userCreatorUserID }}">
@@ -95,11 +95,11 @@
                                         {% endif %}
                                     </b>
                                 </p>
-                                <p class="text-sm">Created
+                                <p class="text-sm">Создано
                                     <b class="d-block">{{job.maintenanceJobs_timestamp_added|date("d M Y h:i:sa")}}</b>
                                 </p>
                                 {% if "MAINTENANCE_JOBS:EDIT:USER_ASSIGNED_TO_JOB"|instancePermissions %}
-                                    <p class="text-sm">Assigned to</p>
+                                    <p class="text-sm">Назначена</p>
                                     <select class="form-control select2bs4" multiple id="editJobAssigned">
                                         <option value="0" {{ job.userAssignedUserName1 == null ? 'selected' }}>Unassigned</option>
                                         {% for user in potentialManagers %}
@@ -179,9 +179,9 @@
                         <button type="button" class="btn btn-default dropdown-toggle dropdown-icon" data-toggle="dropdown">
                             <span class="sr-only">Toggle Dropdown</span>
                             <div class="dropdown-menu" role="menu">
-                                {% if "MAINTENANCE_JOBS:EDIT:NAME"|instancePermissions %}<a class="dropdown-item" id="editJobName" href="#">Edit Name</a>{% endif %}
+                                {% if "MAINTENANCE_JOBS:EDIT:NAME"|instancePermissions %}<a class="dropdown-item" id="editJobName" href="#">Изменить название</a>{% endif %}
                                 <div class="dropdown-divider"></div>
-                                {% if "MAINTENANCE_JOBS:DELETE"|instancePermissions %}<a class="dropdown-item" id="deleteJob" href="#">Delete</a>{% endif %}
+                                {% if "MAINTENANCE_JOBS:DELETE"|instancePermissions %}<a class="dropdown-item" id="deleteJob" href="#">Удалить</a>{% endif %}
                             </div>
                         </button>
                         {% endif %}
@@ -190,9 +190,9 @@
             </div>
             <div class="card ">
                 <div class="card-header">
-                    <h3 class="card-title">Assets</h3>
+                    <h3 class="card-title">Оборудование</h3>
                     <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Свернуть">
                             <i class="fas fa-minus"></i></button>
                     </div>
                 </div>
@@ -212,7 +212,7 @@
                                 </span>
                                  <div class="tools">
                                      <i class="fas fa-info-circle" style="color:#495057;" data-toggle="popover" title="{{ asset.manufacturers_name|replace({'"':"'"}) }}" data-content="{{ asset.assetTypes_name|replace({'"':"'"}) }}"></i>
-                                     {% if "MAINTENANCE_JOBS:EDIT"|instancePermissions %}<i class="fas fa-trash deleteAssetJobAssignment" data-assetid="{{ asset.assets_id }}" title="Remove Asset"></i>{% endif %}
+                                     {% if "MAINTENANCE_JOBS:EDIT"|instancePermissions %}<i class="fas fa-trash deleteAssetJobAssignment" data-assetid="{{ asset.assets_id }}" title="Удалить оборудование"></i>{% endif %}
                                 </div>
                             </li>
                         {% endfor %}
@@ -221,24 +221,24 @@
                 <div class="card-footer">
                     <div class="btn-group float-right">
                        {% if "MAINTENANCE_JOBS:EDIT:ADD_ASSETS"|instancePermissions %}
-                            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#addAssetModal">Add Assets</button>
+                            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#addAssetModal">Добавить оборудование</button>
                                <div class="modal fade" id="addAssetModal">
                                    <div class="modal-dialog">
                                        <div class="modal-content">
                                            <div class="modal-header">
-                                               <h4 class="modal-title">Add Assets to Job</h4>
-                                               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                               <h4 class="modal-title">Добавить оборудование в заявку</h4>
+                                               <button type="button" class="close" data-dismiss="modal" aria-label="Закрыть">
                                                    <span aria-hidden="true">&times;</span>
                                                </button>
                                            </div>
                                            <div class="modal-body">
                                                <div class="input-group mb-3">
-                                                   <select class="form-control" multiple="multiple" id="addAssetModal-assets" placeholder="Enter asset tags here"></select>
+                                                   <select class="form-control" multiple="multiple" id="addAssetModal-assets" placeholder="Введите инвентарные номера"></select>
                                                </div>
                                            </div>
                                            <div class="modal-footer justify-content-between">
-                                               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                               <button type="button" class="btn btn-primary" id="addAssetModal-button">Add</button>
+                                               <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                                               <button type="button" class="btn btn-primary" id="addAssetModal-button">Добавить</button>
                                            </div>
                                        </div>
                                    </div>
@@ -251,7 +251,7 @@
         <div class="col-12 col-md-12 col-lg-4">
             <div class="card direct-chat direct-chat-primary">
                 <div class="card-header">
-                    <h3 class="card-title">Thread</h3>
+                    <h3 class="card-title">Обсуждение</h3>
 
                     <div class="card-tools">
                         <span class="badge badge-info">{{job.messages|length}}</span>
@@ -300,9 +300,9 @@
                 <div class="card-footer">
                     <form id="sendMessage" style="margin-bottom: 5px;">
                         <div class="input-group">
-                            <textarea id="sendMessageField" style="resize: none;" placeholder="Type Message ..." class="form-control" rows="1" autocomplete="off"></textarea>
+                            <textarea id="sendMessageField" style="resize: none;" placeholder="Введите сообщение…" class="form-control" rows="1" autocomplete="off"></textarea>
                             <span class="input-group-append">
-                          <button type="submit" class="btn btn-primary">Send</button>
+                          <button type="submit" class="btn btn-primary">Отправить</button>
                         </span>
                         </div>
                     </form>
@@ -329,7 +329,7 @@
                 <div class="card-header">
                     <h3 class="card-title">Timeline</h3>
                     <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Свернуть">
                             <i class="fas fa-minus"></i></button>
                     </div>
                 </div>
@@ -374,7 +374,7 @@
                                                 <div class="timeline-body" style="font-style: italic;">{{event.auditLog_actionData|nl2br }}</div>
                                                 {#<div class="timeline-footer">
                                                     <a class="btn btn-primary btn-sm">Read more</a>
-                                                    <a class="btn btn-danger btn-sm">Delete</a>
+                                                    <a class="btn btn-danger btn-sm">Удалить</a>
                                                 </div>#}
                                             {% endif %}
                                         </div>
@@ -414,14 +414,14 @@
             {% if "MAINTENANCE_JOBS:DELETE"|instancePermissions %}
             $("#deleteJob").click(function () {
                 bootbox.confirm({
-                    message: "Are you sure you wish to delete the job - this should not be done unless it is a duplicate or was created by mistake?",
+                    message: "Удалить эту заявку? Делайте это только если заявка дублирует другую или создана по ошибке.",
                     buttons: {
                         confirm: {
-                            label: 'Yes',
+                            label: 'Да',
                             className: 'btn-danger'
                         },
                         cancel: {
-                            label: 'No',
+                            label: 'Нет',
                             className: 'btn-success'
                         }
                     },
@@ -552,14 +552,14 @@
             {% if "MAINTENANCE_JOBS:EDIT:STATUS"|instancePermissions %}
             $("#editJobStatus").click(function () {
                 bootbox.prompt({
-                    title: "Change job status",
+                    title: "Изменить статус заявки",
                     inputType: 'select',
                     {% if job.maintenanceJobsStatuses_id != null %}
                     value: {{ job.maintenanceJobsStatuses_id }},
                     {% endif %}
                     inputOptions: [
                         {
-                            text: 'No Status Set',
+                            text: 'Статус не задан',
                             value: '',
                         },
                         {% for status in jobStatuses %}
@@ -586,14 +586,14 @@
             $(".deleteAssetJobAssignment").click(function () {
                 var id = $(this).data("assetid");
                 bootbox.confirm({
-                    message: "Are you sure you wish to remove this asset from the job?",
+                    message: "Удалить это оборудование из заявки?",
                     buttons: {
                         confirm: {
-                            label: 'Yes',
+                            label: 'Да',
                             className: 'btn-success'
                         },
                         cancel: {
-                            label: 'Cancel',
+                            label: 'Отмена',
                             className: 'btn-default'
                         }
                     },

@@ -11,18 +11,18 @@
             <div class="card">
                 <div class="card-header">
                     <ul class="nav nav-pills">
-                        <li class="nav-item"><a class="nav-link" href="{{CONFIG.ROOTURL}}/instances/navigation.php"><i class="fas fa-arrow-left"></i> Back to Settings</span></a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{CONFIG.ROOTURL}}/instances/navigation.php"><i class="fas fa-arrow-left"></i> Назад к настройкам</span></a></li>
                         {% if "BUSINESS:USERS:VIEW:LIST"|instancePermissions %}
-                        <li class="nav-item"><a class="nav-link active" href="{{CONFIG.ROOTURL}}/instances/users.php">Users</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="{{CONFIG.ROOTURL}}/instances/users.php">Пользователи</a></li>
                         {% endif %}
                         {% if "BUSINESS:ROLES_AND_PERMISSIONS:VIEW"|instancePermissions %}
-                        <li class="nav-item"><a class="nav-link" href="{{CONFIG.ROOTURL}}/instances/permissions.php">Permissions</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{CONFIG.ROOTURL}}/instances/permissions.php">Права доступа</a></li>
                         {% endif %}
                         {% if "BUSINESS:USER_SIGNUP_CODES:VIEW"|instancePermissions %}
-                        <li class="nav-item"><a class="nav-link" href="{{CONFIG.ROOTURL}}/instances/signupCodes.php">Signup Codes</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{CONFIG.ROOTURL}}/instances/signupCodes.php">Коды приглашений</a></li>
                         {% endif %}
                         {% if "BUSINESS:SETTINGS:EDIT:TRUSTED_DOMAINS"|instancePermissions %}
-                        <li class="nav-item"><a class="nav-link" href="{{CONFIG.ROOTURL}}/instances/trustedDomains.php">Trusted Domains</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{CONFIG.ROOTURL}}/instances/trustedDomains.php">Доверенные домены</a></li>
                         {% endif %}
                     </ul>
                 </div>
@@ -30,17 +30,17 @@
             {% if "BUSINESS:USERS:CREATE:ADD_USER_BY_EMAIL"|instancePermissions %}
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Add Users</h3>
+                    <h3 class="card-title">Добавить пользователей</h3>
                 </div>
                 <div class="card-body">
                     {% if NOCAPACITY %}
-                    <p>Your current plan does not enable you to add any more users. You have {{ NOCAPACITY.USED }} users, with a limit of {{ NOCAPACITY.CAPACITY }}.</p>
-                    <a href="{{ CONFIG.ROOTURL }}/instances/billing.php" class="btn btn-default">Billing Settings</a>
+                    <p>Ваш текущий тариф не позволяет добавлять новых пользователей. У вас {{ NOCAPACITY.USED }} пользователей при лимите {{ NOCAPACITY.CAPACITY }}.</p>
+                    <a href="{{ CONFIG.ROOTURL }}/instances/billing.php" class="btn btn-default">Настройки биллинга</a>
                     {% else %}
-                    <p>Enter email addresses to search for existing AdamRMS users to add to business</p>
+                    <p>Введите адреса эл. почты, чтобы найти существующих пользователей AdamRMS и добавить их в компанию</p>
                      <div class="input-group">
                         <select class="form-control" multiple="multiple" id="addUserToInstance"></select>
-                        <button type="button" style="margin-top: 5px;" class="btn btn-default" id="addUserToInstance-button">Add to business</button>
+                        <button type="button" style="margin-top: 5px;" class="btn btn-default" id="addUserToInstance-button">Добавить в компанию</button>
                     </div>
                     {% endif %}
                 </div>
@@ -48,22 +48,22 @@
             {% endif %}
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Users</h3>
+                    <h3 class="card-title">Пользователи</h3>
                     <div class="card-tools pull-right">
-                        <a href="{{ CONFIG.LINKS_USERGUIDEURL }}business/user-management" target="_blank" type="button" class="btn btn-info btn-sm">Help</a>
+                        <a href="{{ CONFIG.LINKS_USERGUIDEURL }}business/user-management" target="_blank" type="button" class="btn btn-info btn-sm">Помощь</a>
                     </div>
                 </div>
                 <div class="card-body">
                     <table class="table table-head-fixed" id="userTable" border="0" style="overflow-x: scroll;">
                         <thead>
                         <tr>
-                            <th data-searchable="false" data-orderable="false">Thumbnail</th>
-                            <th>Username</th>
-                            <th>Firstname</th>
-                            <th>Lastname</th>
-                            <th>Email</th>
-                            <th data-searchable="false">Role</th>
-                            <th data-searchable="false">Role Group</th>
+                            <th data-searchable="false" data-orderable="false">Миниатюра</th>
+                            <th>Имя пользователя</th>
+                            <th>Имя</th>
+                            <th>Фамилия</th>
+                            <th>Эл. почта</th>
+                            <th data-searchable="false">Роль</th>
+                            <th data-searchable="false">Группа ролей</th>
                             <th data-searchable="false" data-orderable="false"></th>
                         </tr>
                         </thead>
@@ -133,18 +133,18 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">{{ user["users_name1"] }} {{ user["users_name2"] }} in {{ USERDATA.instance.instances_name }}</h4>
+                    <h4 class="modal-title">{{ user["users_name1"] }} {{ user["users_name2"] }} в {{ USERDATA.instance.instances_name }}</h4>
 
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span></button>
                                     </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label>Role</label>
+                        <label>Роль</label>
                         <input type="text" class="form-control labelUserInstanceModal" data-userinstanceid="{{ user.userInstances_id }}" value="{{user.userInstances_label}}">
                     </div>
                     <div class="form-group">
-                        <label>Role Group</label>
+                        <label>Группа ролей</label>
                         <select class="form-control instancePositionUserInstanceModal" data-userinstanceid="{{ user.userInstances_id }}">
                             {% for position in positions %}
                                 <option
@@ -159,8 +159,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary saveUserInstanceModal" data-userinstanceid="{{ user.userInstances_id }}">Save</button>
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Закрыть</button>
+                    <button type="button" class="btn btn-primary saveUserInstanceModal" data-userinstanceid="{{ user.userInstances_id }}">Сохранить</button>
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -185,11 +185,12 @@
                 "autoWidth": false,
                 "responsive": true,
                 "deferRender": true,
+                "language": { "url": "https://cdn.datatables.net/plug-ins/1.10.21/i18n/Russian.json" }
             });
             {% if "BUSINESS:USERS:DELETE:REMOVE_FORM_BUSINESS"|instancePermissions %}
             $('.removeFromInstance').on('click', function(e){
                 var userid = $(this).data("userid");
-                bootbox.confirm("Are you sure you wish to remove this user from the business?<br/><br/>If you're the last user in the business this will also remove access to the business forever, including all projects", function(result){
+                bootbox.confirm("Удалить этого пользователя из компании?<br/><br/>Если это последний пользователь компании, доступ к компании и всем проектам будет утерян навсегда.", function(result){
                     if (result) {
                         ajaxcall("instances/removeUser.php", {"userid": userid}, function() {
                             location.reload();
@@ -201,7 +202,7 @@
             {% if "BUSINESS:USERS:EDIT:ARCHIVE"|instancePermissions %}
             $('.archiveFromInstance').on('click', function(e){
                 var userid = $(this).data("userid");
-                bootbox.confirm("Are you sure you wish to archive this user in the business?", function(result){
+                bootbox.confirm("Архивировать этого пользователя в компании?", function(result){
                     if (result) {
                         ajaxcall("instances/archiveUser.php", {"userid": userid}, function() {
                             location.reload();
@@ -211,7 +212,7 @@
             });
             $('.unArchiveFromInstance').on('click', function(e){
                 var userid = $(this).data("userid");
-                bootbox.confirm("Are you sure you wish to add this user back into the business?", function(result){
+                bootbox.confirm("Вернуть этого пользователя в компанию?", function(result){
                     if (result) {
                         ajaxcall("instances/archiveUser.php", {"userid": userid}, function() {
                             location.reload();

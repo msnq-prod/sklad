@@ -6,14 +6,14 @@
             <div class="card">
                 <div class="card-header">
                     <ul class="nav nav-pills">
-                        <li class="nav-item"><a class="nav-link" href="{{CONFIG.ROOTURL}}/project/?id={{project.projects_id}}#details-view"><i class="fas fa-arrow-left"></i> Back to <span style="font-weight:bold;">{{project.projects_name}}</span></a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{CONFIG.ROOTURL}}/project/?id={{project.projects_id}}#details-view"><i class="fas fa-arrow-left"></i> Назад к <span style="font-weight:bold;">{{project.projects_name}}</span></a></li>
                     </ul>
                 </div>
             </div>
             <div class="card ">
                 <div class="card-header">
                     <h3 class="card-title">
-                        Advertised Crew Role Vacancies
+                        Вакансии ролей в команде
                     </h3>
                     <div class="card-tools pull-right">
                         <form class="input-group input-group-sm" method="GET">
@@ -28,19 +28,19 @@
                         <thead>
                         <tr>
                             <th style="width: 20%">
-                                Role Name
+                                Название роли
                             </th>
                             <th>
-                                Status
+                                Статус
                             </th>
                             <th>
-                                Deadline
+                                Срок
                             </th>
                             <th>
-                                Places Filled/Total Places
+                                Заполнено/Всего мест
                             </th>
                             <th>
-                                Applications
+                                Заявки
                             </th>
                             <th style="width: 20px">
                             </th>
@@ -54,15 +54,15 @@
                                 </td>
                                 <td>
                                     {% if role.projectsVacantRoles_slotsFilled >= role.projectsVacantRoles_slots %}
-                                        <p class="badge badge-info" data-toggle="tooltip" data-placement="right" title="All vacancies are filled">Full</p>
+                                        <p class="badge badge-info" data-toggle="tooltip" data-placement="right" title="Все вакансии заполнены">Заполнено</p>
                                     {% elseif role.projects_dates_use_end and date(role.projects_dates_use_end) < date() %}
-                                        <p class="badge badge-warning" data-toggle="tooltip" data-placement="right" title="The project end date has passed">Project Finished</p>
+                                        <p class="badge badge-warning" data-toggle="tooltip" data-placement="right" title="Срок проекта истёк">Проект завершён</p>
                                     {% elseif role.projectsVacantRoles_deadline and date(role.projectsVacantRoles_deadline) < date() %}
-                                        <p class="badge badge-warning" data-toggle="tooltip" data-placement="right" title="This vacancy's deadline has passed">Deadline Passed</p>
+                                        <p class="badge badge-warning" data-toggle="tooltip" data-placement="right" title="Срок подачи заявок истёк">Срок истёк</p>
                                     {% elseif role.projectsVacantRoles_open == 1 %}
-                                        <p class="badge badge-success" data-toggle="tooltip" data-placement="right" title="Visible and can be applied for">Open</p>
+                                        <p class="badge badge-success" data-toggle="tooltip" data-placement="right" title="Видна и доступна для подачи заявок">Открыта</p>
                                     {% else %}
-                                        <p class="badge badge-secondary" data-toggle="tooltip" data-placement="right" title="Not visible to crew">Hidden</p>
+                                        <p class="badge badge-secondary" data-toggle="tooltip" data-placement="right" title="Не видна для команды">Скрыта</p>
                                     {% endif %}
                                 </td>
                                 <td>
@@ -77,7 +77,7 @@
                                 <td class="project-actions text-right">
                                     <div class="btn-group">
                                         {% if role.applications > 0 %}
-                                            <a class="btn btn-success btn-sm{% if role.canViewApplications != true %} disabled" href="#" title="You do not have permission to view applications"{% else %}" href="applications.php?id={{ role.projectsVacantRoles_id }}"{% endif %}>Applications</a>
+                                            <a class="btn btn-success btn-sm{% if role.canViewApplications != true %} disabled" href="#" title="У вас нет прав для просмотра заявок"{% else %}" href="applications.php?id={{ role.projectsVacantRoles_id }}"{% endif %}>Заявки</a>
                                         {% endif %}
                                         <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#editModal{{ role.projectsVacantRoles_id }}"><i class="fas fa-edit"></i></button>
                                         {% if role.applications < 1 %}
@@ -169,21 +169,21 @@
                             </div>
                             <small class="form-text text-muted">Once a vacancy is created, these settings can only be changed by the project manager</small>
                             <hr/>
-                            <h3>Role Visibility</h3>
+                            <h3>Видимость роли</h3>
                             <div class="input-group" style="margin-bottom: 5px;">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text">Visible on Crew Vacancies List</span>
+                                    <span class="input-group-text">Отображать в списке вакансий</span>
                                 </div>
                                 <input type="checkbox" class="form-control" name="projectsVacantRoles_open" {{ role.projectsVacantRoles_open == 1 or role.NEW ? 'checked' : ''  }}  />
                             </div>
                             <div class="input-group" style="margin-bottom: 5px;">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text">Visible on Public Site</span>
+                                    <span class="input-group-text">Отображать на публичном сайте</span>
                                 </div>
                                 <input type="checkbox" class="form-control" name="projectsVacantRoles_showPublic" {% if publicData.enabled != true %}disabled title="Public Site is Disabled"{% elseif role.projectsVacantRoles_visibleToGroups != null %}disabled title="Role is only available to specified groups"{% elseif role.projectsVacantRoles_showPublic == 1 or role.NEW %}checked{% endif %} />
                             </div>
                             <div class="form-group">
-                                <label>Limit visibility to:</label>
+                                <label>Ограничить видимость для:</label>
                                 <select multiple class="form-control select2 select2bs4" name="projectsVacantRoles_visibleToGroups">
                                     {% for position in positions %}
                                         <option value="{{ position.instancePositions_id }}" {% if position.instancePositions_id in role.projectsVacantRoles_visibleToGroups|split(',') %}selected{% endif %}>{{ position.instancePositions_displayName }}</option>
@@ -194,46 +194,46 @@
                             <hr/>
                             <div class="input-group" style="margin-bottom: 5px;">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text">Collect Phone Numbers</span>
+                                    <span class="input-group-text">Запрашивать телефоны кандидатов</span>
                                 </div>
                                 <input type="checkbox" class="form-control" name="projectsVacantRoles_collectPhone" {{ role. projectsVacantRoles_collectPhone == 1 or role.NEW ? 'checked' : ''  }}  />
                             </div>
                             <div class="input-group" style="margin-bottom: 5px;">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text">Allow File Uploads in Applications</span>
+                                    <span class="input-group-text">Разрешить загрузку файлов в заявках</span>
                                 </div>
                                 <input type="checkbox" class="form-control" name="projectsVacantRoles_fileUploads" {{ role.projectsVacantRoles_fileUploads == 1 or role.NEW ? 'checked' : ''  }}  />
                             </div>
                             <br/>
                             <div class="applicationQuestions" data-id="{{ role.projectsVacantRoles_id }}">
-                                <button type="button" class="btn btn-secondary applicationQuestionsAddButton mb-2">Add Application Question</button>
+                                <button type="button" class="btn btn-secondary applicationQuestionsAddButton mb-2">Добавить вопрос в заявку</button>
                                 {% for question in role.projectsVacantRoles_questionsArray %}
                                     <div class="applicationQuestions-group">
                                         <div class="input-group" style="margin-bottom: 5px;">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text">Question Text</span>
+                                                <span class="input-group-text">Текст вопроса</span>
                                             </div>
                                             <input type="text" class="form-control" data-name="name" value="{{ question.name }}" />
                                         </div>
                                         <div class="input-group" style="margin-bottom: 5px;">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text">Placeholder</span>
+                                                <span class="input-group-text">Плейсхолдер</span>
                                             </div>
                                             <input type="text" class="form-control" data-name="placeholder" value="{{ question.placeholder }}" />
                                         </div>
                                         <div class="input-group" style="margin-bottom: 5px;">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text">Notes</span>
+                                                <span class="input-group-text">Заметки</span>
                                             </div>
                                             <textarea class="form-control">{{ question.notes }}</textarea>
                                         </div>
                                         <div class="input-group" style="margin-bottom: 5px;">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text">Question Type</span>
+                                                <span class="input-group-text">Тип вопроса</span>
                                             </div>
                                             <select class="form-control">
-                                                <option value="textarea" {{ question.type == "textarea" ? 'selected' }}>Long Text</option>
-                                                <option value="text" {{ question.type == "text" ? 'selected' }}>Short Text</option>
+                                                <option value="textarea" {{ question.type == "textarea" ? 'selected' }}>Длинный текст</option>
+                                                <option value="text" {{ question.type == "text" ? 'selected' }}>Короткий текст</option>
                                             </select>
                                         </div>
                                     </div><hr/>
@@ -241,8 +241,8 @@
                             </div>
                         </div>
                         <div class="modal-footer justify-content-between">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary saveEdit">Save</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                            <button type="submit" class="btn btn-primary saveEdit">Сохранить</button>
                         </div>
                     </div>
                 </form>
@@ -331,14 +331,14 @@
             $(".deleteButton").click(function () {
                 var id = $(this).data("id");
                 bootbox.confirm({
-                    message: "Are you sure you want to delete this role?",
+                    message: "Удалить эту роль?",
                     buttons: {
                         confirm: {
-                            label: 'Yes',
+                            label: 'Да',
                             className: 'btn-danger'
                         },
                         cancel: {
-                            label: 'No',
+                            label: 'Нет',
                             className: 'btn-success'
                         }
                     },

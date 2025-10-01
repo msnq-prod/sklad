@@ -10,12 +10,12 @@
 	<div class="row">
 		<div class="col-lg-6 offset-lg-3 col-md-12">
 			<div class="alert alert-warning alert-dismissible">
-				<h5><i class="icon fas fa-info"></i> Server-Wide Configuration</h5>
-				You are modifying settings and configuration that affect the whole of the {{ CONFIG.PROJECT_NAME }} Server, including all businesses (instances) running on it. Please be careful when making changes here.
+				<h5><i class="icon fas fa-info"></i> Настройки для всего сервера</h5>
+				Вы изменяете параметры, влияющие на весь сервер {{ CONFIG.PROJECT_NAME }}, включая все компании (инстансы). Будьте осторожны при внесении изменений.
 			</div>
             <div class="alert alert-warning alert-dismissible" style="border: 0px; margin-bottom: 15px;">
-                <h4><i class="fa fa-exclamation"></i> You have permission to view E-Mail addresses in this list</h4>
-                Please use caution and do not divulge these email addresses as per appropriate privacy policies
+                <h4><i class="fa fa-exclamation"></i> У вас есть доступ к адресам эл. почты в этом списке</h4>
+                Пожалуйста, соблюдайте политику конфиденциальности и не разглашайте эти адреса.
             </div>
 		</div>
 	</div>
@@ -25,9 +25,9 @@
                 <div class="card-header">
                     <h3 class="card-title">
                         {% if search|length > 0 %}
-                            Search results for users matching <b>{{ search }}</b>
+                            Результаты поиска пользователей по запросу <b>{{ search }}</b>
                         {% else %}
-                            Users
+                            Пользователи
                         {% endif %}
                     </h3>
                     <div class="card-tools pull-right">
@@ -44,15 +44,15 @@
                         <table class="table table-head-fixed" id="userTable" border="0" style="overflow-x: scroll;">
                             <thead>
                             <tr>
-                                <th>Username</th>
-                                <th>Firstname</th>
-                                <th data-searchable="false">Lastname</th>
-                                <th>Email</th>
-                                <th data-orderable="false">Roles</th>
-                                <th data-orderable="false">Instances</th>
-                                <th data-searchable="false">Accepted TOS</th>
-                                <th data-searchable="false">Last Login</th>
-                                <th data-searchable="false">Last Page View</th>
+                                <th>Имя пользователя</th>
+                                <th>Имя</th>
+                                <th data-searchable="false">Фамилия</th>
+                                <th>Эл. почта</th>
+                                <th data-orderable="false">Роли</th>
+                                <th data-orderable="false">Компании</th>
+                                <th data-searchable="false">Принял условия</th>
+                                <th data-searchable="false">Последний вход</th>
+                                <th data-searchable="false">Последний просмотр</th>
                                 <th data-orderable="false"></th>
                             </tr>
                             </thead>
@@ -68,7 +68,7 @@
                                     <td>{{ user["users_email"] }} {{ user["users_emailVerified"] == 1 ? '<i class="fa fa-check-square-o">' : null }}</td>
                                     <td>
                                         {% if user.users_suspended == '1' %}
-                                            <span class="badge bg-danger">Suspended</span><br/>
+                                            <span class="badge bg-danger">Заблокирован</span><br/>
                                         {% endif %}
                                         {% if user.currentPositions|length > 0 %}
                                             {% for position in user.currentPositions %}
@@ -83,7 +83,7 @@
                                     </td>
                                     <td>
                                         {% if user.instances|length < 1 %}
-                                            <span class="badge bg-warning">No instances</span><br/>
+                                            <span class="badge bg-warning">Нет компаний</span><br/>
                                         {% endif %}
                                         {% for instance in user.instances %}
                                             {% if instance.userInstances_archived != null and instance.userInstances_archived|date('Y-m-d H:i:s') <= "now"|date('Y-m-d H:i:s') %}
@@ -131,19 +131,19 @@
                                                         class="btn btn-{{ user.users_suspended == '1' ? 'success' : 'danger' }} suspenduser"
                                                         data-suspendval="{{ user.users_suspended == '1' ? '0' : '1' }}"
                                                         data-userid="{{ user.users_userid }}"
-                                                        title="{{ user.users_suspended == '0' ? 'Suspend user' : 'Un-Suspend user' }}">
+                                                        title="{{ user.users_suspended == '0' ? 'Заблокировать пользователя' : 'Разблокировать пользователя' }}">
                                                     <i class="fa fa-times-circle"></i></button>
                                             {% endif %}
                                             {% if "USERS:DELETE"|serverPermissions %}
                                                 <button type="button"
                                                         class="btn btn-danger deleteuser"
                                                         data-userid="{{ user.users_userid }}"
-                                                        title="Delete User">
+                                                        title="Удалить пользователя">
                                                     <i class="fa fa-trash"></i></button>
                                             {% endif %}
                                             {% if "USERS:VIEW_SITE_AS"|serverPermissions %}
                                                 <a href="{{ CONFIG.ROOTURL }}/api/account/viewSiteAs.php?userid={{ user["users_userid"] }}"
-                                                   title="Login as User">
+                                                   title="Войти от имени пользователя">
                                                     <button type="button" class="btn btn-default"><i
                                                                 class="fa fa-sign-in-alt"></i></button>
                                                 </a>
@@ -166,11 +166,12 @@
                                 "autoWidth": false,
                                 "responsive": true,
                                 "deferRender": true,
+                                "language": { "url": "https://cdn.datatables.net/plug-ins/1.10.21/i18n/Russian.json" }
                             });
                         });
                         </script>
                     {% else %}
-                        <center><p style="margin: 10px;"><i>No results</i><br/><a href="?">Remove any filters</a></p></center>
+                        <center><p style="margin: 10px;"><i>Ничего не найдено</i><br/><a href="?">Сбросить фильтры</a></p></center>
                     {% endif %}
                 </div>
                 <div class="overlay" id="loadingoverlay">
@@ -184,8 +185,7 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h4 class="modal-title"> E-Mails
-                                    to {{ user["users_name1"] }} {{ user["users_name2"] }}</h4>
+                                <h4 class="modal-title"> Письма для {{ user["users_name1"] }} {{ user["users_name2"] }}</h4>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -202,8 +202,8 @@
                             </div>
                             <div class="modal-footer">
                                 <a href="{{ CONFIG.ROOTURL }}/api/account/emailViewer.php?email={{ user.email_ids }}"
-                                   class="btn btn-default">Output All</a>
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                   class="btn btn-default">Выгрузить все</a>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
                             </div>
                         </div>
                     </div>
@@ -280,14 +280,14 @@
                 $(".deleteuser").click(function () {
                     var userid = $(this).data("userid");
                     bootbox.confirm({
-                        message: "Are you sure you wish to delete this user?",
+                        message: "Удалить этого пользователя?",
                         buttons: {
                             confirm: {
-                                label: 'Yes',
+                                label: 'Да',
                                 className: 'btn-danger'
                             },
                             cancel: {
-                                label: 'No',
+                                label: 'Нет',
                                 className: 'btn-success'
                             }
                         },

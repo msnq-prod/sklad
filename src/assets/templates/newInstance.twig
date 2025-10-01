@@ -1,23 +1,23 @@
 <div class="card box-warning">
     <form id="createNewInstanceForm">
     <div class="card-header">
-        <h3 class="card-title">Create new Business</h3>
+        <h3 class="card-title">Создать компанию</h3>
     </div>
     <!-- /.box-header -->
     <div class="card-body">
 
         <div class="form-group">
-            <label>Business Name</label>
+            <label>Название компании</label>
             <input type="text" required class="form-control" placeholder="{{ CONFIG.PROJECT_NAME }} Hire Services Global" name="instances_name">
         </div>
         <div class="form-group">
-            <label>Address</label>
+            <label>Адрес</label>
             <textarea class="form-control" rows="4" placeholder="" name="instances_address"></textarea>
         </div>
         <div class="form-group">
             <div class="input-group">
                 <div class="input-group-prepend"><span class="input-group-text"><i class="fab fa-internet-explorer"></i></span></div>
-                <input type="url" class="form-control"  placeholder="www.adam-rms.com" name="instances_website">
+                <input type="url" class="form-control"  placeholder="example.com" name="instances_website">
             </div>
         </div>
         <div class="form-group">
@@ -27,18 +27,18 @@
                         <i class="fa fa-envelope"></i>
                     </span>
                 </div>
-                <input type="email" class="form-control" placeholder="Email" name="instances_email">
+                <input type="email" class="form-control" placeholder="Эл. почта" name="instances_email">
             </div>
         </div>
         <div class="form-group">
             <div class="input-group">
                 <div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-phone"></i></span></div>
-                <input type="phone" class="form-control" placeholder="Phone" name="instances_phone">
+                <input type="phone" class="form-control" placeholder="Телефон" name="instances_phone">
             </div>
         </div>
         <div class="form-group">
             <div class="input-group">
-                <div class="input-group-prepend"><span class="input-group-text">Currency</span></div>
+                <div class="input-group-prepend"><span class="input-group-text">Валюта</span></div>
                 <select class="form-control" name="instances_config_currency">
                     <option value="USD" label="US dollar">USD</option>
                     <option value="EUR" label="Euro">EUR</option>

@@ -763,40 +763,40 @@
                                 <hr/>
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="finance" checked>
-                                    <label class="form-check-label">Financial Totals</label>
+                                    <label class="form-check-label">Итоги по финансам</label>
                                 </div>
                                 {% if project.projectsTypes_config_assets == 1 %}
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" name="prices" checked>
-                                        <label class="form-check-label">Prices</label>
+                                        <label class="form-check-label">Цены</label>
                                     </div>
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" name="discounts" checked>
-                                        <label class="form-check-label">Equipment Discounts</label>
+                                        <label class="form-check-label">Скидки на оборудование</label>
                                     </div>
                                 {% endif %}
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="subHires" checked>
-                                    <label class="form-check-label">Additional Hires</label>
+                                    <label class="form-check-label">Дополнительная аренда</label>
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="sales" checked>
-                                    <label class="form-check-label">Sales</label>
+                                    <label class="form-check-label">Продажи</label>
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="staff" checked>
-                                    <label class="form-check-label">Staff</label>
+                                    <label class="form-check-label">Персонал</label>
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="paymentTerms" checked>
-                                    <label class="form-check-label">Payment Terms</label>
+                                    <label class="form-check-label">Условия оплаты</label>
                                 </div>
                             {% endif %}
                         </div>
                     </div>
                     <div class="modal-footer justify-content-between">
-                        <button type="submit" name="draft" value="true" class="btn btn-default">Draft Printout</button>
-                        <button type="submit" name="upload" value="true" class="btn btn-success">Generate PDF</button>
+                        <button type="submit" name="draft" value="true" class="btn btn-default">Черновая печать</button>
+                        <button type="submit" name="upload" value="true" class="btn btn-success">Сформировать PDF</button>
                     </div>
                 </div>
             </form>
@@ -806,7 +806,7 @@
         $(document).ready(function () {
             $('#pdfGenerateModal').on('show.bs.modal', function (e) {
                  if ($(e.relatedTarget).data('delivery-note')){
-                    $("#pdfGenerateModal .modal-title").text("Create Delivery Note");
+                    $("#pdfGenerateModal .modal-title").text("Создать накладную");
                     $('#pdfGenerateModal input[name="type"]').val("deliveryNote");
                     $('#pdfGenerateModal input[name="finance"]').prop('checked', false).parent().hide();
                     $('#pdfGenerateModal input[name="prices"]').prop('checked', false).parent().hide();
@@ -818,10 +818,10 @@
                     $('#pdfGenerateModal input[name="discounts"]').prop('checked', true).parent().show();
                     $('#pdfGenerateModal input[name="flagsBlocks"]').prop('checked', false).parent().show();
                     if ($(e.relatedTarget).data('quote')) {
-                        $("#pdfGenerateModal .modal-title").text("Create Quote");
+                        $("#pdfGenerateModal .modal-title").text("Создать коммерческое предложение");
                         $('#pdfGenerateModal input[name="type"]').val("quote");
                     } else {
-                        $("#pdfGenerateModal .modal-title").text("Create Invoice");
+                        $("#pdfGenerateModal .modal-title").text("Создать счёт");
                         $('#pdfGenerateModal input[name="type"]').val("invoice");
                     }
                 }
@@ -831,12 +831,12 @@
             });
             $(".quickAddCommentButton").click(function () {
                 bootbox.dialog({
-                    title: "Enter comment",
+                    title: "Введите комментарий",
                     size: 'large',
                     message: '<div id="editor"></div>',
                     buttons: {
                         ok: {
-                            label: "Save",
+                            label: "Сохранить",
                             className: "btn btn-info",
                             callback: function () {
                                 let content = $('#editor').summernote('code');
@@ -851,7 +851,7 @@
                             }
                         },
                         cancel:{
-                            label: "Cancel",
+                            label: "Отмена",
                             className: "btn btn-danger",
                         }
                     }
@@ -902,7 +902,7 @@
             {% if "PROJECTS:EDIT:PROJECT_TYPE"|instancePermissions %}
             $("#editProjectType").click(function () {
                 bootbox.prompt({
-                    title: "Change Project Type",
+                    title: "Изменить тип проекта",
                     inputType: 'select',
                     value: {{ project.projectsTypes_id }},
                     inputOptions: [
@@ -947,7 +947,7 @@
             {% if "PROJECTS:EDIT:DESCRIPTION_AND_SUB_PROJECTS"|instancePermissions %}
             $("#editProjectDescription").click(function () {
                 bootbox.prompt({
-                    title: "Edit Project Description",
+                    title: "Изменить описание проекта",
                     inputType: 'textarea',
                     value: "{{ project.projects_description|escape("js") }}",
                     callback: function (result) {
@@ -966,7 +966,7 @@
             {% if "PROJECTS:EDIT:INVOICE_NOTES"|instancePermissions %}
             $(".editProjectInvoiceNotes").click(function () {
                 bootbox.prompt({
-                    title: "Edit Project Invoice Notes",
+                    title: "Изменить примечания к счёту",
                     inputType: 'textarea',
                     value: `{{ project.projects_invoiceNotes|escape("js") }}`,
                     callback: function (result) {
@@ -985,7 +985,7 @@
             {% if "PROJECTS:EDIT:DELIVERY_NOTES"|instancePermissions %}
             $(".editProjectDeliveryNotes").click(function () {
                 bootbox.prompt({
-                    title: "Edit Project Delivery Notes",
+                    title: "Изменить примечания к накладной",
                     inputType: 'textarea',
                     value: `{{ project.projects_deliveryNotes|escape("js") }}`,
                     callback: function (result) {
@@ -1005,14 +1005,14 @@
             $("#archiveProject").click(function () {
                 {% if project.projects_archived != 1 %}
                 bootbox.confirm({
-                    message: "Are you sure you wish to archive the project?",
+                    message: "Вы уверены, что хотите архивировать проект?",
                     buttons: {
                         confirm: {
-                            label: 'Yes',
+                            label: 'Да',
                             className: 'btn-danger'
                         },
                         cancel: {
-                            label: 'No',
+                            label: 'Нет',
                             className: 'btn-success'
                         }
                     },
@@ -1026,14 +1026,14 @@
                 });
                 {% else %}
                 bootbox.confirm({
-                    message: "Are you sure you wish to remove this project from the archive?",
+                    message: "Вы уверены, что хотите убрать этот проект из архива?",
                     buttons: {
                         confirm: {
-                            label: 'Yes',
+                            label: 'Да',
                             className: 'btn-danger'
                         },
                         cancel: {
-                            label: 'No',
+                            label: 'Нет',
                             className: 'btn-success'
                         }
                     },
@@ -1051,14 +1051,14 @@
             {% if "PROJECTS:DELETE"|instancePermissions %}
             $("#deleteProject").click(function () {
                 bootbox.confirm({
-                    message: "Are you sure you wish to delete the project?",
+                    message: "Вы уверены, что хотите удалить проект?",
                     buttons: {
                         confirm: {
-                            label: 'Yes',
+                            label: 'Да',
                             className: 'btn-danger'
                         },
                         cancel: {
-                            label: 'No',
+                            label: 'Нет',
                             className: 'btn-success'
                         }
                     },
@@ -1077,17 +1077,17 @@
                 timePicker: true,
                 timePickerIncrement: 15,
                 locale: {
-                    format: 'DD MMM YYYY hh:mm A'
+                    format: 'DD.MM.YYYY HH:mm'
                 },
                 {% if project.projects_dates_use_start %}
-                startDate: "{{ project.projects_dates_use_start|date("j M Y h:i:sa") }}",
-                endDate: "{{ project.projects_dates_use_end|date("j M Y h:i:sa") }}"
+                startDate: "{{ project.projects_dates_use_start|date("d.m.Y H:i") }}",
+                endDate: "{{ project.projects_dates_use_end|date("d.m.Y H:i") }}"
                 {% else %}
                 autoUpdateInput: false,
                 {% endif %}
             });
             $('#datePickerInput').on('apply.daterangepicker', function(ev, picker) {
-                ajaxcall("projects/changeProjectDates.php", {"projects_id": "{{ project.projects_id }}","projects_dates_use_start":picker.startDate.format('DD MMM YYYY hh:mm A'),"projects_dates_use_end":picker.endDate.format('DD MMM YYYY hh:mm A')}, function (data) {
+                ajaxcall("projects/changeProjectDates.php", {"projects_id": "{{ project.projects_id }}","projects_dates_use_start":picker.startDate.format('DD.MM.YYYY HH:mm'),"projects_dates_use_end":picker.endDate.format('DD.MM.YYYY HH:mm')}, function (data) {
                     location.reload();
                 });
             });
@@ -1095,11 +1095,11 @@
                 timePicker: true,
                 timePickerIncrement: 15,
                 locale: {
-                    format: 'DD MMM YYYY hh:mm A'
+                    format: 'DD.MM.YYYY HH:mm'
                 },
             {% if project.projects_dates_deliver_start %}
-                startDate: "{{ project.projects_dates_deliver_start|date("j M Y h:i:sa") }}",
-                endDate: "{{ project.projects_dates_deliver_end|date("j M Y h:i:sa") }}"
+                startDate: "{{ project.projects_dates_deliver_start|date("d.m.Y H:i") }}",
+                endDate: "{{ project.projects_dates_deliver_end|date("d.m.Y H:i") }}"
             {% else %}
                 autoUpdateInput: false,
             {% endif %}
@@ -1109,7 +1109,7 @@
                     if (data.response.changed) {
                         location.reload();
                     } else {
-                        var message = "The dates of this project can't be changed because assets assigned to it have been assigned to other projects that clash. <br/><br/> Would you like to automatically remove the following assets from this project? This will have billing implications<br/><br/><br/><table class='table table-bordered'><tr><th>Tag</th><th>Name</th><th>Project Clashing</th></tr>";
+                        var message = "Даты этого проекта нельзя изменить, так как назначенное оборудование уже используется в конфликтующих проектах. <br/><br/>Удалить следующие единицы оборудования из проекта автоматически? Это повлияет на расчёты.<br/><br/><br/><table class='table table-bordered'><tr><th>Инв. №</th><th>Название</th><th>Конфликтующий проект</th></tr>";
                         $.each(data.response.assets, function( index, value ) {
                             message += "<tr><td>" + value['assets_tag'] + "</td><td>" + value['assetTypes_name'] + "</td><td>" + value['projects_name'] + "</td></tr>";
                         });
@@ -1172,7 +1172,7 @@
             {% if "PROJECTS:EDIT:NAME"|instancePermissions %}
             $("#editProjectName").click(function () {
                 bootbox.prompt({
-                    title: "Change Project Name",
+                    title: "Изменить название проекта",
                     inputType: 'text',
                     value: `{{ project.projects_name|escape("js") }}`,
                     callback: function (result) {
@@ -1197,7 +1197,7 @@
                     if (data.response.changed) {
                         location.reload();
                     } else {
-                        var message = "The status of this project can't be changed because assets assigned to it have been assigned to other projects that clash. <br/><br/> Would you like to automatically remove the following assets from this project? This will have billing implications<br/><br/><br/><table class='table table-bordered'><tr><th>Tag</th><th>Name</th><th>Project Clashing</th></tr>";
+                        var message = "Статус проекта нельзя изменить, так как назначенное оборудование уже используется в конфликтующих проектах. <br/><br/>Удалить следующие единицы оборудования из проекта автоматически? Это повлияет на расчёты.<br/><br/><br/><table class='table table-bordered'><tr><th>Инв. №</th><th>Название</th><th>Конфликтующий проект</th></tr>";
                         $.each(data.response.assets, function( index, value ) {
                             message += "<tr><td>" + value['assets_tag'] + "</td><td>" + value['assetTypes_name'] + "</td><td>" + value['projects_name'] + "</td></tr>";
                         });
@@ -1205,11 +1205,11 @@
                             message: message + "</table>",
                             buttons: {
                                 cancel: {
-                                    label: 'No',
+                                    label: 'Нет',
                                     className: 'btn-success'
                                 },
                                 confirm: {
-                                    label: 'Yes',
+                                    label: 'Да',
                                     className: 'btn-danger'
                                 }
                             },
@@ -1227,7 +1227,7 @@
                                             changeStatus(newStatus);
                                         });
                                     {% else %}
-                                    bootbox.alert("Sorry - you don't have permission to remove these assets");
+                                    bootbox.alert("У вас нет прав для удаления этого оборудования");
                                     {% endif %}
                                 }
                             }
@@ -1237,7 +1237,7 @@
             }
             $("#editProjectStatus").click(function () {
                 bootbox.prompt({
-                    title: "Set project status",
+                    title: "Установить статус проекта",
                     inputType: 'select',
                     value: {{ project.projectsStatuses_id }},
                     inputOptions: [
@@ -1257,14 +1257,14 @@
                             var newStatus = result;                            
                             if ([{{ STATUSESAVAILABLE|join(",") }}].includes(parseInt(newStatus))) {
                                 bootbox.confirm({
-                                    message: "This will allow assets assigned to this project to be assigned to other clashing projects - are you sure you wish to continue?",
+                                    message: "Это позволит назначенному оборудованию использоваться в других конфликтующих проектах. Продолжить?",
                                     buttons: {
                                         confirm: {
-                                            label: 'Yes',
+                                            label: 'Да',
                                             className: 'btn-danger'
                                         },
                                         cancel: {
-                                            label: 'No',
+                                            label: 'Нет',
                                             className: 'btn-success'
                                         }
                                     },
@@ -1319,7 +1319,7 @@
                             className: 'btn-success'
                         },
                         cancel: {
-                            label: 'Cancel',
+                            label: 'Отмена',
                             className: 'btn-default'
                         }
                     },
@@ -1352,18 +1352,18 @@
                 $(".newPaymentModal-nonPaymentOnly").show();
                 switch(type) {
                     case 1:
-                        $("#newPaymentModal-title").html("Add payment received");
+                        $("#newPaymentModal-title").html("Добавить полученный платёж");
                         $(".newPaymentModal-paymentOnly").show();
                         $(".newPaymentModal-nonPaymentOnly").hide();
                         break;
                     case 2:
-                        $("#newPaymentModal-title").html("Add Sales Item");
+                        $("#newPaymentModal-title").html("Добавить продажу");
                         break;
                     case 3:
-                        $("#newPaymentModal-title").html("Add Additional Hire Cost");
+                        $("#newPaymentModal-title").html("Добавить стоимость доп. аренды");
                         break;
                     case 4:
-                        $("#newPaymentModal-title").html("Add Staff cost");
+                        $("#newPaymentModal-title").html("Добавить расходы на персонал");
                         break;
                 }
             });
@@ -1443,7 +1443,7 @@
             {% if "PROJECTS:PROJECT_NOTES:CREATE:NOTES"|instancePermissions %}
             $("#newProjectNote").click(function () {
                 bootbox.prompt({
-                    title: "Note Title",
+                    title: "Заголовок примечания",
                     inputType: 'text',
                     callback: function (result) {
                         if (result) {
@@ -1597,7 +1597,7 @@
             {% if "PROJECTS:CREATE"|instancePermissions %}
             $("#newSubProject").click(function () {
                 bootbox.prompt({
-                    title: "Select Sub-Project Type",
+                    title: "Выберите тип подпроекта",
                     inputType: 'select',
                     inputOptions: [
                         {% for type in potentialProjectTypes %}
@@ -1610,7 +1610,7 @@
                     callback: function (result){
                         if (result) {
                             var projectType = result;
-                            bootbox.prompt("Enter Sub-Project Name", function (result) {
+                            bootbox.prompt("Введите название подпроекта", function (result) {
                                 if (result) {
                                     ajaxcall("projects/new.php", {
                                         "projects_name": result,
@@ -1629,12 +1629,12 @@
 
             $("#assignParentProject").click(function () {
                 bootbox.prompt({
-                    title: "Choose Parent Project",
+                    title: "Выберите родительский проект",
                     inputType: 'select',
                     value: "{{ (project.projects_parent_project_id ?: '-1') }}",
                     inputOptions: [
                         {
-                            text: 'No Parent',
+                            text: 'Без родителя',
                             value: -1,
                         },
                         {% for allProject in projects %}

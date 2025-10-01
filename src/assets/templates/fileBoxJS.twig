@@ -5,7 +5,7 @@
             var id = $(this).data("s3fileid");
             var filename = $(this).data("s3filename");
             bootbox.prompt({
-                title: "Edit file name",
+                title: "Редактировать имя файла",
                 inputType: 'textarea',
                 value: filename,
                 callback: function (result) {
@@ -25,14 +25,14 @@
         $(".deleteFile").click(function () {
             var id = $(this).data("s3fileid");
             bootbox.confirm({
-                message: "Are you sure you wish to delete this file?",
+                message: "Удалить этот файл?",
                 buttons: {
                     confirm: {
-                        label: 'Yes',
+                        label: 'Да',
                         className: 'btn-success'
                     },
                     cancel: {
-                        label: 'Cancel',
+                        label: 'Отмена',
                         className: 'btn-default'
                     }
                 },
@@ -52,24 +52,24 @@
         {% if "FILES:FILE_ATTACHMENTS:EDIT:SHARING_SETTINGS"|instancePermissions %}
         function showShareKeyDialog(file,shareKey) {
             bootbox.dialog({
-                title: 'Shared File',
-                message: '<p>This file has been shared, which makes it visible to everyone on the web - be careful when publishing private or sensitive information.</p><div class="input-group"><input type="text" class="form-control" value="' + "{{ CONFIG.ROOTURL }}/api/file/?r&f=" + file + "&key=" + shareKey + '" disabled><span class="input-group-btn"><button class="btn btn-default copybutton" type="button" title="Copy to Clipboard">Copy</button></span></div>',
+                title: 'Файл опубликован',
+                message: '<p>Файл открыт по ссылке и доступен всем в интернете — будьте осторожны с приватными данными.</p><div class="input-group"><input type="text" class="form-control" value="' + "{{ CONFIG.ROOTURL }}/api/file/?r&f=" + file + "&key=" + shareKey + '" disabled><span class="input-group-btn"><button class="btn btn-default copybutton" type="button" title="Копировать в буфер">Копировать</button></span></div>',
                 size: 'large',
                 buttons: {
                     disableshare: {
-                        label: "Disable Sharing for this File",
+                        label: "Отключить доступ по ссылке",
                         className: 'btn-danger',
                         callback: function(){
                             ajaxcall("file/removeShare.php", {
                                 "s3files_id": file
                             }, function (data) {
                                 $(".shareFile[data-s3fileid=" + file + "]").data("s3filesharekey","");
-                                bootbox.alert("Sharing for this file is now disabled");
+                                bootbox.alert("Доступ по ссылке отключён");
                             });
                         }
                     },
                     regenerateshare: {
-                        label: "Generate replacement share link",
+                        label: "Сгенерировать новую ссылку",
                         className: 'btn-warning',
                         callback: function(){
                             ajaxcall("file/share.php", {
@@ -81,7 +81,7 @@
                         }
                     },
                     ok: {
-                        label: "Close",
+                        label: "Закрыть",
                         className: 'btn-default',
                         callback: function(){
                             return true;
@@ -97,15 +97,15 @@
                 showShareKeyDialog(id,shareKey);
             } else {
                 bootbox.confirm({
-                    title: "Share File?",
-                    message: "Are you sure you wish to share this file - it will be accessible to anyone with the link",
+                    title: "Опубликовать файл?",
+                    message: "Файл будет доступен всем, у кого есть ссылка",
                     buttons: {
                         confirm: {
-                            label: 'Share File',
+                            label: 'Опубликовать',
                             className: 'btn-warning'
                         },
                         cancel: {
-                            label: 'Cancel',
+                            label: 'Отмена',
                             className: 'btn-default'
                         }
                     },
@@ -129,11 +129,11 @@
             var text = $(this).closest('.input-group').children('input').val();
             var thisButton = $(this);
             console.log(text);
-            $('.copybutton').html("Copy"); //Reset all the others
+            $('.copybutton').html("Копировать"); //Reset all the others
             navigator.clipboard.writeText(text).then(function () {
-                thisButton.html("Copied");
+                thisButton.html("Скопировано");
             }, function () {
-                thisButton.html("Copy with Ctrl+C");
+                thisButton.html("Скопируйте через Ctrl+C");
             });
         });
         {% endif %}

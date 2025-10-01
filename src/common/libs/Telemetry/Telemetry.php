@@ -5,7 +5,9 @@ class Telemetry
     public function logTelemetry()
     {
         global $CONFIGCLASS, $bCMS, $DBLIB;
-        $limitedMode = $CONFIGCLASS->get("TELEMETRY_MODE") == 'Limited';
+        $mode = $CONFIGCLASS->get("TELEMETRY_MODE");
+        if ($mode === 'Disabled') return; // completely disabled in local-only builds
+        $limitedMode = ($mode == 'Limited');
         $data = [
             "rootUrl" => $CONFIGCLASS->get("ROOTURL"),
             "nanoid" => $CONFIGCLASS->get("TELEMETRY_NANOID"),

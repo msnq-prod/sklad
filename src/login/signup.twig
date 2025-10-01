@@ -1,16 +1,16 @@
 {% extends "login/login_template.twig" %}
 {% block content %}
    <div class="spinner-border" role="status" id="loadingOverlay" style="display: none;">
-        <span class="sr-only">Loading...</span>
+        <span class="sr-only">Загрузка...</span>
     </div>
     <form id="signupForm">
         <div id="errorMessageBox" class="alert alert-danger"></div>
-        <input class="form-control form-control-lg" id="signupForm_users_email" maxlength="100" required placeholder="Enter your email address" autocomplete="email" type="email" style="margin-top: 10px; margin-bottom: 10px;">
-        <input class="form-control form-control-lg" id="signupForm_users_username" minlength="6" maxlength="100" required placeholder="Choose a username" autocomplete="username"  type="text" style="margin-top: 10px; margin-bottom: 10px;">
-        <input class="form-control form-control-lg" id="signupForm_users_password" minlength="10" maxlength="100" required placeholder="Choose a password" autocomplete="new-password"  type="password" style="margin-top: 10px; margin-bottom: 10px;">
-        <input class="form-control form-control-lg" id="signupForm_users_name1" minlength="1" maxlength="100" required autocomplete="given-name" placeholder="First Name" type="text" style="margin-top: 10px; margin-bottom: 10px;">
-        <input class="form-control form-control-lg" id="signupForm_users_name2" minlength="1" maxlength="100" required autocomplete="family-name" placeholder="Last Name" type="text" style="margin-top: 10px; margin-bottom: 10px;">
-        <button class="btn btn-secondary" type="submit" value="Submit">Sign Up</button>
+        <input class="form-control form-control-lg" id="signupForm_users_email" maxlength="100" required placeholder="Введите адрес эл. почты" autocomplete="email" type="email" style="margin-top: 10px; margin-bottom: 10px;">
+        <input class="form-control form-control-lg" id="signupForm_users_username" minlength="6" maxlength="100" required placeholder="Выберите имя пользователя" autocomplete="username"  type="text" style="margin-top: 10px; margin-bottom: 10px;">
+        <input class="form-control form-control-lg" id="signupForm_users_password" minlength="10" maxlength="100" required placeholder="Выберите пароль" autocomplete="new-password"  type="password" style="margin-top: 10px; margin-bottom: 10px;">
+        <input class="form-control form-control-lg" id="signupForm_users_name1" minlength="1" maxlength="100" required autocomplete="given-name" placeholder="Имя" type="text" style="margin-top: 10px; margin-bottom: 10px;">
+        <input class="form-control form-control-lg" id="signupForm_users_name2" minlength="1" maxlength="100" required autocomplete="family-name" placeholder="Фамилия" type="text" style="margin-top: 10px; margin-bottom: 10px;">
+        <button class="btn btn-secondary" type="submit" value="Submit">Зарегистрироваться</button>
     </form>
 	<script>
 		$( document ).ready(function() {
@@ -48,7 +48,7 @@
                                 error: function(){
                                     $("#signupForm").show();
                                     $("#loadingOverlay").hide();
-                                    $("#errorMessageBox").html("Account created, but login unsuccessful: please refresh the page and check your internet connection");
+                                    $("#errorMessageBox").html("Аккаунт создан, но вход не выполнен: обновите страницу и проверьте подключение к интернету");
                                     $("#errorMessageBox").show();
                                 }
                             });
@@ -61,7 +61,7 @@
                     }, error: function () {
                         $("#signupForm").show();
                         $("#loadingOverlay").hide();
-                        $("#errorMessageBox").html("Please refresh the page and check your internet connection");
+                        $("#errorMessageBox").html("Обновите страницу и проверьте подключение к интернету");
                         $("#errorMessageBox").show();
                     }
                 });
@@ -82,12 +82,12 @@
                         "userid": userid
                     }, success: function (result) {
                         if (result.result) {
-                            toastr.success("E-Mail re-sent");
+                            toastr.success("Письмо повторно отправлено");
                         } else {
-                            toastr.error("Error verifying email address - please contact support");
+                            toastr.error("Ошибка подтверждения адреса эл. почты — обратитесь в поддержку");
                         }
                     }, error: function () {
-                        toastr.error("Please refresh the page and check your internet connection");
+                        toastr.error("Обновите страницу и проверьте подключение к интернету");
                     }
                 });
             }

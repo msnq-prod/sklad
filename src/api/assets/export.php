@@ -88,11 +88,11 @@ if (isset($_POST['csv'])) {
 } elseif (isset($_POST['xlsx'])) {
     $spreadsheet = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
     $spreadsheet->getProperties()
-        ->setCreator("Bithell Studios Ltd.")
+        ->setCreator("Local")
         ->setLastModifiedBy($AUTH->data['instance']['instances_name'])
         ->setCompany($AUTH->data['instance']['instances_name'])
         ->setCreated(strtotime($created))
-        ->setTitle("Asset Download from AdamRMS")
+        ->setTitle("Asset Download")
         ->setSubject("All assets from " . $AUTH->data['instance']['instances_name']);
     $spreadsheet->getActiveSheet()->setTitle("Assets List");
     $sheet = $spreadsheet->getActiveSheet();

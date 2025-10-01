@@ -39,15 +39,15 @@ $TWIG->addFunction($function);
 $function = new TwigFunction('generate_result_tag', function ($result) {
     switch ($result['type']){
         case "project":
-            return ["pink", "Project"];
+            return ["pink", "Проект"];
         case "location":
-            return ["indigo", "Location"];
+            return ["indigo", "Локация"];
         case "client":
-            return ["lightblue", "Client"];
+            return ["lightblue", "Клиент"];
         case "page":
-            return ["primary", "CMS Page"];
+            return ["primary", "Страница CMS"];
         case "user":
-            return ["secondary", "User"];
+            return ["secondary", "Пользователь"];
         default:
             return null;
     }

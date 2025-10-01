@@ -158,7 +158,7 @@ x-amz-meta-size
                 },
                 success: function (result) {
                     if (!result.result) {
-                        bootbox.alert("Sorry - Upload encountered a problem", function () {
+                        bootbox.alert("К сожалению, при загрузке произошла ошибка", function () {
                             location.reload();
                         });
                     } else {
@@ -172,7 +172,7 @@ x-amz-meta-size
                     }
                 },
                 error: function (error) {
-                    bootbox.alert("Sorry - Upload encountered a problem", function () {
+                    bootbox.alert("К сожалению, при загрузке произошла ошибка", function () {
                         location.reload();
                     });
                 }

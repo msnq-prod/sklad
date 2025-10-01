@@ -32,12 +32,13 @@ RUN --mount=type=bind,source=composer.json,target=composer.json \
 
 FROM php:8.3-apache AS final
 
-LABEL org.opencontainers.image.source=https://github.com/adam-rms/adam-rms
-LABEL org.opencontainers.image.documentation=https://adam-rms.com/self-hosting
-LABEL org.opencontainers.image.url=https://adam-rms.com
-LABEL org.opencontainers.image.vendor="Bithell Studios Ltd."
-LABEL org.opencontainers.image.description="AdamRMS is a free, open source advanced Rental Management System for Theatre, AV & Broadcast. This image is a PHP Apache2 docker container, which exposes AdamRMS on port 80."
-LABEL org.opencontainers.image.licenses=AGPL-3.0
+# Local-only build metadata
+LABEL org.opencontainers.image.source="local"
+LABEL org.opencontainers.image.documentation="local"
+LABEL org.opencontainers.image.url="local"
+LABEL org.opencontainers.image.vendor="Local"
+LABEL org.opencontainers.image.description="Local self-hosted build"
+LABEL org.opencontainers.image.licenses="local"
 
 # Install PHP extensions
 RUN apt-get update && apt-get install -y \

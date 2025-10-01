@@ -9,27 +9,25 @@
 		<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
 		<!-- CSS SECTION-->
-		<!--Include fonts-->
-		<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet"> <link
-		rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+        <link rel="stylesheet" href="{{ CONFIG.ROOTURL }}/static-assets/vendor/fontawesome/css/all.min.css">
+        <link rel="stylesheet" href="{{ CONFIG.ROOTURL }}/static-assets/vendor/overlayscrollbars/css/OverlayScrollbars.min.css">
+        <link rel="stylesheet" href="{{ CONFIG.ROOTURL }}/static-assets/vendor/slick/css/slick.min.css">
+        <link rel="stylesheet" href="{{ CONFIG.ROOTURL }}/static-assets/vendor/slick/css/slick-theme.min.css">
+        <link rel="stylesheet" href="{{ CONFIG.ROOTURL }}/static-assets/vendor/daterangepicker/css/daterangepicker.min.css">
+        <link rel="stylesheet" href="{{ CONFIG.ROOTURL }}/static-assets/vendor/select2/css/select2.min.css">
 
-		<!-- Theme style -->
-		<link
-		rel="stylesheet" href="{{ CONFIG.ROOTURL }}/static-assets/css/adminlte.min.css">
+        <!-- Theme style -->
+        <link rel="stylesheet" href="{{ CONFIG.ROOTURL }}/static-assets/css/adminlte.min.css">
 
-		<!-- JS Scripts/Plugins-->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-		<!-- Bootstrap 3.3.5 -->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.bundle.min.js" integrity="sha256-OUFW7hFO0/r5aEGTQOz9F/aXQOt+TwqI1Z4fbVvww04=" crossorigin="anonymous"></script>
-		<!--Bootbox -->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.3.4/bootbox.min.js" integrity="sha256-uX1dPz3LieQG3DzdBTKHF4e1XzZyeeHTexV6lppnaAc=" crossorigin="anonymous"></script>
-		<!--Scrollbars-->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/overlayscrollbars/1.12.0/js/OverlayScrollbars.min.js" integrity="sha512-q5PymqHsbnrSSku455zVV6Q4WJ5FegIKtgfQbugb5D7Gbl6tsGPkG4upZlMDT10MBARZyBtmsIPPd6HMPyH9sw==" crossorigin="anonymous"></script>
-		<link
-		rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/overlayscrollbars/1.12.0/css/OverlayScrollbars.min.css" integrity="sha512-fWgz39WeLATUXnAhIimPHnEUoSuZh5cgcOTteRFeVPW1opB0OPQ2/JwPAAWMDZtHy8IomUEOyaYJsOdCM9tcYg==" crossorigin="anonymous"/>
-		<!--Pace Loader-->
-		<script>
-			window.paceOptions = {
+        <!-- JS Scripts/Plugins-->
+        <script src="{{ CONFIG.ROOTURL }}/static-assets/vendor/jquery/jquery-3.6.0.min.js"></script>
+        <script src="{{ CONFIG.ROOTURL }}/static-assets/vendor/jquery-migrate/jquery-migrate-1.2.1.min.js"></script>
+        <script src="{{ CONFIG.ROOTURL }}/static-assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="{{ CONFIG.ROOTURL }}/static-assets/vendor/bootbox/bootbox.min.js"></script>
+        <script src="{{ CONFIG.ROOTURL }}/static-assets/vendor/overlayscrollbars/js/OverlayScrollbars.min.js"></script>
+        <!--Pace Loader-->
+        <script>
+            window.paceOptions = {
 startOnPageLoad: false,
 document: false,
 eventLag: false,
@@ -45,26 +43,16 @@ trackWebSockets: false,
 ignoreURLs: ['searchUser.php'] // Ignore user searches
 }
 };
-		</script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js" integrity="sha256-EPrkNjGEmCWyazb3A/Epj+W7Qm2pB9vnfXw+X6LImPM=" crossorigin="anonymous"></script>
-		<link rel="stylesheet" href="{{ CONFIG.ROOTURL }}/static-assets/libs/pace/pace.css">
-
-
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" integrity="sha512-yHknP1/AwR+yx26cB1y0cjvQUMvEa2PFzt1c9LlS4pRQ5NOTZFWbhBig+X9G9eYW/8m0/4OXNx8pxJ6z57x0dw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" integrity="sha512-17EgCFERpgZKcm0j0fEq1YCJuyAWdz9KUtv1EjVuaOz8pDnh/0nZxmU6BBXwaaxqoi9PQXnRWqlcDB027hgv9A==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/1.2.1/jquery-migrate.min.js" integrity="sha512-fDGBclS3HUysEBIKooKWFDEWWORoA20n60OwY7OSYgxGEew9s7NgDaPkj7gqQcVXnASPvZAiFW8DiytstdlGtQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js" integrity="sha512-XtmMtDEcNz2j7ekrtHvOVR4iwwaD6o/FUJe6+Zq+HgcCsk3kj4uSQQR8weQ2QVj1o0Pk6PwYLohm206ZzNfubg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/8.19.1/sweetalert2.min.js" integrity="sha512-wKdazFGbrow0TxFpymoSlXoqpHt9SOXw94CYLZV+BTCbk6RH67FuaVTjMo2/rs0doYWEy8mdGbk0/mSSUOJG7A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-		<link rel="stylesheet" href="{{ CONFIG.ROOTURL }}/static-assets/libs/sweetalert2/sweetAlert2-bootstrap-4.min.css"/>
-
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js" integrity="sha256-4iQZ6BVL4qNKlQ27TExEhBN1HFPvAvAMbFavKKosSWQ=" crossorigin="anonymous"></script>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.5/daterangepicker.min.css" integrity="sha256-VVbO1uqtov1mU6f9qu/q+MfDmrqTfoba0rAE07szS20=" crossorigin="anonymous"/>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.5/daterangepicker.min.js" integrity="sha256-zI6VVO07NPmVW11q3RQE42YbRmJIkkunrcQ9LEYxJsQ=" crossorigin="anonymous"></script>
-
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.full.min.js" integrity="sha512-RtZU3AyMVArmHLiW0suEZ9McadTdegwbgtiQl5Qqo9kunkVg1ofwueXD8/8wv3Af8jkME3DDe3yLfR8HSJfT2g==" crossorigin="anonymous"></script>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" integrity="sha512-nMNlpuaDPrqlEls3IX/Q56H36qvBASwb3ipuo3MxeWbsQB1881ox0cRv7UPTgBlriqoynt35KjEwgGUeUXIPnw==" crossorigin="anonymous"/>
-		<link rel="stylesheet" href="{{ CONFIG.ROOTURL }}/static-assets/libs/select2-bootstrap4/select2-bootstrap4.min.css"/>
+        </script>
+        <script src="{{ CONFIG.ROOTURL }}/static-assets/vendor/pace/pace.min.js"></script>
+        <link rel="stylesheet" href="{{ CONFIG.ROOTURL }}/static-assets/libs/pace/pace.css">
+        <script src="{{ CONFIG.ROOTURL }}/static-assets/vendor/slick/js/slick.min.js"></script>
+        <script src="{{ CONFIG.ROOTURL }}/static-assets/vendor/sweetalert2/sweetalert2.min.js"></script>
+        <link rel="stylesheet" href="{{ CONFIG.ROOTURL }}/static-assets/libs/sweetalert2/sweetAlert2-bootstrap-4.min.css"/>
+        <script src="{{ CONFIG.ROOTURL }}/static-assets/vendor/moment/moment.min.js"></script>
+        <script src="{{ CONFIG.ROOTURL }}/static-assets/vendor/daterangepicker/js/daterangepicker.min.js"></script>
+        <script src="{{ CONFIG.ROOTURL }}/static-assets/vendor/select2/js/select2.full.min.js"></script>
+<link rel="stylesheet" href="{{ CONFIG.ROOTURL }}/static-assets/libs/select2-bootstrap4/select2-bootstrap4.min.css"/>
 		<style>
 			.select2-selection--multiple {
 				max-height: 10rem;
@@ -288,7 +276,7 @@ ignoreURLs: ['searchUser.php'] // Ignore user searches
 				{% if USERDATA.instances|length > 0 and pageConfig.NOMENU != true %}
 					<form class="form-inline ml-3 d-none d-sm-block" action="{{CONFIG.ROOTURL}}/search.php" method="GET">
 						<div class="input-group input-group-sm">
-							<input class="form-control form-control-navbar" name="term" type="search" placeholder="Search" aria-label="Search">
+											<input class="form-control form-control-navbar" name="term" type="search" placeholder="Поиск" aria-label="Поиск">
 							<div class="input-group-append">
 								<button class="btn btn-navbar" type="submit">
 									<i class="fas fa-search"></i>
@@ -395,18 +383,7 @@ ignoreURLs: ['searchUser.php'] // Ignore user searches
 										</a>
 									</li>
 								{% endif %}
-{% if CONFIG.LINKS_SUPPORTURL|length > 0 %}
-
-								<li class="nav-item">
-									<a href="{{ CONFIG.LINKS_SUPPORTURL }}" target="_blank" class="nav-link">
-
-										<i class="nav-icon fas fa-question-circle"></i>
-										<p>
-											Support
-										</p>
-									</a>
-								</li>
-{% endif %}
+{# Support link removed for local-only build #}
 
 								{% if "TRAINING:VIEW"|instancePermissions %}
 									<li class="nav-item">
@@ -428,7 +405,7 @@ ignoreURLs: ['searchUser.php'] // Ignore user searches
 									<li class="nav-item">
 										<a href="{{ CONFIG.ROOTURL}}/instances/billing.php" class="nav-link">
 											<i class="nav-icon fas fa-money-check"></i>
-											<p>Billing</p>
+											<p>Биллинг</p>
 										</a>
 									</li>
 								{% endif %}
@@ -524,7 +501,7 @@ ignoreURLs: ['searchUser.php'] // Ignore user searches
 									</li>
 
 									{% if NAVIGATIONCMSPages %}
-										<li class="nav-header">PAGES</li>
+										<li class="nav-header">СТРАНИЦЫ</li>
 										{% for page in NAVIGATIONCMSPages %}
 											{% if page.SUBPAGES %}
 												<li class="nav-item has-treeview">
@@ -562,18 +539,18 @@ ignoreURLs: ['searchUser.php'] // Ignore user searches
 											{% endif %}
 										{% endfor %}
 									{% endif %}
-									<li class="nav-header">ASSETS</li>
+									<li class="nav-header">ОБОРУДОВАНИЕ</li>
 									<li class="nav-item">
 										<a href="{{ CONFIG.ROOTURL}}/assets.php" class="nav-link">
 											<i class="nav-icon fas fa-warehouse"></i>
-											<p>Assets</p>
+											<p>Оборудование</p>
 										</a>
 									</li>
 									{% if "ASSETS:CREATE"|instancePermissions %}
 										<li class="nav-item">
 											<a href="{{ CONFIG.ROOTURL}}/newAsset.php" class="nav-link">
 												<i class="fas fa-plus nav-icon"></i>
-												<p>New Asset</p>
+												<p>Новое оборудование</p>
 											</a>
 										</li>
 									{% endif %}
@@ -581,7 +558,7 @@ ignoreURLs: ['searchUser.php'] // Ignore user searches
 										<a href="{{ CONFIG.ROOTURL }}/instances/groups.php" class="nav-link">
 											<i class="nav-icon fas fa-layer-group"></i>
 											<p>
-												Groups
+													Группы
 											</p>
 										</a>
 									</li>
@@ -590,7 +567,7 @@ ignoreURLs: ['searchUser.php'] // Ignore user searches
 											<a href="{{ CONFIG.ROOTURL }}/maintenance/" class="nav-link">
 												<i class="nav-icon fas fa-paint-roller"></i>
 												<p>
-													Maintenance
+													Обслуживание
 												</p>
 											</a>
 										</li>
@@ -599,12 +576,12 @@ ignoreURLs: ['searchUser.php'] // Ignore user searches
 										<li class="nav-item">
 											<a href="{{ CONFIG.ROOTURL}}/maintenance/barcode.php" class="nav-link">
 												<i class="fas fa-barcode nav-icon"></i>
-												<p>Barcode Scanner</p>
+												<p>Сканер штрих‑кодов</p>
 											</a>
 										</li>
 									{% endif %}
 									{% if "PROJECTS:VIEW"|instancePermissions %}
-										<li class="nav-header">PROJECTS</li>
+										<li class="nav-header">ПРОЕКТЫ</li>
 										{% set archive = false %}
 										{% for project in projects %}
 											{% if project.subProjects %}
@@ -670,28 +647,28 @@ ignoreURLs: ['searchUser.php'] // Ignore user searches
 										<li class="nav-item">
 											<a href="{{CONFIG.ROOTURL}}/project/list.php" class="nav-link">
 												<i class="nav-icon fas fa-list-ol"></i>
-												<p>List</p>
+												<p>Список</p>
 											</a>
 										</li>
 										{% if "PROJECTS:CREATE"|instancePermissions %}
 											<li class="nav-item">
 												<a href="{{ CONFIG.ROOTURL }}/project/new.php" class="nav-link">
 													<i class="nav-icon fas fa-plus"></i>
-													<p>New Project</p>
+													<p>Новый проект</p>
 												</a>
 											</li>
 										{% endif %}
 									{% endif %}
 									{% if "USERS:VIEW"|serverPermissions or "PERMISSIONS:VIEW"|serverPermissions or "VIEW-AUDIT-LOG"|serverPermissions or "VIEW-ANALYTICS"|serverPermissions or "INSTANCES:IMPORT:ASSETS"|serverPermissions %}
-										<li class="nav-header">SERVER ADMIN</li>
+										<li class="nav-header">АДМИНИСТРИРОВАНИЕ СЕРВЕРА</li>
 									{% endif %}
 									{% if "CONFIG:SET"|serverPermissions %}
 										<li class="nav-item">
 											<a href="{{ CONFIG.ROOTURL }}/server/config.php" class="nav-link">
 												<i class="nav-icon fas fa-cog"></i>
 												<p>
-													Configuration
-													<span class="right badge badge-danger">Server-Wide</span>
+													Настройки
+													<span class="right badge badge-danger">Для всего сервера</span>
 												</p>
 											</a>
 										</li>
@@ -701,8 +678,8 @@ ignoreURLs: ['searchUser.php'] // Ignore user searches
 											<a href="{{ CONFIG.ROOTURL }}/server/users.php" class="nav-link">
 												<i class="nav-icon fas fa-users"></i>
 												<p>
-													Users
-													<span class="right badge badge-danger">Server-Wide</span>
+													Пользователи
+													<span class="right badge badge-danger">Для всего сервера</span>
 												</p>
 											</a>
 										</li>
@@ -712,8 +689,8 @@ ignoreURLs: ['searchUser.php'] // Ignore user searches
 											<a href="{{ CONFIG.ROOTURL }}/server/permissions.php" class="nav-link">
 												<i class="nav-icon fas fa-unlock-alt"></i>
 												<p>
-													Permissions
-													<span class="right badge badge-danger">Server-Wide</span>
+													Права доступа
+													<span class="right badge badge-danger">Для всего сервера</span>
 												</p>
 											</a>
 										</li>
@@ -723,8 +700,8 @@ ignoreURLs: ['searchUser.php'] // Ignore user searches
 											<a href="{{ CONFIG.ROOTURL }}/server/instances.php" class="nav-link">
 												<i class="nav-icon fas fa-city"></i>
 												<p>
-													Businesses
-													<span class="right badge badge-danger">Server-Wide</span>
+													Компании
+													<span class="right badge badge-danger">Для всего сервера</span>
 												</p>
 											</a>
 										</li>
@@ -734,8 +711,8 @@ ignoreURLs: ['searchUser.php'] // Ignore user searches
 											<a href="{{ CONFIG.ROOTURL }}/server/auditLog.php" class="nav-link">
 												<i class="nav-icon fas fa-gavel"></i>
 												<p>
-													Audit Log
-													<span class="right badge badge-danger">Server-Wide</span>
+													Журнал аудита
+													<span class="right badge badge-danger">Для всего сервера</span>
 												</p>
 											</a>
 										</li>
@@ -745,8 +722,8 @@ ignoreURLs: ['searchUser.php'] // Ignore user searches
 											<a href="{{ CONFIG.ROOTURL }}/server/analytics/" class="nav-link">
 												<i class="nav-icon far fa-chart-bar"></i>
 												<p>
-													Analytics
-													<span class="right badge badge-danger">Server-Wide</span>
+													Аналитика
+													<span class="right badge badge-danger">Для всего сервера</span>
 												</p>
 											</a>
 										</li>
@@ -756,8 +733,8 @@ ignoreURLs: ['searchUser.php'] // Ignore user searches
 											<a href="{{ CONFIG.ROOTURL }}/server/import.php" class="nav-link">
 												<i class="nav-icon fas fa-upload"></i>
 												<p>
-													Import
-													<span class="right badge badge-danger">Server-Wide</span>
+													Импорт
+													<span class="right badge badge-danger">Для всего сервера</span>
 												</p>
 											</a>
 										</li>
@@ -786,7 +763,7 @@ ignoreURLs: ['searchUser.php'] // Ignore user searches
 								<div class="col-sm-6">
 									<ol class="breadcrumb float-sm-right">
 										<li class="breadcrumb-item">
-											<a href="{{CONFIG.ROOTURL}}">Home</a>
+											<a href="{{CONFIG.ROOTURL}}">Главная</a>
 										</li>
 										<li class="breadcrumb-item active">{{ pageConfig.TITLE }}</li>
 									</ol>
@@ -798,10 +775,10 @@ ignoreURLs: ['searchUser.php'] // Ignore user searches
 							<div class="alert alert-warning alert-dismissible" style="border: 0px; margin-bottom: 0px;">
 								<h4>
 									<i class="fa fa-terminal"></i>
-									{{ CONFIG.PROJECT_NAME }} is running in development mode, and should only be used for testing purposes
+												{{ CONFIG.PROJECT_NAME }} запущен в режиме разработки и предназначен только для тестирования
 								</h4>
-								<a type="button" href="/" onclick="javascript:event.target.port=8082" target="_blank" class="btn btn-info btn-sm">Database Editor</a>
-								<a type="button" href="/" onclick="javascript:event.target.port=8083" target="_blank" class="btn btn-info btn-sm">Email Inbox</a>
+											<a type="button" href="/" onclick="javascript:event.target.port=8082" target="_blank" class="btn btn-info btn-sm">Редактор базы данных</a>
+											<a type="button" href="/" onclick="javascript:event.target.port=8083" target="_blank" class="btn btn-info btn-sm">Почтовый ящик</a>
 							</div>
 						{% endif %}
 					</div>
@@ -816,12 +793,10 @@ ignoreURLs: ['searchUser.php'] // Ignore user searches
 				<!-- /.content-wrapper -->
 				<footer class="main-footer" id="main-footer">
 					<div class="float-right d-none d-sm-block">
-						<a href="https://github.com/adam-rms/adam-rms/releases" target="_blank">{{ VERSION }}</a>
+                    <span>{{ VERSION }}</span>
 					</div>
-					<strong>&copy;2018-{{ "now"|date("Y") }}
-						<a href="https://bithell.studio">Bithell Studios Ltd</a>.</strong>
-					All rights
-															        reserved.
+                    <strong>&copy;2018-{{ "now"|date("Y") }} Local Installation.</strong>
+                    Все права защищены.
 				</footer>
 			</div>
 			<script>

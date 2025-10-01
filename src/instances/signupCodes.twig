@@ -263,15 +263,15 @@
             $(".deleteButton").click(function () {
                 var id = $(this).data("codeid");
                 bootbox.confirm({
-                    title:"Are you sure?",
+                    title:"Вы уверены?",
                     message: "Deleting the code cannot be undone",
                     buttons: {
                         confirm: {
-                            label: 'Yes',
+                            label: 'Да',
                             className: 'btn-danger'
                         },
                         cancel: {
-                            label: 'No',
+                            label: 'Нет',
                             className: 'btn-success'
                         }
                     },

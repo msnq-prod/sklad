@@ -4,33 +4,33 @@
 
 /**
  * @OA\Info(
- *  title="AdamRMS API", 
+ *  title="Local API",
  *  version="APIVERSION",
- *  description="AdamRMS is a free, open source advanced Rental Management System for Theatre, AV & Broadcast. This is the API listing for the v1 API, which is currently in Production and active development. You can find out more about AdamRMS at [https://adam-rms.com](https://adam-rms.com).",
- *  termsOfService="https://adam-rms.com/legal",
+ *  description="Local self-hosted API.",
+ *  termsOfService=null,
  *  @OA\Contact(
- *   name="AdamRMS Support",
- *   email="support@adam-rms.com",
- *   url="https://github.com/adam-rms",
+ *   name="Local Admin",
+ *   email=null,
+ *   url=null,
  *  ),
  *  @OA\License(
- *   name="GNU Affero General Public License v3.0",
- *   url="https://github.com/adam-rms/adam-rms/blob/main/LICENSE",
+ *   name="Local License",
+ *   url=null,
  *  )
  * )
  */
 
 /**
  * @OA\Server(
- *  description="Production",
- *  url="https://dash.adam-rms.com/api/",
+ *  description="Local",
+ *  url="/api/",
  * )
  */
 
 /**
  * @OA\ExternalDocumentation(
- *  description="AdamRMS Documentation",
- *  url="https://adam-rms.com",
+ *  description="Local Documentation",
+ *  url=null,
  * )
  */
 

@@ -3,8 +3,8 @@
 	<div class="row">
 		<div class="col-lg-6 offset-lg-3 col-md-12">
 			<div class="alert alert-warning alert-dismissible">
-				<h5><i class="icon fas fa-info"></i> Server-Wide Configuration</h5>
-				You are modifying settings and configuration that affect the whole of the {{ CONFIG.PROJECT_NAME }} Server, including all businesses (instances) running on it. Please be careful when making changes here.
+				<h5><i class="icon fas fa-info"></i> Настройки для всего сервера</h5>
+				Вы изменяете параметры, влияющие на весь сервер {{ CONFIG.PROJECT_NAME }}, включая все компании (инстансы). Будьте осторожны при внесении изменений.
 			</div>
 		</div>
 	</div>
@@ -14,14 +14,14 @@
                 <div class="card-header">
                     <h3 class="card-title">
                         {% if search|length > 0 %}
-                            Search results for businesses matching <b>{{ search }}</b>
+                            Результаты поиска компаний по запросу <b>{{ search }}</b>
                         {% else %}
-                            Businesses
+                            Компании
                         {% endif %}
                     </h3>
                     <div class="card-tools pull-right">
                         <form class="input-group input-group-sm" style="width: 150px;" method="GET">
-                            <input type="text" name="q" class="form-control pull-right" placeholder="Search" value="{{ search }}" />
+                            <input type="text" name="q" class="form-control pull-right" placeholder="Поиск" value="{{ search }}" />
                             <div class="input-group-append">
                                 <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
                             </div>
@@ -35,24 +35,24 @@
                             <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Name</th>
-                                <th>Billing Contact</th>
-                                <th>Plan</th>
-                                <th>Storage Used</th>
-                                <th>Storage Limit</th>
-                                <th>Users</th>
-                                <th>Assets</th>
-                                <th>Asset Value</th>
-                                <th>Asset Mass</th>
-                                <th>Projects</th>
+                                <th>Название</th>
+                                <th>Контакт по биллингу</th>
+                                <th>Тариф</th>
+                                <th>Использовано хранилища</th>
+                                <th>Лимит хранилища</th>
+                                <th>Пользователи</th>
+                                <th>Оборудование</th>
+                                <th>Стоимость оборудования</th>
+                                <th>Масса оборудования</th>
+                                <th>Проекты</th>
                                 {% for table in ['CMS Pages','Maintenance Jobs','Locations','Clients','Training Modules', 'Project Types'] %}
                                     <th>{{ table }}</th>
                                 {% endfor %}
-                                <th>Last Project Activity</th>
-                                <th>Admin Actions</th>
+                                <th>Последняя активность по проектам</th>
+                                <th>Действия администратора</th>
                             </tr>
                             <tr>
-                                <td colspan="4"><b>Server Totals</b></td>
+                                <td colspan="4"><b>Итоги по серверу</b></td>
                                 <td>
                                     {{ totals['STORAGEUSED']|formatsize }}
                                 </td>
@@ -76,7 +76,7 @@
                                 <td></td>
                             </tr>
                             <tr>
-                                <td colspan="5" style="text-align: right;">Users without Businesses</td>
+                                <td colspan="5" style="text-align: right;">Пользователи без компаний</td>
                                 <td>
                                     {{ totals.users.noInstances|number_format(0) }}
                                 </td>
@@ -90,7 +90,7 @@
                                     <td>
                                         {{ instance.instances_name }}
                                         {% if instance.instances_deleted == '1' %}
-                                        <br/><span class="badge badge-danger">SOFT-DELETED</span>
+                                        <br/><span class="badge badge-danger">МЯГКО УДАЛЕНО</span>
                                         {% endif %}
                                         {% if instance.instances_suspended == '1' %}
                                         <br/><span class="badge badge-warning">SUSPENDED</span>
@@ -148,19 +148,19 @@
                                             {% endif %}
                                             {% if "INSTANCES:FULL_PERMISSIONS_IN_INSTANCE"|serverPermissions and instance.instances_deleted == 0 and USERDATA.instance.instances_id != instance.instances_id %}
                                                 <a href="{{ CONFIG.ROOTURL }}/?i={{ instance.instances_id }}"
-                                                title="Login to Instance">
-                                                    <button type="button" class="btn btn-warning">Login as Admin</button>
+                                                title="Войти в компанию">
+                                                    <button type="button" class="btn btn-warning">Войти как администратор</button>
                                                 </a>
                                             {% endif %}
                                             {% if "INSTANCES:DELETE"|serverPermissions %}
                                                 {% if instance.instances_deleted == 0 %}
                                                 <button type="button" class="btn btn-danger deleteInstanceButton" data-instanceid="{{ instance.instances_id }}">Delete</button>
                                                 {% else %}
-                                                <button type="button" class="btn btn-success restoreInstanceButton" data-instanceid="{{ instance.instances_id }}">Undo Delete</button>
+                                                <button type="button" class="btn btn-success restoreInstanceButton" data-instanceid="{{ instance.instances_id }}">Отменить удаление</button>
                                                 {% endif %}
                                             {% endif %}
                                             {% if "INSTANCES:PERMANENTLY_DELETE"|serverPermissions and instance.instances_deleted == 1 %}
-                                                <button type="button"class="btn btn-danger permanentlyDeleteInstanceButton" data-instanceid="{{ instance.instances_id }}">Permanently Delete</button>
+                                                <button type="button"class="btn btn-danger permanentlyDeleteInstanceButton" data-instanceid="{{ instance.instances_id }}">Удалить навсегда</button>
                                             {% endif %}
                                         </div>
                                     </td>
@@ -172,7 +172,7 @@
                                                 <p>{{ instance.instances_serverNotes|replace({ "\r\n":', ', "\n":', ', "\r":', '}) }}</p>
                                             </div>
                                             <div class="modal-footer justify-content-between">
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
                                             </div>
                                         </div>
                                     </div>
@@ -183,7 +183,7 @@
                                             <form class="editForm" data-id="{{ instance.instances_id }}">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h4 class="modal-title">Instance Configuration</h4>
+                                                        <h4 class="modal-title">Конфигурация компании</h4>
                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
@@ -192,13 +192,13 @@
                                                         <input type="hidden" name="instances_id" value="{{ instance.instances_id }}"/>
                                                         <div class="input-group" style="margin-bottom: 5px;">
                                                             <div class="input-group-prepend">
-                                                                <span class="input-group-text">Name</span>
+                                                                <span class="input-group-text">Название</span>
                                                             </div>
                                                             <input required type="text" class="form-control" name="instances_name" value="{{ instance.instances_name }}">
                                                         </div>
                                                         <div class="input-group" style="margin-bottom: 5px;">
                                                             <div class="input-group-prepend">
-                                                                <span class="input-group-text">Notes</span>
+                                                                <span class="input-group-text">Заметки</span>
                                                             </div>
                                                             <textarea type="text" class="form-control" placeholder="Private notes visible only to other server administrators" name="instances_serverNotes" rows="2">{{ instance.instances_serverNotes }}</textarea>
                                                         </div>
@@ -219,41 +219,41 @@
                                                         </div>
                                                         <div class="input-group" style="margin-bottom: 5px;">
                                                             <div class="input-group-prepend">
-                                                                <span class="input-group-text">Plan</span>
+                                                                <span class="input-group-text">Тариф</span>
                                                             </div>
                                                             <input type="text" class="form-control" name="instances_planName" value="{{ instance.instances_planName }}">
                                                         </div>
                                                         <div class="input-group" style="margin-bottom: 5px;">
                                                             <div class="input-group-prepend">
-                                                                <span class="input-group-text">Storage limit (bytes, 0 is unlimited)</span>
+                                                                <span class="input-group-text">Лимит хранилища (байт, 0 — без лимита)</span>
                                                             </div>
                                                             <input required type="number" min="0" class="form-control" name="instances_storageLimit" value="{{ instance.instances_storageLimit }}">
                                                         </div>
                                                         <div class="input-group" style="margin-bottom: 5px;">
                                                             <div class="input-group-prepend">
-                                                                <span class="input-group-text">User Limit (0 is unlmited)</span>
+                                                                <span class="input-group-text">Лимит пользователей (0 — без лимита)</span>
                                                             </div>
                                                             <input required type="number" min="0" class="form-control" name="instances_userLimit" value="{{ instance.instances_userLimit }}">
                                                         </div>
                                                         <div class="input-group" style="margin-bottom: 5px;">
                                                             <div class="input-group-prepend">
-                                                                <span class="input-group-text">Asset Limit (0 is unlimited)</span>
+                                                                <span class="input-group-text">Лимит оборудования (0 — без лимита)</span>
                                                             </div>
                                                             <input required type="number" min="0" class="form-control" name="instances_assetLimit" value="{{ instance.instances_assetLimit }}">
                                                         </div>
                                                         <div class="input-group" style="margin-bottom: 5px;">
                                                             <div class="input-group-prepend">
-                                                                <span class="input-group-text">Project Limit (0 is unlimited)</span>
+                                                                <span class="input-group-text">Лимит проектов (0 — без лимита)</span>
                                                             </div>
                                                             <input required type="number" min="0" class="form-control" name="instances_projectLimit" value="{{ instance.instances_projectLimit }}">
                                                         </div>
                                                         <div class="input-group" style="margin-bottom: 5px;">
                                                             <div class="input-group-prepend">
-                                                                <span class="input-group-text">File storage functionality</span>
+                                                                <span class="input-group-text">Функциональность хранилища файлов</span>
                                                             </div>
                                                             <select required class="form-control" name="instances_storageEnabled">
-                                                                <option value="1" {% if instance.instances_storageEnabled == 1 %}selected{% endif %}>Enabled</option>
-                                                                <option value="0" {% if instance.instances_storageEnabled == 0 %}selected{% endif %}>Disabled</option>
+                                                                <option value="1" {% if instance.instances_storageEnabled == 1 %}selected{% endif %}>Включено</option>
+                                                                <option value="0" {% if instance.instances_storageEnabled == 0 %}selected{% endif %}>Отключено</option>
                                                             </select>
                                                         </div>
                                                         
@@ -322,14 +322,14 @@
                     var instanceId = $(this).data("instanceid");
                     $("#loadingoverlay").show();
                     bootbox.confirm({
-                        message: "Are you sure you wish to soft-delete this instance? The instance can be restored.",
+                        message: "Удалить компанию (мягкое удаление)? Её можно будет восстановить.",
                         buttons: {
                             confirm: {
-                                label: 'Yes',
+                                label: 'Да',
                                 className: 'btn-danger'
                             },
                             cancel: {
-                                label: 'No',
+                                label: 'Нет',
                                 className: 'btn-success'
                             }
                         },
@@ -357,14 +357,14 @@
                     var instanceId = $(this).data("instanceid");
                     $("#loadingoverlay").show();
                     bootbox.confirm({
-                        message: "Are you sure you wish to hard-delete this instance? This is a permanent action and cannot be undone, there is no option to restore this instance.",
+                        message: "Удалить компанию навсегда? Это необратимо — восстановление будет невозможно.",
                         buttons: {
                             confirm: {
-                                label: 'Yes',
+                                label: 'Да',
                                 className: 'btn-danger'
                             },
                             cancel: {
-                                label: 'No',
+                                label: 'Нет',
                                 className: 'btn-success'
                             }
                         },

@@ -326,15 +326,15 @@
             $(".deleteButton").click(function () {
                 var id = $(this).data("id");
                 bootbox.confirm({
-                    title:"Are you sure?",
+                    title:"Вы уверены?",
                     message: "Categories aren't fully deleted until all assets in the category are moved to other categories",
                     buttons: {
                         confirm: {
-                            label: 'Yes',
+                            label: 'Да',
                             className: 'btn-danger'
                         },
                         cancel: {
-                            label: 'No',
+                            label: 'Нет',
                             className: 'btn-success'
                         }
                     },
@@ -351,15 +351,15 @@
             $(".deleteGroupButton").click(function () {
                 var id = $(this).data("id");
                 bootbox.confirm({
-                    title:"Are you sure?",
+                    title:"Вы уверены?",
                     message: "This will delete this group and any categories within it. Categories aren't fully deleted until all assets in the category are moved to other categories",
                     buttons: {
                         confirm: {
-                            label: 'Yes',
+                            label: 'Да',
                             className: 'btn-danger'
                         },
                         cancel: {
-                            label: 'No',
+                            label: 'Нет',
                             className: 'btn-success'
                         }
                     },

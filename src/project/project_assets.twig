@@ -1,7 +1,7 @@
 {% if project.projectsStatuses_assetsReleased %} 
     <div class="alert alert-danger">
-        <h5>Assets not locked - assets are released</h5>
-        Assets assigned to this project are not exclusive (because of its status) and can be assigned to other projects that clash with this one. Update project status before confirming with client
+        <h5>Оборудование не заблокировано — доступно для других проектов</h5>
+        Оборудование, назначенное на этот проект, не является эксклюзивным (из‑за текущего статуса) и может быть назначено в другие конфликтующие проекты. Обновите статус проекта перед подтверждением с клиентом.
     </div>
 {% endif %}
 {% for assetAssignment in FINANCIALS.assetsAssigned %}
@@ -17,7 +17,7 @@
     <div class="card-header p-0 border-bottom-0 card-tabs">
         <ul class="nav nav-tabs" id="asset-list-tabs-tab" role="tablist">
             <li class="nav-item">
-                <a class="nav-link active" id="asset-list-tabs-home-tab" data-toggle="pill" href="#asset-list-tabs-home" role="tab" aria-controls="asset-list-tabs-home" aria-selected="true"><b>Total</b></a>
+                <a class="nav-link active" id="asset-list-tabs-home-tab" data-toggle="pill" href="#asset-list-tabs-home" role="tab" aria-controls="asset-list-tabs-home" aria-selected="true"><b>Итого</b></a>
             </li>
             {% if FINANCIALS.assetsAssigned|length > 0 %}
             <li class="nav-item">
@@ -26,37 +26,37 @@
             {% endif %}
             {% for instance in FINANCIALS.assetsAssignedSUB %}
                 <li class="nav-item">
-                    <a class="nav-link" id="asset-list-tab-instance{{ instance['instance'].instances_id }}" data-toggle="pill" href="#asset-list-tabs-instance{{ instance['instance'].instances_id }}" role="tab" aria-controls="asset-list-tabs-instance{{ instance['instance'].instances_id }}" aria-selected="false">{{  instance['instance'].instances_name }} Assets</a>
+                    <a class="nav-link" id="asset-list-tab-instance{{ instance['instance'].instances_id }}" data-toggle="pill" href="#asset-list-tabs-instance{{ instance['instance'].instances_id }}" role="tab" aria-controls="asset-list-tabs-instance{{ instance['instance'].instances_id }}" aria-selected="false">Оборудование {{  instance['instance'].instances_name }}</a>
                 </li>
             {% endfor %}
             <li class="pt-2 px-3">
                 <div class="card-tools">
                     {% if "PROJECTS:PROJECT_ASSETS:EDIT:ASSIGNMNET_COMMENT"|instancePermissions %}
-                        <button type="button" class="btn btn-tool" title="Set comment for assignment" id="setAssetAssignmentComment">
+                        <button type="button" class="btn btn-tool" title="Задать комментарий для назначений" id="setAssetAssignmentComment">
                             <i class="far fa-comment"></i></button>
                     {% endif %}
                     {% if "PROJECTS:PROJECT_ASSETS:EDIT:DISCOUNT"|instancePermissions and project.projectsTypes_config_finance == 1 %}
-                        <button type="button" class="btn btn-tool" title="Set discount" id="setAssetAssignmentDiscount">
+                        <button type="button" class="btn btn-tool" title="Установить скидку" id="setAssetAssignmentDiscount">
                             <i class="fas fa-percent"></i></button>
                     {% endif %}
                     {% if "PROJECTS:PROJECT_ASSETS:EDIT:CUSTOM_PRICE"|instancePermissions and project.projectsTypes_config_finance == 1 %}
-                        <button type="button" class="btn btn-tool" title="Set custom price" id="setAssetAssignmentPrice">
+                        <button type="button" class="btn btn-tool" title="Установить цену вручную" id="setAssetAssignmentPrice">
                             <i class="fas fa-coins"></i></button>
                     {% endif %}
                     {% if "PROJECTS:PROJECT_ASSETS:EDIT:ASSIGNMENT_STATUS"|instancePermissions %}
-                        <button type="button" class="btn btn-tool" title="Set status" id="setAllAssetStatus">
+                        <button type="button" class="btn btn-tool" title="Установить статус" id="setAllAssetStatus">
                             <i class="fas fa-clipboard-check"></i></button>
                     {% endif %}
                     {% if "PROJECTS:PROJECT_ASSETS:CREATE:ASSIGN_AND_UNASSIGN"|instancePermissions %}
-                        <button type="button" class="btn btn-tool" title="Swap Asset" id="swapAsset">
+                        <button type="button" class="btn btn-tool" title="Заменить оборудование" id="swapAsset">
                             <i class="fas fa-sync"></i>
                         </button>
-                        <button type="button" class="btn btn-tool" title="Remove assets" id="setAssetAssignmentDelete">
+                        <button type="button" class="btn btn-tool" title="Удалить оборудование" id="setAssetAssignmentDelete">
                             <i class="fas fa-trash"></i></button>
                     {% endif %}
-                    <button type="button" class="btn btn-tool" title="Expand All" id="expandAll">
-                        <i class="fas fa-angle-down"></i> Expand</button>
-<a type="button" class="btn btn-tool" href="{{ CONFIG.LINKS_USERGUIDEURL }}projects/assets" target="_blank">Help</a>
+                    <button type="button" class="btn btn-tool" title="Развернуть всё" id="expandAll">
+                        <i class="fas fa-angle-down"></i> Развернуть</button>
+<a type="button" class="btn btn-tool" href="{{ CONFIG.LINKS_USERGUIDEURL }}projects/assets" target="_blank">Помощь</a>
 
                 </div>
             </li>
@@ -65,7 +65,7 @@
     <div class="card-body p-0">
         <div class="tab-content" id="asset-list-tabs-tabContent">
             <div class="tab-pane fade show active p-3" id="asset-list-tabs-home" role="tabpanel" aria-labelledby="asset-list-tabs-home-tab">
-                <p style="font-style: italic;">To view assets assigned to this project, select a business above</p>
+                <p style="font-style: italic;">Чтобы увидеть оборудование, назначенное на проект, выберите компанию выше</p>
                 <p>{{ (FINANCIALS.assetsAssigned|length + FINANCIALS.assetsAssignedSUB|length) }} Asset{{ (FINANCIALS.assetsAssigned|length + FINANCIALS.assetsAssignedSUB|length) != 1 ? 's' }} assigned to {{ project.projects_name }} ({{FINANCIALS.mass|mass }})</p>
                 {% if project.projectsTypes_config_finance == 1 %}
                     <p>Project duration set as {{ FINANCIALS['priceMaths']["weeks"] }} week{{ FINANCIALS['priceMaths']["weeks"] != 1 ? 's' : '' }} and {{ FINANCIALS['priceMaths']["days"] }} day{{ FINANCIALS['priceMaths']["days"] != 1 ? 's' : ''}} for asset pricing purposes.

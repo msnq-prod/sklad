@@ -2,19 +2,19 @@
 {% block content %}
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">{{ CLIENT['clients_name'] ?: '' }}{{ CLIENT['clients_name'] and LOCATION['locations_name'] ? ' & ' : '' }}{{ LOCATION['locations_name'] ?: '' }} Projects {{ search ? " matching " ~ search : "" }} {{ STATUS ? ' with status ' ~ STATUS.projectsStatuses_name : ''}}</h3>
+            <h3 class="card-title">{{ (CLIENT['clients_name'] ?: '') ~ (CLIENT['clients_name'] and LOCATION['locations_name'] ? ' и ' : '') ~ (LOCATION['locations_name'] ?: '') }} Проекты{{ search ? ' по запросу ' ~ search : '' }}{{ STATUS ? ' со статусом ' ~ STATUS.projectsStatuses_name : ''}}</h3>
             {% if CLIENT['clients_archived'] %}
-            <span class="badge badge-warning ml-2">Client Archived</span>
+            <span class="badge badge-warning ml-2">Клиент в архиве</span>
             {% endif %}
             {% if LOCATION['locations_archived'] %}
-            <span class="badge badge-warning ml-2">Location Archived</span>
+            <span class="badge badge-warning ml-2">Локация в архиве</span>
             {% endif %}
             <div class="card-tools">
                 <form class="input-group input-group-sm"  method="GET">
-                    <input type="text" name="q" class="form-control" placeholder="Search" value="{{ search }}" />
+                    <input type="text" name="q" class="form-control" placeholder="Поиск" value="{{ search }}" />
                     <div class="input-group-append">
-                        <button type="submit" class="btn btn-default"><i class="fa fa-search" title="Search"></i></button>
-                        {% if "PROJECTS:CREATE"|instancePermissions %}<a type="button" class="btn btn-default" href="{{ CONFIG.ROOTURL }}/project/new.php" title="Add new project"><i class="fa fa-plus"></i></a>{% endif %}
+                        <button type="submit" class="btn btn-default"><i class="fa fa-search" title="Поиск"></i></button>
+                        {% if "PROJECTS:CREATE"|instancePermissions %}<a type="button" class="btn btn-default" href="{{ CONFIG.ROOTURL }}/project/new.php" title="Создать проект"><i class="fa fa-plus"></i></a>{% endif %}
                     </div>
                 </form>
             </div>
@@ -27,25 +27,25 @@
                         #
                     </th>
                     <th>
-                        Title
+                        Название
                     </th>
                     <th style="width: 10%">
-                        Type
+                        Тип
                     </th>
                     <th style="width: 24%">
-                        Client
+                        Клиент
                     </th>
                     <th style="width: 6rem;">
-                        Manager
+                        Руководитель
                     </th>
                     <th style="width: 8rem;">
-                        Outstanding
+                        К оплате
                     </th>
                     <th style="width: 11rem;">
-                        Payments Received
+                        Получено
                     </th>
                     <th style="width: 15%">
-                        Status
+                        Статус
                     </th>
                 </tr>
                 </thead>
@@ -56,7 +56,7 @@
                         {% set archive = true %}
                         <tr style="background-color: #ffffff;">
                             <td colspan="8">
-                                <b>Archived Projects</b>
+                                <b>Архивные проекты</b>
                             </td>
                         </tr>
                     {% endif %}
@@ -128,7 +128,7 @@
                                 <td>
                                     {{ subProject.projectsTypes_name }}
                                     <br>
-                                    (Subproject)
+                                    (Подпроект)
                                 </td>
                                 <td>
                                     {% if subProject.projectsTypes_config_client == 1 %}

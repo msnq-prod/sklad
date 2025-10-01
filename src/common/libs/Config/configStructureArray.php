@@ -274,7 +274,7 @@ $configStructureArray = [
       }
     ],
     "specialRequest" => true,
-    "default" => "<br/>AdamRMS is a fully-featured asset, project and rental management platform for Theatre, AV & Broadcast. To find out more about what it could do for your business, visit <a href=\"https://adam-rms.com\">adam-rms.com</a>.",
+    "default" => null,
     "envFallback" => false,
   ],
   "ERRORS_PROVIDERS_SENTRY" => [
@@ -503,9 +503,7 @@ $configStructureArray = [
   "LINKS_USERGUIDEURL" => [
     "form" => [
       "type" => "url",
-      "default" => function () {
-        return "https://adam-rms.com/docs/v1/user-guide/";
-      },
+      "default" => function () { return null; },
       "name" => "User guide URL",
       "group" => "Customisation",
       "description" => "The URL of the user guide, which is linked to from the help buttons",
@@ -520,15 +518,13 @@ $configStructureArray = [
       }
     ],
     "specialRequest" => false,
-    "default" => "https://adam-rms.com/docs/v1/user-guide/",
+    "default" => null,
     "envFallback" => false,
   ],
   "LINKS_SUPPORTURL" => [
     "form" => [
       "type" => "url",
-      "default" => function () {
-        return "https://adam-rms.com/support/";
-      },
+      "default" => function () { return null; },
       "name" => "Support URL",
       "group" => "Customisation",
       "description" => "The URL for links to the support page",
@@ -543,7 +539,7 @@ $configStructureArray = [
       }
     ],
     "specialRequest" => false,
-    "default" => "https://adam-rms.com/support/",
+    "default" => null,
     "envFallback" => false,
   ],
   "LINKS_TERMSOFSERVICEURL" => [
@@ -978,16 +974,14 @@ $configStructureArray = [
   "TELEMETRY_MODE" => [
     "form" => [
       "type" => "select",
-      "default" => function () {
-        return "Standard";
-      },
+      "default" => function () { return "Disabled"; },
       "name" => "Reduce Telemetry collected",
       "group" => "Telemetry",
       "description" => "What level of telemetry should be collected? When set to limited, this will reduce the amount of information about the installation sent to the Bithell Studios telemetry server, such as the number of assets on the server. More details: https://telemetry.bithell.studio/privacy-and-security",
       "required" => false,
       "maxlength" => 10,
       "minlength" => 5,
-      "options" => ["Standard", "Limited"],
+      "options" => ["Disabled", "Limited", "Standard"],
       "verifyMatch" => function ($value, $options) {
         return ["valid" => in_array($value, $options), "value" => $value, "error" => in_array($value, $options) ? '' : "Invalid option selected"];
       }

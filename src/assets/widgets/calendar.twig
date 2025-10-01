@@ -23,11 +23,11 @@
                 height: 800,
                 firstDay: 1,
                 buttonText:  {
-                    today:    'Today',
-                    month:    'Month',
-                    week:     'Week',
-                    day:      'Day',
-                    list:     'List'
+                    today:    'Сегодня',
+                    month:    'Месяц',
+                    week:     'Неделя',
+                    day:      'День',
+                    list:     'Список'
                 },
                 headerToolbar: {
                     left  : 'prev,next today',
@@ -35,10 +35,10 @@
                     right : 'dayGridMonth,timeGridWeek,timeGridDay,listYear'
                 },
                 titleFormat: function(date) {
-                    const monthNames = ["January", "February", "March", "April", "May", "June",
-                        "July", "August", "September", "October", "November", "December"
+                    const monthNames = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь",
+                        "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"
                     ]
-                    const prefix = "{{LOCATION ? LOCATION.locations_name ~ ': ' : USER ? 'Your Calendar: ' : '' }}"
+                    const prefix = "{{LOCATION ? LOCATION.locations_name ~ ': ' : USER ? 'Ваш календарь: ' : '' }}"
 
                     return prefix + monthNames[date['date']['month']] + " " + date['date']['year'];
                 },

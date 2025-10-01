@@ -4,8 +4,8 @@
 	<div class="row">
 		<div class="col-lg-6 offset-lg-3 col-md-12">
 			<div class="alert alert-warning alert-dismissible">
-				<h5><i class="icon fas fa-info"></i> Server-Wide Configuration</h5>
-				You are modifying settings and configuration that affect the whole of the {{ CONFIG.PROJECT_NAME }} Server, including all businesses (instances) running on it. Please be careful when making changes here.
+				<h5><i class="icon fas fa-info"></i> Настройки для всего сервера</h5>
+				Вы изменяете параметры, влияющие на весь сервер {{ CONFIG.PROJECT_NAME }}, включая все компании (инстансы). Будьте осторожны при внесении изменений.
 			</div>
 		</div>
 	</div>
@@ -16,8 +16,8 @@
 				<table class="table table-striped table-head-fixed" >
 					<thead>
 					<tr>
-						<th>Position</th>
-						<th>Group Membership</th>
+							<th>Должность</th>
+							<th>Группы</th>
 					</tr>
 					</thead>
 					<tbody>
@@ -42,7 +42,7 @@
 				<table class="table table-striped table-head-fixed" >
 					<thead>
 						<tr>
-							<th style="font-style: italic; font-weight: normal;">Action</th>
+							<th style="font-style: italic; font-weight: normal;">Действие</th>
 							{% for position in positions %}
 								<th>{{position.positionsGroups_name}}</th>
 							{% endfor %}
@@ -57,7 +57,7 @@
 									<td>
 										{% for dependentactionid in action.Dependencies %}
 												{% if dependentactionid != "" and dependentactionid not in position.positionsGroups_actions|split(',') %}
-														<span class="badge bg-warning" title="Requires {{ dependentactionid }} permission to be enabled">{{ dependentactionid }}</span>
+														<span class="badge bg-warning" title="Требуется включённое право {{ dependentactionid }}">{{ dependentactionid }}</span>
 														{% set positioncannotbecausedep = "true" %}
 												{% endif %}
 										{% endfor %}
@@ -102,7 +102,7 @@ $(document).ready(function() {
 					$("#loading").hide();
                     location.reload();
 				} else {
-					bootbox.alert(result + "Sorry - Operation could not be completed! Please try again!", function() {
+														bootbox.alert(result + "Операция не выполнена. Попробуйте ещё раз.", function() {
 						location.reload();
 					});
 				}

@@ -5,11 +5,11 @@
     <div class="col-md-12 col-lg-6 offset-lg-3">
         <div class="card box-solid">
             <div class="card-header">
-                <h3 class="card-title">Cannot create projects</h3>
+                <h3 class="card-title">Невозможно создать проекты</h3>
             </div>
             <div class="card-body">
-                <p>Your current plan does not enable you to create any more projects as you have used your capacity.</p>
-                <a href="{{ CONFIG.ROOTURL }}/instances/billing.php" class="btn btn-default">Billing Settings</a>
+                <p>Ваш текущий тариф не позволяет создавать новые проекты, поскольку лимит исчерпан.</p>
+                <a href="{{ CONFIG.ROOTURL }}/instances/billing.php" class="btn btn-default">Настройки биллинга</a>
             </div>
         </div>
     </div>
@@ -19,24 +19,24 @@
     <div class="col-md-12 col-lg-6 offset-lg-3"> 
         <div class="card box-solid">
             <div class="card-header">
-                <h3 class="card-title">Add new Project</h3>
+                <h3 class="card-title">Создать проект</h3>
                 <div class="card-tools pull-right">
-                    <a href="{{ CONFIG.LINKS_USERGUIDEURL }}projects/" target="_blank" type="button" class="btn btn-info btn-sm">Help</a>
+                    <a href="{{ CONFIG.LINKS_USERGUIDEURL }}projects/" target="_blank" type="button" class="btn btn-info btn-sm">Помощь</a>
                 </div>
             </div>
             <div class="card-body">
                 <form id="addNewForm">
                     <div class="form-group">
-                        <label>Project Name *</label>
+                        <label>Название проекта *</label>
                         <input type="text" class="form-control" id="projects_name" required />
-                        <p class="invalid-feedback">Project Name is required</p>
+                        <p class="invalid-feedback">Требуется название проекта</p>
                     </div>
                     <div class="form-group">
-                        <label>Project Description</label>
+                        <label>Описание проекта</label>
                         <textarea type="text" class="form-control" id="projects_description"></textarea>
                     </div>
                     <div class="form-group">
-                        <label>Project Manager *</label>
+                        <label>Руководитель проекта *</label>
                         <select class="form-control  select2bs4" id="manager" required>
                             {% for user in potentialProjectManagers %}
                                 <option {{ user.users_userid == USERDATA.users_userid ? "selected" : "" }} value="{{ user.users_userid }}">{{ (user.users_name1 ~ " " ~ user.users_name2) }}</option>
@@ -44,7 +44,7 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>Project Type *</label>
+                        <label>Тип проекта *</label>
                         <select class="form-control  select2bs4" id="type" required>
                             {% for type in potentialProjectTypes %}
                                 <option value="{{ type.projectsTypes_id }}">{{ type.projectsTypes_name }}</option>
@@ -52,7 +52,7 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>Project Dates</label>
+                        <label>Даты проекта</label>
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="far fa-clock"></i></span>
@@ -61,19 +61,19 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label>Parent Project</label>
+                        <label>Родительский проект</label>
                         <select class="form-control  select2bs4" id="parent" required aria-describedby="subprojectHelp">
-                            <option value="-1">No Parent</option>
+                            <option value="-1">Без родителя</option>
                             {% for project in projects %}
                                 <option value="{{ project.projects_id }}">{{ project.projects_name }}</option>
                             {% endfor %}
                         </select>
-                        <small id="subprojectHelp" class="form-text text-muted">Make this a sub-project of the given parent project</small>
+                        <small id="subprojectHelp" class="form-text text-muted">Сделать подпроектом выбранного родительского проекта</small>
                     </div>
                 </form>
             </div>
             <div class="card-footer">
-                <button class="btn btn-default float-right" id="saveButton">Save</button>
+                <button class="btn btn-default float-right" id="saveButton">Сохранить</button>
             </div>
             <div class="overlay">
                 <i class="fas fa-2x fa-sync-alt"></i>
@@ -108,14 +108,14 @@
                 timePicker: true,
                 timePickerIncrement: 15,
                 locale: {
-                    format: 'DD MMM YYYY hh:mm A'
+                    format: 'DD.MM.YYYY HH:mm'
                 },
                 autoUpdateInput: false,
             });
 
             $('#datePickerInput').on('apply.daterangepicker', function(ev, picker) {
-                startDate = picker.startDate.format('DD MMM YYYY hh:mm A');
-                endDate = picker.endDate.format('DD MMM YYYY hh:mm A');
+                startDate = picker.startDate.format('DD.MM.YYYY HH:mm');
+                endDate = picker.endDate.format('DD.MM.YYYY HH:mm');
 
                 $(this).val(startDate + ' - ' + endDate);
             });

@@ -4,8 +4,8 @@
 	<div class="row">
 		<div class="col-lg-6 offset-lg-3 col-md-12">
 			<div class="alert alert-warning alert-dismissible">
-				<h5><i class="icon fas fa-info"></i> Server-Wide Configuration</h5>
-				You are viewing analytics that affect the whole of the {{ CONFIG.PROJECT_NAME }} Server, including all businesses (instances) running on it.
+				<h5><i class="icon fas fa-info"></i> Аналитика по всему серверу</h5>
+				Вы просматриваете метрики, влияющие на весь сервер {{ CONFIG.PROJECT_NAME }}, включая все компании (инстансы).
 			</div>
 		</div>
 	</div>
@@ -14,24 +14,24 @@
             <div class="small-box bg-info">
                 <div class="inner">
                     <h3>{{analyticsEventsCount|number_format}}</h3>
-                    <p>Page Views</p>
+                    <p>Просмотры страниц</p>
                 </div>
                 <div class="icon">
                     <i class="far fa-chart-bar"></i>
                 </div>
-                <a href="{{ CONFIG.ROOTURL }}/server/analytics/pageViews.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="{{ CONFIG.ROOTURL }}/server/analytics/pageViews.php" class="small-box-footer">Подробнее <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
         <div class="col-lg-3 col-md-6 col-sm-12">
             <div class="small-box bg-info">
                 <div class="inner">
                     <h3>48</h3>
-                    <p>Tables</p>
+                    <p>Таблицы</p>
                 </div>
                 <div class="icon">
                     <i class="fas fa-database"></i>
                 </div>
-                <a href="{{ CONFIG.ROOTURL }}/server/analytics/tables.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="{{ CONFIG.ROOTURL }}/server/analytics/tables.php" class="small-box-footer">Подробнее <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
     </div>

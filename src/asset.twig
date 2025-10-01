@@ -212,11 +212,11 @@
                                     var calendar = new Calendar(calendarEl, {
                                         themeSystem: 'bootstrap',
                                         buttonText:  {
-                                            today:    'Today',
-                                            month:    'Month',
-                                            week:     'Week',
-                                            day:      'Day',
-                                            list:     'List'
+                                            today:    'Сегодня',
+                                            month:    'Месяц',
+                                            week:     'Неделя',
+                                            day:      'День',
+                                            list:     'Список'
                                         },
                                         headerToolbar : {
                                             left  : 'prev,next today',
@@ -559,7 +559,7 @@
                                                 </a>
                                                 <br/>
                                                 <small>
-                                                    Created {{barcode.assetsBarcodes_added|date("d M Y h:i:sa")}}
+                                                    Создано {{barcode.assetsBarcodes_added|date("d M Y h:i:sa")}}
                                                 </small>
                                             </td>
                                             <td>
@@ -567,12 +567,12 @@
                                                     {% if barcode.latestScan.locations_name %}
                                                         {{ barcode.latestScan.locations_name }}
                                                     {% elseif barcode.latestScan.assetTypes_name %}
-                                                        Inside asset {{  barcode.latestScan.assetTypes_name }} ({{ barcode.latestScan.assets_tag }})
+                                                        В составе оборудования {{  barcode.latestScan.assetTypes_name }} ({{ barcode.latestScan.assets_tag }})
                                                     {% elseif barcode.latestScan.assetsBarcodes_customLocation %}
                                                         {{  barcode.latestScan.assetsBarcodes_customLocation }}
                                                         <br/>
                                                         <small>
-                                                           Location was entered as text
+                                                           Локация введена вручную
                                                         </small>
                                                     {% endif %}
                                                     <br/>
@@ -580,12 +580,12 @@
                                                         <a href="{{ CONFIG.ROOTURL }}/user.php?id={{ barcode.latestScan.users_userid }}">{{ barcode.latestScan.users_name1 ~ " " ~ barcode.latestScan.users_name2 }}</a> {{ barcode.latestScan.assetsBarcodesScans_timestamp|date("d/M/Y G:i:s") }}
                                                     </small>
                                                 {% else %}
-                                                    <i>Never scanned</i>
+                                                    <i>Никогда не сканировалось</i>
                                                 {% endif %}
                                             </td>
                                             <td>
                                                 {% if "ASSETS:ASSET_BARCODES:DELETE"|instancePermissions %}
-                                                    <button title="Delete" class="btn btn-sm btn-danger deleteBarcodeButton" data-barcodeid="{{ barcode['assetsBarcodes_id'] }}"><i class="fa fa-trash"></i></button>
+                                                    <button title="Удалить" class="btn btn-sm btn-danger deleteBarcodeButton" data-barcodeid="{{ barcode['assetsBarcodes_id'] }}"><i class="fa fa-trash"></i></button>
                                                 {% endif %}
                                             </td>
                                         </tr>
@@ -593,7 +593,7 @@
                                     </tbody>
                                 </table>
                                 {% if ASSET_INSTANCE.instances_id == USERDATA.instance.instances_id %}
-                                     <a class="btn btn-default btn-block" href="{{ CONFIG.ROOTURL }}/maintenance/barcodeGenerator.php?id={{assets[0].assets_id}}">Generate/Export Barcodes</a>
+                                     <a class="btn btn-default btn-block" href="{{ CONFIG.ROOTURL }}/maintenance/barcodeGenerator.php?id={{assets[0].assets_id}}">Сгенерировать/Экспортировать штрих‑коды</a>
                                 {% endif %}
                             </div>
                         {% endif %}
@@ -602,10 +602,10 @@
                                 <div class="card" style="margin-bottom:0;">
                                     <div class="card-header p-2">
                                         <ul class="nav nav-pills">
-                                            <li class="nav-item"><a class="nav-link" href="#maintenance-newJob" data-toggle="tab">New Job</a></li>
-                                            <li class="nav-item"><a class="nav-link active" href="#maintenance-flags" data-toggle="tab">Blocks &amp; Flags</a></li>
-                                            <li class="nav-item"><a class="nav-link" href="#maintenance-jobsOutstanding" data-toggle="tab">Jobs Outstanding</a></li>
-                                            <li class="nav-item"><a class="nav-link" href="#maintenance-jobsCompleted" data-toggle="tab">Jobs Completed</a></li>
+                                            <li class="nav-item"><a class="nav-link" href="#maintenance-newJob" data-toggle="tab">Новая заявка</a></li>
+                                            <li class="nav-item"><a class="nav-link active" href="#maintenance-flags" data-toggle="tab">Блокировки и пометки</a></li>
+                                            <li class="nav-item"><a class="nav-link" href="#maintenance-jobsOutstanding" data-toggle="tab">Открытые заявки</a></li>
+                                            <li class="nav-item"><a class="nav-link" href="#maintenance-jobsCompleted" data-toggle="tab">Завершённые заявки</a></li>
                                         </ul>
                                     </div><!-- /.card-header -->
                                     <div class="card-body" style="padding: 0;">
@@ -674,19 +674,19 @@
                                                             #
                                                         </th>
                                                         <th>
-                                                            Title
+                                                            Заголовок
                                                         </th>
                                                         <th style="width: 5%">
-                                                            Creator
+                                                            Автор
                                                         </th>
                                                         <th style="width: 5%">
-                                                            Assigned
+                                                            Назначен
                                                         </th>
                                                         <th style="width: 8%" class="text-center">
-                                                            Priority
+                                                            Приоритет
                                                         </th>
                                                         <th style="width: 8%" class="text-center">
-                                                            Status
+                                                            Статус
                                                         </th>
                                                         <th style="width: 1%" class="text-center">
                                                             <i class="fas fa-flag"></i>
@@ -709,7 +709,7 @@
                                                                     </a>
                                                                     <br/>
                                                                     <small>
-                                                                        Created {{job.maintenanceJobs_timestamp_added|date("d M Y h:i:sa")}}
+                                                                        Создано {{job.maintenanceJobs_timestamp_added|date("d M Y h:i:sa")}}
                                                                     </small>
                                                                 </td>
                                                                 <td>
@@ -743,7 +743,7 @@
                                                                     {% if job.maintenanceJobsStatuses_name %}
                                                                         <span class="badge badge-default">{{ job.maintenanceJobsStatuses_name }}</span>
                                                                     {% else %}
-                                                                        <span class="badge badge-default">Awaiting Sorting</span>
+                                                                        <span class="badge badge-default">Ожидает сортировки</span>
                                                                     {% endif %}
                                                                 </td>
                                                                 <td >
@@ -971,11 +971,11 @@
                                     var calendar = new Calendar(calendarEl, {
                                         themeSystem: 'bootstrap',
                                         buttonText:  {
-                                            today:    'Today',
-                                            month:    'Month',
-                                            week:     'Week',
-                                            day:      'Day',
-                                            list:     'List'
+                                            today:    'Сегодня',
+                                            month:    'Месяц',
+                                            week:     'Неделя',
+                                            day:      'День',
+                                            list:     'Список'
                                         },
                                         headerToolbar : {
                                             left  : 'prev,next today',
@@ -1025,9 +1025,9 @@
                             <div class="card" style="margin-bottom:0;">
                                 <div class="card-header p-2">
                                     <ul class="nav nav-pills">
-                                        <li class="nav-item"><a class="nav-link active" href="#details" data-toggle="tab">Details</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="#fields" data-toggle="tab">Custom Fields</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="#thumbnail" data-toggle="tab">Thumbnails</a></li>
+                                        <li class="nav-item"><a class="nav-link active" href="#details" data-toggle="tab">Детали</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="#fields" data-toggle="tab">Настраиваемые поля</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="#thumbnail" data-toggle="tab">Миниатюры</a></li>
                                     </ul>
                                 </div><!-- /.card-header -->
                                 <div class="card-body" style="padding: 0;">
@@ -1040,32 +1040,32 @@
                                             </style>
                                             <form id="addNewForm">
                                             <div class="input-group">
-                                                <div class="input-group-prepend"><span class="input-group-text">Name</span></div>
+                                                <div class="input-group-prepend"><span class="input-group-text">Название</span></div>
                                                 <input type="text" class="form-control" name="assetTypes_name" value="{{ asset.assetTypes_name}}" id="addNewType-name" />
                                             </div>
                                             <div class="input-group">
-                                                <div class="input-group-prepend"><span class="input-group-text">Description</span></div>
+                                                <div class="input-group-prepend"><span class="input-group-text">Описание</span></div>
                                                 <textarea class="form-control" rows="3" name="assetTypes_description" id="addNewType-description"  placeholder="">{{ asset.assetTypes_description}}</textarea>
                                             </div>
                                             <div class="input-group">
-                                                <div class="input-group-prepend"><span class="input-group-text">Product Link</span></div>
+                                                <div class="input-group-prepend"><span class="input-group-text">Ссылка на продукт</span></div>
                                                 <input type="url" class="form-control" name="assetTypes_productLink" value="{{ asset.assetTypes_productLink }}" id="addNewType-productLink" maxlength="499" />
                                             </div>
                                             <div class="input-group">
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text">
-                                                      Mass
+                                                      Масса
                                                     </span>
                                                 </div>
                                                 <input type="number" step="0.001" min="0" name="assetTypes_mass" value="{{ asset.assetTypes_mass}}" class="form-control" id="addNewType-mass" />
                                                 <div class="input-group-append">
-                                                    <div class="input-group-text">kg</div>
+                                                    <div class="input-group-text">кг</div>
                                                 </div>
                                             </div>
                                             <div class="input-group">
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text">
-                                                      Value - {{ moneySymbol() }}
+                                                      Стоимость — {{ moneySymbol() }}
                                                     </span>
                                                 </div>
                                                 <input type="number" step="0.001" min="0" name="assetTypes_value" value="{{ asset.assetTypes_value|moneyDecimal }}" class="form-control" id="addNewType-value" />
@@ -1074,23 +1074,23 @@
                                             <div class="input-group">
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text">
-                                                      Day Rate - {{ moneySymbol() }}
+                                                      Дневная ставка — {{ moneySymbol() }}
                                                     </span>
                                                 </div>
                                                 <input type="number" step="0.001" min="0" name="assetTypes_dayRate" value="{{ asset.assetTypes_dayRate|moneyDecimal }}" class="form-control" id="addNewType-dayRate" />
                                                 <div class="input-group-append">
-                                                    <div class="input-group-text" id="addNewType-dayRate-guide">Guide 2% of value</div>
+                                                    <div class="input-group-text" id="addNewType-dayRate-guide">Ориентир: 2% от стоимости</div>
                                                 </div>
                                             </div>
                                             <div class="input-group">
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text">
-                                                      Weekly Rate - {{ moneySymbol() }}
+                                                      Недельная ставка — {{ moneySymbol() }}
                                                     </span>
                                                 </div>
                                                 <input type="number" step="0.001" min="0" name="assetTypes_weekRate" class="form-control" value="{{ asset.assetTypes_weekRate|moneyDecimal }}" id="addNewType-weekRate" />
                                                 <div class="input-group-append">
-                                                    <div class="input-group-text" id="addNewType-weekRate-guide">Guide 6% of value</div>
+                                                    <div class="input-group-text" id="addNewType-weekRate-guide">Ориентир: 6% от стоимости</div>
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -1511,14 +1511,14 @@
                 $(".deleteAssetButton").click(function () {
                     var assetid = $(this).data("assetid");
                     bootbox.confirm({
-                        message: "Are you sure you wish to delete this asset?",
+                        message: "Вы уверены, что хотите удалить это оборудование?",
                         buttons: {
                             confirm: {
-                                label: 'Yes',
+                                label: 'Да',
                                 className: 'btn-danger'
                             },
                             cancel: {
-                                label: 'No',
+                                label: 'Нет',
                                 className: 'btn-success'
                             }
                         },
@@ -1537,29 +1537,29 @@
                     var assetid = $(this).data("assetid");
                     var date;
                     bootbox.prompt({
-                        title: "When would you like the asset to be archived?",
+                        title: "Когда следует архивировать это оборудование?",
                         inputType: 'date',
                         callback: function (result) {
                             if (result) {
                                 date = result;
                                 bootbox.prompt({
-                                    title: "Why is this asset being archived?",
+                                    title: "Почему это оборудование архивируется?",
                                     inputType: 'select',
                                     inputOptions: [
                                         {
-                                            text: 'Being Sold',
+                                            text: 'Продаётся',
                                             value: 'sold',
                                         },
                                         {
-                                            text: 'End of Life - being destroyed',
+                                            text: 'Конец жизненного цикла — списание',
                                             value: 'destroyed',
                                         },
                                         {
-                                            text: 'Missing/Lost',
+                                            text: 'Потеряно/Отсутствует',
                                             value: 'lost',
                                         },
                                         {
-                                            text: 'Permanent Loan',
+                                            text: 'Постоянный займ',
                                             value: 'loaned permanently',
                                         }
                                     ],
@@ -1580,14 +1580,14 @@
                 $(".deleteBarcodeButton").click(function () {
                     var barcodeid = $(this).data("barcodeid");
                     bootbox.confirm({
-                        message: "Are you sure you wish to delete this barcode? All scan history for this barcode will be lost",
+                        message: "Удалить этот штрих‑код? Вся история сканирования будет удалена",
                         buttons: {
                             confirm: {
-                                label: 'Yes',
+                                label: 'Да',
                                 className: 'btn-danger'
                             },
                             cancel: {
-                                label: 'No',
+                                label: 'Нет',
                                 className: 'btn-success'
                             }
                         },

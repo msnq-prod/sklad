@@ -13,14 +13,14 @@
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">
-                Edit {{ PAGE.cmsPages_name }}
+                Редактировать {{ PAGE.cmsPages_name }}
             </h3>
             <div class="card-tools pull-right">
                 <div class="btn-group  btn-group-sm" role="group">
-                    <button type="button" class="btn btn-default btn-sm" id="addNewCard" title="Add new Card">Add Card</button>
-                    <a type="button" class="btn btn-default btn-sm" title="Viewing Stats" href="{{ CONFIG.ROOTURL }}/cms/stats.php?p={{ PAGE.cmsPages_id }}"><i class="far fa-chart-bar"></i></a>
-                    <button type="button" class="btn btn-default btn-sm" title="Edit History" data-toggle="modal" data-target="#revisionHistoryModal"><i class="fas fa-history"></i></button>
-                    <button type="button" class="btn btn-success btn-sm" id="masterSave" title="Save"><i class="fas fa-save"></i></button>
+                    <button type="button" class="btn btn-default btn-sm" id="addNewCard" title="Добавить карточку">Добавить карточку</button>
+                    <a type="button" class="btn btn-default btn-sm" title="Статистика просмотров" href="{{ CONFIG.ROOTURL }}/cms/stats.php?p={{ PAGE.cmsPages_id }}"><i class="far fa-chart-bar"></i></a>
+                    <button type="button" class="btn btn-default btn-sm" title="История изменений" data-toggle="modal" data-target="#revisionHistoryModal"><i class="fas fa-history"></i></button>
+                    <button type="button" class="btn btn-success btn-sm" id="masterSave" title="Сохранить"><i class="fas fa-save"></i></button>
                 </div>
             </div>
         </div>
@@ -33,7 +33,7 @@
         {% endif %}
     </div>
     {% for card in [ {'type': 'custom' }, {'type': 'calendar' }, {'type': 'myCalendar'}, {'type': 'inventoryTotal' }, {'type': 'storageUsage' }, {'type': 'userCount' }, {'type': 'maintenanceOutstanding' }, {'type': 'myMaintenance' } ] %}
-        {% set card = card|merge({"width": 4 , "title": "Untitled Card"}) %}
+        {% set card = card|merge({"width": 4 , "title": "Без названия"}) %}
         <div style="display:none;" class="templateCard" data-type="{{ card.type ?: "custom" }}">
             {% embed 'cms/cms_edit_card.twig' with {'card': card } %}{% endembed %}
         </div>
@@ -43,8 +43,8 @@
             <div class="modal-content">
                 <form id="editCardForm">
                     <div class="modal-header">
-                        <h4 class="modal-title">Edit Card Content</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <h4 class="modal-title">Редактировать содержимое карточки</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Закрыть">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -61,8 +61,8 @@
                         <div class="summernote" id="summernote"></div>
                     </div>
                     <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-success">Save</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                        <button type="submit" class="btn btn-success">Сохранить</button>
                     </div>
                 </form>
             </div>
@@ -73,8 +73,8 @@
             <div class="modal-content">
                 <form id="editConfigForm">
                     <div class="modal-header">
-                        <h4 class="modal-title">Edit Card Configuration</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <h4 class="modal-title">Редактировать настройки карточки</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Закрыть">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -102,7 +102,7 @@
                         </div>
                     </div>
                     <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
                         <button type="submit" class="btn btn-success">Save</button>
                     </div>
                 </form>
@@ -219,14 +219,14 @@
             $(document).on("click",".delete",function(event) {
                 var cell = gs.$getCellOfElement(event.target);
                 bootbox.confirm({
-                    message: "Are you sure you wish to delete this card?",
+                    message: "Удалить эту карточку?",
                     buttons: {
                         confirm: {
-                            label: 'Yes',
+                            label: 'Да',
                             className: 'btn-success'
                         },
                         cancel: {
-                            label: 'Cancel',
+                            label: 'Отмена',
                             className: 'btn-default'
                         }
                     },

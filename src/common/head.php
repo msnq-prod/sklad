@@ -195,49 +195,32 @@ $CSP = [
         ["value" => "'self'", "comment" => ""],
         ["value" => "'unsafe-inline'", "comment" => "We have loads of inline JS"],
         ["value" => "'unsafe-eval'", "comment" => ""],
-        ["value" => "https://*.adam-rms.com", "comment" => ""],
         ["value" => "https://cdnjs.cloudflare.com", "comment" => ""],
-        ["value" => "https://static.cloudflareinsights.com", "comment" => ""],
-        ["value" => "https://www.youtube.com", "comment" => "Training modules allow youtube embed"],
-        ["value" => "https://*.ytimg.com", "comment" => "Training modules allow youtube embed"],
-        ["value" => "https://*.freshstatus.io", "comment" => ""],
-        ["value" => "https://js.stripe.com", "comment" => "Stripe payment pricing table"]
     ],
     "style-src" => [
         ["value" => "'unsafe-inline'", "comment" => "We have loads of inline CSS"],
         ["value" => "'self'", "comment" => ""],
-        ["value" => "https://*.adam-rms.com", "comment" => ""],
         ["value" => "https://cdnjs.cloudflare.com", "comment" => ""],
         ["value" => "https://fonts.googleapis.com", "comment" => "Google fonts is used extensivley"]
     ],
     "font-src" => [
         ["value" => "'self'", "comment" => ""],
         ["value" => "data:", "comment" => ""],
-        ["value" => "https://*.adam-rms.com", "comment" => ""],
         ["value" => "https://fonts.googleapis.com", "comment" => "Google fonts is used extensivley"],
         ["value" => "https://fonts.gstatic.com", "comment" => "Google fonts is used extensivley"],
         ["value" => "https://cdnjs.cloudflare.com", "comment" => "Libraries referenced in HTML"]
     ],
     "manifest-src" => [
-        ["value" => "'self'", "comment" => ""],
-        ["value" => "https://*.adam-rms.com", "comment" => "Show images on mobile devices like favicons"]
+        ["value" => "'self'", "comment" => ""]
     ],
     "img-src" => [
         ["value" => "'self'", "comment" => ""],
         ["value" => "data:", "comment" => ""],
         ["value" => "blob:", "comment" => ""],
-        ["value" => "https://*.adam-rms.com", "comment" => ""],
-        ["value" => "https://cdnjs.cloudflare.com", "comment" => "Libraries referenced in HTML"],
-        ["value" => "https://cloudflareinsights.com", "comment" => ""],
-        ["value" => "https://*.ytimg.com", "comment" => "Training modules allow youtube embed"]
+        ["value" => "https://cdnjs.cloudflare.com", "comment" => "Libraries referenced in HTML"]
     ],
     "connect-src" => [
-        ["value" => "'self'", "comment" => ""],
-        ["value" => "https://*.adam-rms.com", "comment" => ""],
-        ["value" => "https://sentry.io", "comment" => ""],
-        ["value" => "https://cloudflareinsights.com", "comment" => ""],
-        ["value" => "https://*.amazonaws.com", "comment" => "To allow S3 uploads"],
-        ["value" => "https://*.freshstatus.io", "comment" => ""]
+        ["value" => "'self'", "comment" => ""]
     ],
     "frame-src" => [
         ["value" => "https://www.youtube.com", "comment" => "Training modules allow youtube embed"],
