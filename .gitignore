@@ -5,6 +5,8 @@
 .env
 
 vendor/
+!src/static-assets/vendor/
+!src/static-assets/vendor/**
 
 .idea
 

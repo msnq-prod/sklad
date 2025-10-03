@@ -2,8 +2,8 @@
 <html lang='en'>
 <head>
     <meta charset='utf-8'>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.6/pdfmake.min.js" integrity="sha512-7BzHjLXs8xehClrkJEtJtAwXxcbLast87k+XekuItHxrMr/v6POWkoKS2/8CU6DHdIjY+A4NwvsBQ8PxoRH7xQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.6/vfs_fonts.min.js" integrity="sha512-P0bOMePRS378NwmPDVPU455C/TuxDS+8QwJozdc7PGgN8kLqR4ems0U/3DeJkmiE31749vYWHvBOtR+37qDCZQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="{{ CONFIG.ROOTURL }}/static-assets/vendor/pdfmake/js/pdfmake.min.js"></script>
+    <script src="{{ CONFIG.ROOTURL }}/static-assets/vendor/pdfmake/js/vfs_fonts.js"></script>
     <script>
         var docDefinition = {
             content: [
@@ -551,7 +551,7 @@
     </script>
 </head>
 <body>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js" integrity="sha256-EPrkNjGEmCWyazb3A/Epj+W7Qm2pB9vnfXw+X6LImPM=" crossorigin="anonymous"></script>
+    <script src="{{ CONFIG.ROOTURL }}/static-assets/vendor/pace/js/pace.min.js"></script>
     <link rel="stylesheet" href="{{ CONFIG.ROOTURL }}/static-assets/libs/pace/pace.css">
     <!--Pace Loader-->
     <script>

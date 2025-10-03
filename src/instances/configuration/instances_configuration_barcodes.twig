@@ -1,7 +1,7 @@
 {% extends "assets/template.twig" %}
 {% block htmlIncludes %}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.1/spectrum.min.js" integrity="sha512-1aNp9qKP+hKU/VJwCtYqJP9tdZWbMDN5pEEXXoXT0pTAxZq1HHZhNBR/dtTNSrHO4U1FsFGGILbqG1O9nl8Mdg==" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.1/spectrum.min.css" integrity="sha512-KuSX+43gVS5MEIJD2ewtrFPOHqC1PJnL8o2f5ciggPC0JUZ8XV0QXlfArO1mSzKkVFdRjsBDfrTU96C5SuRfqQ==" crossorigin="anonymous" />
+    <script src="{{ CONFIG.ROOTURL }}/static-assets/vendor/spectrum/spectrum.min.js"></script>
+    <link rel="stylesheet" href="{{ CONFIG.ROOTURL }}/static-assets/vendor/spectrum/spectrum.min.css" />
 
     <script src="{{ CONFIG.ROOTURL }}/static-assets/libs/invert-color/invert.min.js"></script>
 {% endblock %}
