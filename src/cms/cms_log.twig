@@ -7,11 +7,11 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">CMS Page Access</h3>
+                    <h3 class="card-title">Доступ к странице CMS</h3>
                     <div class="card-tools pull-right">
                         <div class="input-group input-group-sm">
-                            <a type="button" class="btn btn-default btn-sm" title="View Page" href="{{ CONFIG.ROOTURL }}/cms/?p={{ PAGE.cmsPages_id }}">View Page</a>
-                            <a type="button" class="btn btn-default btn-sm" title="Viewing Stats" href="{{ CONFIG.ROOTURL }}/cms/stats.php?p={{ PAGE.cmsPages_id }}"><i class="far fa-chart-bar"></i></a>
+                            <a type="button" class="btn btn-default btn-sm" title="Открыть страницу" href="{{ CONFIG.ROOTURL }}/cms/?p={{ PAGE.cmsPages_id }}">Открыть страницу</a>
+                            <a type="button" class="btn btn-default btn-sm" title="Статистика просмотров" href="{{ CONFIG.ROOTURL }}/cms/stats.php?p={{ PAGE.cmsPages_id }}"><i class="far fa-chart-bar"></i></a>
                         </div>
                     </div>
                 </div>
@@ -19,8 +19,8 @@
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>Timestamp</th>
-                                <th>User</th>
+                                <th>Время</th>
+                                <th>Пользователь</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -37,12 +37,12 @@
                                                 {{ entry.users_name1 }} {{ entry.users_name2 }}
                                             {% endif %}
                                             {% if entry.cmsPages_type and entry.cmsPages_type == 2 %}
-                                                <span class="badge badge-info">Mobile App</span>
+                                                <span class="badge badge-info">Мобильное приложение</span>
                                             {% elseif entry.cmsPages_type and entry.cmsPages_type == 3 %}
-                                                <span class="badge badge-default">Custom Dashboard</span>
+                                                <span class="badge badge-default">Пользовательская панель</span>
                                             {% endif %}
                                         {% else %}
-                                            Public access
+                                            Публичный доступ
                                         {% endif %}
                                     </td>
                                 </tr>

@@ -5,10 +5,10 @@
             <div class="card ">
                 <div class="card-header">
                     <h3 class="card-title">
-                        Role Groups - Custom Dashboards
+                        Группы ролей — пользовательские панели
                     </h3>
                     <div class="card-tools pull-right">
-<a href="{{ CONFIG.LINKS_USERGUIDEURL }}cms/custom-dashboards" target="_blank" type="button" class="btn btn-info btn-sm">Help</a>
+<a href="{{ CONFIG.LINKS_USERGUIDEURL }}cms/custom-dashboards" target="_blank" type="button" class="btn btn-info btn-sm">Помощь</a>
 
                     </div>
                 </div>
@@ -16,8 +16,8 @@
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>Role Group</th>
-                                <th>Custom Dashboard</th>
+                                <th>Группа ролей</th>
+                                <th>Пользовательская панель</th>
                             </tr>
                         </thead>
                         {% for position in positions %}
@@ -28,7 +28,7 @@
                                 </td>
                                 <td>
                                     <select class="form-control select2 select2bs4" data-position="{{ position.instancePositions_id }}">
-                                        <option value="">None</option>
+                                        <option value="">Нет</option>
                                         {% for page in CMSPages %}
                                             <option value="{{ page.cmsPages_id }}" {% if position.cmsPages_id == page.cmsPages_id %}selected{% endif %}>{{ page.cmsPages_name }}</option>
                                         {% endfor %}

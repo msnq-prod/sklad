@@ -81,29 +81,29 @@
                     <div class="modal-body">
                         <input type="hidden" name="index" value="" />
                         <div class="form-group">
-                            <label>Card Title</label>
-                            <input class="form-control" name="title" placeholder="Drum Revolve Key Entry Tips" />
+                            <label>Заголовок карточки</label>
+                            <input class="form-control" name="title" placeholder="Советы по входу на сцену" />
                         </div>
                         <div class="form-group">
-                            <label>Color</label>
+                            <label>Цвет</label>
                             <select class="form-control select2bs4" name="style">
-                                <option>None</option>
+                                <option>Нет</option>
                                 {% for style in possibleCardStyles %}
                                     <option value="{{ style }}">{{ style|title }}</option>
                                 {% endfor %}
                             </select>
                         </div>
                         <div class="form-group">
-                            <label>Style</label>
+                            <label>Стиль</label>
                             <select class="form-control select2bs4" name="outline">
-                                <option value="true">Color as Card Accent</option>
-                                <option value="false">Color as Card Top Background</option>
+                                <option value="true">Цвет как акцент карточки</option>
+                                <option value="false">Цвет как фон верхней части</option>
                             </select>
                         </div>
                     </div>
                     <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
-                        <button type="submit" class="btn btn-success">Save</button>
+                        <button type="submit" class="btn btn-success">Сохранить</button>
                     </div>
                 </form>
             </div>
@@ -114,8 +114,8 @@
             <div class="modal-content">
                 <form id="editConfigForm">
                     <div class="modal-header">
-                        <h4 class="modal-title">Page Revision History</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <h4 class="modal-title">История версий страницы</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Закрыть">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -127,13 +127,13 @@
                                         #
                                     </th>
                                     <th>
-                                        User
+                                        Пользователь
                                     </th>
                                     <th>
-                                        Timestamp
+                                        Время
                                     </th>
                                     <th>
-                                        Comment
+                                        Комментарий
                                     </th>
                                     <th></th>
                                 </tr>
@@ -165,7 +165,7 @@
                         </table>
                     </div>
                     <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
                     </div>
                 </form>
             </div>
@@ -402,14 +402,14 @@
             $(document).on("click",".restoreRevisionButton[data-id]",function(event) {
                 var change = $(this).data("id");
                 bootbox.confirm({
-                    message: "Are you sure you wish to restore the page to this point?",
+                    message: "Вы уверены, что хотите восстановить страницу в этом состоянии?",
                     buttons: {
                         confirm: {
-                            label: 'Yes',
+                            label: 'Да',
                             className: 'btn-success'
                         },
                         cancel: {
-                            label: 'Cancel',
+                            label: 'Отмена',
                             className: 'btn-default'
                         }
                     },
@@ -427,7 +427,7 @@
                 ajaxcall("cms/editPageContent.php", {"pageData": data,"cmsPages_id":"{{ PAGE.cmsPages_id }}","changelog":changelog}, function (response) {
                     //Add to revision list
                     lastSaveData = data;
-                    $("#revisionTableBody").prepend('<tr><td>v' + response.response.revision + '</td><td>{{ USERDATA.users_name1 ~ " " ~ USERDATA.users_name2 }}</td><td><i>Just now</i></td><td>' + changelog + '</td><td><div class="btn-group btn-group-sm" role="group"><a type="button" class="btn btn-default btn-sm" title="Preview" href="{{ CONFIG.ROOTURL }}/cms/?p={{ PAGE.cmsPages_id }}&r=' + response.response.revisionID + '" target="_blank"><i class="fas fa-external-link-alt"></i></a><button type="button" class="btn btn-warning btn-sm restoreRevisionButton" data-id="' + response.response.revisionID + '" title="Rollback to this change"><i class="fas fa-history"></i></button></div></td></tr>');
+                    $("#revisionTableBody").prepend('<tr><td>v' + response.response.revision + '</td><td>{{ USERDATA.users_name1 ~ " " ~ USERDATA.users_name2 }}</td><td><i>Только что</i></td><td>' + changelog + '</td><td><div class="btn-group btn-group-sm" role="group"><a type="button" class="btn btn-default btn-sm" title="Предпросмотр" href="{{ CONFIG.ROOTURL }}/cms/?p={{ PAGE.cmsPages_id }}&r=' + response.response.revisionID + '" target="_blank"><i class="fas fa-external-link-alt"></i></a><button type="button" class="btn btn-warning btn-sm restoreRevisionButton" data-id="' + response.response.revisionID + '" title="Откатить к этой версии"><i class="fas fa-history"></i></button></div></td></tr>');
                 });
             }
             function generateSave() {

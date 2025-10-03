@@ -89,14 +89,14 @@
                                 </td>
                                 <td style="width:70px;">
                                     <div class="btn-group">
-                                        <a type="button" class="btn btn-default btn-sm" title="Viewing Stats" href="{{ CONFIG.ROOTURL }}/cms/stats.php?p={{ page.cmsPages_id }}"><i class="far fa-chart-bar"></i></a>
+                                        <a type="button" class="btn btn-default btn-sm" title="Статистика просмотров" href="{{ CONFIG.ROOTURL }}/cms/stats.php?p={{ page.cmsPages_id }}"><i class="far fa-chart-bar"></i></a>
                                         {% if "CMS:CMS_PAGES:EDIT"|instancePermissions %}
                                             <a href="{{ CONFIG.ROOTURL }}/cms/edit.php?p={{ page.cmsPages_id }}" type="button" class="btn btn-default btn-sm"><i class="fas fa-edit"></i></a>
                                             <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#editModal{{ page.cmsPages_id }}"><i class="fas fa-cog"></i></button>
                                             {% if page.cmsPages_archived == 0 %}
-                                            <button type="button" class="btn btn-danger btn-sm archiveButton" title="Archive"  data-id="{{ page.cmsPages_id }}"><i class="fas fa-archive"></i></button>
+                                            <button type="button" class="btn btn-danger btn-sm archiveButton" title="Архивировать"  data-id="{{ page.cmsPages_id }}"><i class="fas fa-archive"></i></button>
                                             {% else %}
-                                                <button type="button" class="btn btn-success btn-sm unArchiveButton" title="Remove from Archive" data-id="{{ page.cmsPages_id }}"><i class="fas fa-archive"></i></button>
+                                                <button type="button" class="btn btn-success btn-sm unArchiveButton" title="Вернуть из архива" data-id="{{ page.cmsPages_id }}"><i class="fas fa-archive"></i></button>
                                             {% endif %}
                                         {% endif %}
                                     </div>
@@ -118,20 +118,20 @@
                                     </td>
                                     <td>
                                         {% if page.cmsPages_visibleToGroups %}
-                                            Only {{ CONFIG.PROJECT_NAME }} users with role
+                                            Только пользователи {{ CONFIG.PROJECT_NAME }} с ролью
                                             {% set first = true %}
                                             {% for position in positions %}
                                                 {% if position.instancePositions_id in page.cmsPages_visibleToGroups|split(',') %}
                                                     {% if first %}
                                                         {% set first = false %}
                                                     {% else %}
-                                                        {{ " or " }}
+                                                        {{ " или " }}
                                                     {% endif %}
                                                     {{ position.instancePositions_displayName }}
                                                 {% endif %}
                                             {% endfor %}
                                         {% else %}
-                                            All users in {{ USERDATA.instance.instances_name }}
+                                            Все пользователи в {{ USERDATA.instance.instances_name }}
                                         {% endif %}
                                     </td>
                                     <td>
@@ -142,14 +142,14 @@
                                     </td>
                                     <td style="width:70px;">
                                         <div class="btn-group">
-                                            <a type="button" class="btn btn-default btn-sm" title="Viewing Stats" href="{{ CONFIG.ROOTURL }}/cms/stats.php?p={{ page.cmsPages_id }}"><i class="far fa-chart-bar"></i></a>
+                                            <a type="button" class="btn btn-default btn-sm" title="Статистика просмотров" href="{{ CONFIG.ROOTURL }}/cms/stats.php?p={{ page.cmsPages_id }}"><i class="far fa-chart-bar"></i></a>
                                             {% if "CMS:CMS_PAGES:EDIT"|instancePermissions %}
                                                 <a href="{{ CONFIG.ROOTURL }}/cms/edit.php?p={{ page.cmsPages_id }}" type="button" class="d-none d-sm-block btn btn-default btn-sm"><i class="fas fa-edit"></i></a>
                                                 <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#editModal{{ page.cmsPages_id }}"><i class="fas fa-cog"></i></button>
                                                 {% if page.cmsPages_archived == 0 %}
-                                                    <button type="button" class="btn btn-danger btn-sm archiveButton" title="Archive"  data-id="{{ page.cmsPages_id }}"><i class="fas fa-archive"></i></button>
+                                                    <button type="button" class="btn btn-danger btn-sm archiveButton" title="Архивировать"  data-id="{{ page.cmsPages_id }}"><i class="fas fa-archive"></i></button>
                                                 {% else %}
-                                                    <button type="button" class="btn btn-success btn-sm unArchiveButton" title="Remove from Archive" data-id="{{ page.cmsPages_id }}"><i class="fas fa-archive"></i></button>
+                                                    <button type="button" class="btn btn-success btn-sm unArchiveButton" title="Вернуть из архива" data-id="{{ page.cmsPages_id }}"><i class="fas fa-archive"></i></button>
                                                 {% endif %}
                                             {% endif %}
                                         </div>
@@ -174,8 +174,8 @@
                         <form class="editForm" data-id="{{ page.cmsPages_id }}">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h4 class="modal-title">Page Configuration</h4>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <h4 class="modal-title">Настройки страницы</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Закрыть">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
@@ -183,20 +183,20 @@
                                     <input type="hidden" name="cmsPages_id" value="{{ page.cmsPages_id }}"/>
                                     <div class="input-group" style="margin-bottom: 5px;">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text">Name</span>
+                                            <span class="input-group-text">Название</span>
                                         </div>
-                                        <input required type="text" class="form-control" placeholder="Lowering Instructions" name="cmsPages_name" value="{{ page.cmsPages_name }}">
+                                        <input required type="text" class="form-control" placeholder="Инструкция" name="cmsPages_name" value="{{ page.cmsPages_name }}">
                                     </div>
 
                                     <div class="input-group" style="margin-bottom: 5px;">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text">Description</span>
+                                            <span class="input-group-text">Описание</span>
                                         </div>
-                                        <textarea type="text" class="form-control" placeholder="Instructions on how to lower the drum revolve" name="cmsPages_description" rows="2">{{ page.cmsPages_description }}</textarea>
+                                        <textarea type="text" class="form-control" placeholder="Инструкция по работе" name="cmsPages_description" rows="2">{{ page.cmsPages_description }}</textarea>
                                     </div>
                                     <div class="input-group" style="margin-bottom: 5px;">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text">Icon</span>
+                                            <span class="input-group-text">Иконка</span>
                                         </div>
                                             <select class="form-control rms-icon-picker" name="cmsPages_fontAwesome">
                                                 {% if page.cmsPages_fontAwesome %}
