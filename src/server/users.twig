@@ -251,7 +251,7 @@
                             if (result == '1') {
                                 $("#loadingoverlay").hide();
                             } else {
-                                bootbox.alert("Sorry - Operation could not be completed! Please reload the page")
+                                bootbox.alert("К сожалению, не удалось выполнить операцию. Перезагрузите страницу")
                             }
                         }
                     });
@@ -264,11 +264,11 @@
                         url: "{{ CONFIG.ROOTURL }}/api/account/suspend.php?userid=" + $(this).data("userid") + '&suspendval=' + $(this).data("suspendval"),
                         success: function (result) {
                             if (result == '1') {
-                                bootbox.alert("Success", function () {
+                                bootbox.alert("Успешно", function () {
                                     location.reload();
                                 });
                             } else {
-                                bootbox.alert("Sorry - Operation could not be completed! Please reload the page", function () {
+                                bootbox.alert("К сожалению, не удалось выполнить операцию. Перезагрузите страницу", function () {
                                     location.reload();
                                 });
                             }

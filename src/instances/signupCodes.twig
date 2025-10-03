@@ -124,7 +124,7 @@
                         <input type="text" class="form-control" id="signupCodes_name" name="signupCodes_name" aria-describedby="code-help">
                         <small id="code-help" class="form-text text-muted">Enter the code itself</small>
                         <div class="valid-feedback">Code is available</div>
-                        <div class="invalid-feedback" id="signupCodes_name_invalid">Sorry - that code is taken</div>
+                        <div class="invalid-feedback" id="signupCodes_name_invalid">Этот код уже используется</div>
                     </div>
                     <div class="form-group">
                         <label for="signupCodes_role">Role *</label>
@@ -158,7 +158,7 @@
                 $("#signupCodes_name").val(result);
                 ajaxcall("instances/signupCodes/taken.php?signupCode=" + result, {}, (taken) => {
                     if (taken.response.taken) {
-                        $("#signupCodes_name_invalid").text("Sorry - that code is taken")
+                        $("#signupCodes_name_invalid").text("Этот код уже используется")
                         $("#signupCodes_name").removeClass('is-valid')
                         $("#signupCodes_name").addClass('is-invalid')
                     } else {
@@ -222,7 +222,7 @@
                             result = result.replace(/[^a-z0-9]/gi,'');
                             ajaxcall("instances/signupCodes/taken.php?signupCode=" + result, {}, function (taken) {
                                 if (taken.response.taken && currentValue != result) {
-                                    bootbox.alert("Sorry - that code is taken");
+                                    bootbox.alert("Этот код уже используется");
                                 } else {
                                     bootbox.prompt({
                                         title: "Notes",

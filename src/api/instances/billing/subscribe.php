@@ -2,7 +2,7 @@
 require_once __DIR__ . '/../../apiHeadSecure.php';
 
 if (!isset($_POST['price_id']) or !isset($_POST['currency'])) die("No price_id provided.");
-if ($AUTH->data['users_userid'] !== $AUTH->data['instance']['instances_billingUser']) die("Sorry, you are not the billing contact for this business, please contact support.");
+if ($AUTH->data['users_userid'] !== $AUTH->data['instance']['instances_billingUser']) die("К сожалению, вы не являетесь плательщиком для этой компании. Свяжитесь с поддержкой.");
 
 \Stripe\Stripe::setApiKey($CONFIGCLASS->get('STRIPE_KEY'));
 

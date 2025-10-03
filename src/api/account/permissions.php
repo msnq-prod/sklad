@@ -1,8 +1,8 @@
 <?php
 require_once __DIR__ . '/../apiHeadSecure.php';
-if (!$AUTH->serverPermissionCheck("PERMISSIONS:EDIT:USER_POSITION")) die("Sorry - you can't access this page");
+if (!$AUTH->serverPermissionCheck("PERMISSIONS:EDIT:USER_POSITION")) die("К сожалению, у вас нет доступа к этой странице");
 
-if (!isset($_POST['action']) or !isset($_POST['users_userid']) or !isset($_POST["userPositions_id"])) finish(false, ["code" => null, "message"=> "Attribute error"]);
+if (!isset($_POST['action']) or !isset($_POST['users_userid']) or !isset($_POST["userPositions_id"])) finish(false, ["code" => null, "message"=> "Ошибка атрибутов"]);
 
 if ($_POST['action'] == "DELETE") {
     $DBLIB->where("users_userid", $bCMS->sanitizeString($_POST["users_userid"]));
@@ -10,9 +10,9 @@ if ($_POST['action'] == "DELETE") {
     if ($DBLIB->delete("userPositions")) {
         $bCMS->auditLog("DELETE", "userPositions", $bCMS->sanitizeString($_POST["userPositions_id"]), $AUTH->data['users_userid'],$bCMS->sanitizeString($_POST["users_userid"]));
         finish(true);
-    } else finish(false, ["code" => null, "message"=> "Delete error"]);
+    } else finish(false, ["code" => null, "message"=> "Ошибка удаления"]);
 } elseif ($_POST['action'] == "EDIT") {
-    if (strlen($_POST["userPositions_start"]) < 1 or strlen($_POST["userPositions_end"]) < 1 or strlen($_POST["userPositions_show"]) < 1) finish(false, ["code" => null, "message"=> "Attribute data error"]);
+    if (strlen($_POST["userPositions_start"]) < 1 or strlen($_POST["userPositions_end"]) < 1 or strlen($_POST["userPositions_show"]) < 1) finish(false, ["code" => null, "message"=> "Ошибка данных атрибутов"]);
     $data = [
         "users_userid"=>$bCMS->sanitizeString($_POST["users_userid"]),
         "positions_id"=>$bCMS->sanitizeString($_POST["positions_id"]),
@@ -24,16 +24,16 @@ if ($_POST['action'] == "DELETE") {
         if ($DBLIB->insert("userPositions",$data)) {
             $bCMS->auditLog("CREATE", "userPositions", json_encode($data), $AUTH->data['users_userid'],$bCMS->sanitizeString($_POST["users_userid"]));
             finish(true);
-        } else finish(false, ["code" => null, "message"=> "Insert error" . $DBLIB->getlastError()]);
+        } else finish(false, ["code" => null, "message"=> "Ошибка добавления" . $DBLIB->getlastError()]);
     } else {
         $DBLIB->where("users_userid", $bCMS->sanitizeString($_POST["users_userid"]));
         $DBLIB->where("userPositions_id", $bCMS->sanitizeString($_POST["userPositions_id"]));
         if ($DBLIB->update("userPositions",$data)) {
             $bCMS->auditLog("EDIT", "userPositions", $bCMS->sanitizeString($_POST["userPositions_id"]), $AUTH->data['users_userid'],$bCMS->sanitizeString($_POST["users_userid"]));
             finish(true);
-        } else finish(false, ["code" => null, "message"=> "Edit error"]);
+        } else finish(false, ["code" => null, "message"=> "Ошибка изменения"]);
     }
-} else finish(false, ["code" => null, "message"=> "Attribute action error"]);
+} else finish(false, ["code" => null, "message"=> "Некорректное действие"]);
 
 /** @OA\Post(
  *     path="/account/permissions.php", 

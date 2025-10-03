@@ -10,7 +10,7 @@
 		<meta property="og:type" content="website"/>
 		<meta property="og:url" content="/login/"/>
 		<meta property="og:site_name" content="{{ CONFIG.PROJECT_NAME }}"/>
-		<meta property="og:description" content="{{ CONFIG.PROJECT_NAME }} admin login"/>
+                <meta property="og:description" content="{{ CONFIG.PROJECT_NAME }} — вход администратора"/>
 
 
 		<script src="{{ CONFIG.ROOTURL }}/static-assets/vendor/jquery/jquery-3.6.0.min.js"></script>
@@ -134,17 +134,17 @@
 					<div id="masterBox">
 						<a href="{{CONFIG.ROOTURL}}/login/?"><img src="{{ CONFIG.ROOTURL}}/static-assets/img/login/logo.svg" style="height:5em; margin-bottom: 15px; margin-top: 10px;" id="bCMSLogoHeader"/></a>
 						<div class="alert alert-danger" style="border: 0px; text-align: left; display: none;" id="defaultAccountEnabledWarning">
-							<h4>The default super administrator account for {{ CONFIG.PROJECT_NAME }} is enabled</h4>
-							<p>Login to this account and change the password. Default username is <strong>username</strong> and password is <strong>password!</strong></p>
-						</div>
-						{% if CONFIG.DEV %}
-							<div class="alert alert-warning" style="border: 0px; text-align: left;">
-								<h4>{{ CONFIG.PROJECT_NAME }} is running in development mode, and should only be used for testing purposes</h4>
-								<p>Default username is <strong>username</strong> and password is <strong>password!</strong></p>
-								<a type="button" href="/" onclick="javascript:event.target.port=8082" target="_blank" class="btn btn-info btn-sm">Database Editor</a>
-								<a type="button" href="/" onclick="javascript:event.target.port=8083" target="_blank" class="btn btn-info btn-sm">Email Inbox</a>
-							</div>
-						{% endif %}
+                                                        <h4>Учётная запись супер-администратора по умолчанию для {{ CONFIG.PROJECT_NAME }} включена</h4>
+                                                        <p>Войдите в эту учётную запись и смените пароль. Имя пользователя по умолчанию — <strong>username</strong>, пароль — <strong>password!</strong></p>
+                                                </div>
+                                                {% if CONFIG.DEV %}
+                                                        <div class="alert alert-warning" style="border: 0px; text-align: left;">
+                                                                <h4>{{ CONFIG.PROJECT_NAME }} работает в режиме разработки и предназначен только для тестирования</h4>
+                                                                <p>Имя пользователя по умолчанию — <strong>username</strong>, пароль — <strong>password!</strong></p>
+                                                                <a type="button" href="/" onclick="javascript:event.target.port=8082" target="_blank" class="btn btn-info btn-sm">Редактор базы данных</a>
+                                                                <a type="button" href="/" onclick="javascript:event.target.port=8083" target="_blank" class="btn btn-info btn-sm">Почтовый ящик</a>
+                                                        </div>
+                                                {% endif %}
 						{% block content %}{% endblock %}
 					</div>
 				</div>
@@ -157,7 +157,7 @@
 					<div class="col-8" style="text-align: right;">
                     {# About link to adam-rms.com removed for local-only build #}
 {% if CONFIG.LINKS_TERMSOFSERVICEURL %}
-	<a href="{{ CONFIG.LINKS_TERMSOFSERVICEURL }}" target="_blank">Terms &amp; Privacy</a>
+        <a href="{{ CONFIG.LINKS_TERMSOFSERVICEURL }}" target="_blank">Условия и конфиденциальность</a>
 {% endif %}
 
 					</div>

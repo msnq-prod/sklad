@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../../apiHeadSecure.php';
 
-if (!$AUTH->instancePermissionCheck("ASSETS:ASSET_BARCODES:EDIT:ASSOCIATE_UNNASOCIATED_BARCODES_WITH_ASSETS")) die("Sorry - you can't access this page");
+if (!$AUTH->instancePermissionCheck("ASSETS:ASSET_BARCODES:EDIT:ASSOCIATE_UNNASOCIATED_BARCODES_WITH_ASSETS")) die("К сожалению, у вас нет доступа к этой странице");
 
 if (!isset($_POST['id'])) finish(false, ["code" => "PARAM-ERROR", "message" => "No data for action"]);
 

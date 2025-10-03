@@ -1,8 +1,8 @@
 <?php
 require_once __DIR__ . '/../apiHeadSecure.php';
 header('Content-type: text/html');
-if (!$AUTH->serverPermissionCheck("USERS:VIEW:MAILINGS")) die("Sorry you don't have access to this");
-	$PAGEDATA['title'] = "E-Mail Viewer";
+if (!$AUTH->serverPermissionCheck("USERS:VIEW:MAILINGS")) die("К сожалению, у вас нет доступа к этому разделу");
+        $PAGEDATA['title'] = "Просмотр писем";
 	$output = '<style>
 					* {
 						font-family: sans-serif !important;
@@ -13,25 +13,25 @@ if (!$AUTH->serverPermissionCheck("USERS:VIEW:MAILINGS")) die("Sorry you don't h
 	if (isset($_POST['email']) and  $_POST['email'] != '') {
 		$DBLIB->where ('emailSent_id IN (' . $bCMS->sanitizeStringMYSQL($_POST['email']) . ')');
 		$emails = $DBLIB->get('emailSent');
-		if (!isset($emails[0])) die('E-Mail not found');
-	} else die('Nothing to see here!');
+                if (!isset($emails[0])) die('Письмо не найдено');
+        } else die('Нет данных для отображения!');
 	foreach ($emails as $email) {
 		$output .= '
 		<table border="0" style="width: 100%;">
 			<tr>
-				<td><b>From:</b></td>
+                                <td><b>От:</b></td>
 				<td>' . $email['emailSent_fromName'] . ' [' . $email['emailSent_fromEmail'] . ']'. '</td>
 			</tr>
 			<tr>
-				<td><b>Sent:</b></td>
-				<td>' . date("l, F j, Y h:i A", strtotime($email['emailSent_sent'])). ' - Email ID ' . $email['emailSent_id'] . '</td>
+                                <td><b>Отправлено:</b></td>
+                                <td>' . date("l, F j, Y h:i A", strtotime($email['emailSent_sent'])). ' — ID письма ' . $email['emailSent_id'] . '</td>
 			</tr>
 			<tr>
-				<td><b>To:</b></td>
+                                <td><b>Кому:</b></td>
 				<td>' . $email['emailSent_toName'] . ' (' . $email['users_userid'] . ') [' . $email['emailSent_toEmail'] . ']'. '</td>
 			</tr>
 			<tr>
-				<td><b>Subject:</b></td>
+                                <td><b>Тема:</b></td>
 				<td>' . $email['emailSent_subject']. '</td>
 			</tr>
 			<tr>
