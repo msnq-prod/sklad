@@ -1054,4 +1054,25 @@ $configStructureArray = [
     "default" => false,
     "envFallback" => false,
   ],
+  "CSP_ADDITIONAL_DIRECTIVES" => [
+    "form" => [
+      "type" => "text",
+      "default" => function () {
+        return '';
+      },
+      "name" => "CSP additional directives",
+      "group" => "Security & Login",
+      "description" => "Optional extra Content Security Policy directives in the format `directive value1 value2`. Separate multiple directives with new lines. Leave blank to rely on the built-in offline-safe defaults.",
+      "required" => false,
+      "maxlength" => 2000,
+      "minlength" => 0,
+      "options" => [],
+      "verifyMatch" => function ($value, $options) {
+        return ["valid" => true, "value" => trim($value), "error" => ""];
+      }
+    ],
+    "specialRequest" => true,
+    "default" => "",
+    "envFallback" => "CONFIG_CSP_ADDITIONAL_DIRECTIVES",
+  ],
 ];

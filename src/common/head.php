@@ -187,28 +187,22 @@ try {
 
 
 // Include the content security policy
-$CSP = [
+$defaultCSP = [
     "default-src" => [
         ["value" => "'none'", "comment" => ""]
     ],
     "script-src" => [
         ["value" => "'self'", "comment" => ""],
-        ["value" => "'unsafe-inline'", "comment" => "We have loads of inline JS"],
-        ["value" => "'unsafe-eval'", "comment" => ""],
-        ["value" => "https://cdnjs.cloudflare.com", "comment" => ""],
+        ["value" => "'unsafe-inline'", "comment" => "Inline scripts"],
+        ["value" => "'unsafe-eval'", "comment" => "Legacy dependencies"]
     ],
     "style-src" => [
-        ["value" => "'unsafe-inline'", "comment" => "We have loads of inline CSS"],
         ["value" => "'self'", "comment" => ""],
-        ["value" => "https://cdnjs.cloudflare.com", "comment" => ""],
-        ["value" => "https://fonts.googleapis.com", "comment" => "Google fonts is used extensivley"]
+        ["value" => "'unsafe-inline'", "comment" => "Inline styles"]
     ],
     "font-src" => [
         ["value" => "'self'", "comment" => ""],
-        ["value" => "data:", "comment" => ""],
-        ["value" => "https://fonts.googleapis.com", "comment" => "Google fonts is used extensivley"],
-        ["value" => "https://fonts.gstatic.com", "comment" => "Google fonts is used extensivley"],
-        ["value" => "https://cdnjs.cloudflare.com", "comment" => "Libraries referenced in HTML"]
+        ["value" => "data:", "comment" => "Inline fonts"]
     ],
     "manifest-src" => [
         ["value" => "'self'", "comment" => ""]
@@ -216,16 +210,13 @@ $CSP = [
     "img-src" => [
         ["value" => "'self'", "comment" => ""],
         ["value" => "data:", "comment" => ""],
-        ["value" => "blob:", "comment" => ""],
-        ["value" => "https://cdnjs.cloudflare.com", "comment" => "Libraries referenced in HTML"]
+        ["value" => "blob:", "comment" => ""]
     ],
     "connect-src" => [
         ["value" => "'self'", "comment" => ""]
     ],
     "frame-src" => [
-        ["value" => "https://www.youtube.com", "comment" => "Training modules allow youtube embed"],
-        ["value" => "https://*.freshstatus.io", "comment" => "Training modules allow youtube embed"],
-        ["value" => "https://js.stripe.com", "comment" => "Stripe payment pricing table"]
+        ["value" => "'self'", "comment" => ""]
     ],
     "object-src" => [
         ["value" => "'self'", "comment" => ""],
@@ -237,13 +228,41 @@ $CSP = [
     ],
     "frame-ancestors" => [
         ["value" => "'self'", "comment" => ""]
-    ],
-    "report-uri" => [
-        ["value" => "https://o83272.ingest.sentry.io/api/5204912/security/?sentry_key=3937ab95cc404dfa95b0e0cb91db5fc6", "comment" => "Report to sentry"]
     ]
 ];
+
+$additionalCspRaw = trim((string)$CONFIGCLASS->get('CSP_ADDITIONAL_DIRECTIVES'));
+$additionalCsp = [];
+if ($additionalCspRaw !== '') {
+    foreach (preg_split('/\r?\n/', $additionalCspRaw) as $line) {
+        $line = trim($line);
+        if ($line === '' || strpos($line, '#') === 0) {
+            continue;
+        }
+        $parts = preg_split('/\s+/', $line);
+        $directive = array_shift($parts);
+        if ($directive === null) {
+            continue;
+        }
+        foreach ($parts as $source) {
+            if ($source === '') {
+                continue;
+            }
+            $additionalCsp[$directive][] = ["value" => $source, "comment" => "Configured override"];
+        }
+    }
+}
+
+$CSP = $defaultCSP;
+foreach ($additionalCsp as $directive => $sources) {
+    if (!array_key_exists($directive, $CSP)) {
+        $CSP[$directive] = [];
+    }
+    $CSP[$directive] = array_merge($CSP[$directive], $sources);
+}
+
 $CSPString = "Content-Security-Policy: ";
-foreach ($CONFIG['CSP'] as $key => $value) {
+foreach ($CSP as $key => $value) {
     $CSPString .= $key;
     foreach ($value as $subvalue) {
         $CSPString .= " " . $subvalue['value'];

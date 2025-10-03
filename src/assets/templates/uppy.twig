@@ -15,8 +15,8 @@ x-amz-meta-typeid
 x-amz-meta-subtype
 x-amz-meta-size
 #}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uppy/1.24.0/uppy.min.css" integrity="sha512-AlgodRCmxN1sI0uUiPYxh6NeOiw5/V4hvGLuZQjZrWF0I+ek5CXi9JiyJy74YjIaXGQjKvRIRc9uXOWqCkUF5w==" crossorigin="anonymous" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/uppy/1.24.0/uppy.min.js" integrity="sha512-zq6u0SjqBwEZJP4C6JwFW9ecWKNLFY1kv+fHk4E26eHTlDh2oQlXjusT5iCGKq4jPC7zVFmA5B7s+K+QNcnxBg==" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{ CONFIG.ROOTURL }}/static-assets/vendor/uppy/css/uppy.min.css" />
+    <script src="{{ CONFIG.ROOTURL }}/static-assets/vendor/uppy/js/uppy.min.js"></script>
     {% set thisElementID = ('uppy' ~ random()) %}
     <div id="{{ thisElementID }}"></div>
     <script>

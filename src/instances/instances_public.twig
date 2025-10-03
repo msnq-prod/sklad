@@ -1,7 +1,7 @@
 {% extends "assets/template.twig" %}
 {% block htmlIncludes %}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-bs4.min.css" integrity="sha512-pDpLmYKym2pnF0DNYDKxRnOk1wkM9fISpSOjt8kWFKQeDmBTjSnBZhTd41tXwh8+bRMoSaFsRnznZUiH9i3pxA==" crossorigin="anonymous" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-bs4.min.js" integrity="sha512-+cXPhsJzyjNGFm5zE+KPEX4Vr/1AbqCUuzAS8Cy5AfLEWm9+UI9OySleqLiSQOQ5Oa2UrzaeAOijhvV/M4apyQ==" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{ CONFIG.ROOTURL }}/static-assets/vendor/summernote/css/summernote-bs4.min.css" />
+    <script src="{{ CONFIG.ROOTURL }}/static-assets/vendor/summernote/js/summernote-bs4.min.js"></script>
 {% endblock %}
 {% block content %}
 <div class="row">
