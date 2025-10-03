@@ -16,6 +16,7 @@ echo "AdamRMS - Starting Migration Script"
 
 php vendor/bin/phinx migrate -e production
 php vendor/bin/phinx seed:run -e production
+php bin/bootstrapSetup.php
 
 if [[ -v DEV_MODE ]] && [[ "${DEV_MODE}" == 'true' ]]; then
     echo "AdamRMS - Running in DEV MODE"
