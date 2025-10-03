@@ -7,6 +7,7 @@ class Telemetry
         global $CONFIGCLASS, $bCMS, $DBLIB;
         $mode = $CONFIGCLASS->get("TELEMETRY_MODE");
         if ($mode === 'Disabled') return; // completely disabled in local-only builds
+        if ($this->shouldSkipNetworkCall()) return;
         $limitedMode = ($mode == 'Limited');
         $data = [
             "rootUrl" => $CONFIGCLASS->get("ROOTURL"),
@@ -55,5 +56,37 @@ class Telemetry
         } catch (Exception $e) {
             trigger_error($e->getMessage(), E_USER_WARNING);
         }
+    }
+
+    private function shouldSkipNetworkCall(): bool
+    {
+        global $CONFIGCLASS;
+
+        if (getenv('DEV_MODE') === 'true' || $CONFIGCLASS->get('DEV') === true) {
+            return true;
+        }
+
+        if (getenv('FORCE_OFFLINE') === 'true') {
+            return true;
+        }
+
+        return !$this->hasNetworkConnectivity();
+    }
+
+    private function hasNetworkConnectivity(): bool
+    {
+        $timeout = 1;
+        $host = parse_url(self::TELEMETRY_URL, PHP_URL_HOST);
+        if (!$host) {
+            return false;
+        }
+
+        $connection = @fsockopen($host, 443, $errno, $errstr, $timeout);
+        if (is_resource($connection)) {
+            fclose($connection);
+            return true;
+        }
+
+        return false;
     }
 }
