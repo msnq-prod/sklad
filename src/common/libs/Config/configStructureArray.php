@@ -977,7 +977,7 @@ $configStructureArray = [
       "default" => function () { return "Disabled"; },
       "name" => "Reduce Telemetry collected",
       "group" => "Telemetry",
-      "description" => "What level of telemetry should be collected? When set to limited, this will reduce the amount of information about the installation sent to the Bithell Studios telemetry server, such as the number of assets on the server. More details: https://telemetry.bithell.studio/privacy-and-security",
+      "description" => "What level of telemetry should be collected? Telemetry is disabled by default and must be enabled manually. When set to limited, this will reduce the amount of information about the installation sent to the Bithell Studios telemetry server, such as the number of assets on the server. More details: https://telemetry.bithell.studio/privacy-and-security",
       "required" => false,
       "maxlength" => 10,
       "minlength" => 5,
@@ -987,8 +987,8 @@ $configStructureArray = [
       }
     ],
     "specialRequest" => true,
-    "default" => "Standard",
-    "envFallback" => false,
+    "default" => "Disabled",
+    "envFallback" => "CONFIG_TELEMETRY_MODE",
   ],
   "TELEMETRY_SHOW_URL" => [
     "form" => [
