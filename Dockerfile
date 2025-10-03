@@ -10,14 +10,14 @@
 # subsequent builds don't have to re-download packages. Ignore platform requirements, 
 # as we resolve those in the next stage
 
-FROM composer:lts AS deps
+FROM localhost:5000/adamrms-composer:lts AS deps
 
 WORKDIR /app
 
-RUN --mount=type=bind,source=composer.json,target=composer.json \
-    --mount=type=bind,source=composer.lock,target=composer.lock \
-    --mount=type=cache,target=/tmp/cache \
-    composer install --no-dev --no-interaction --ignore-platform-reqs
+# Composer dependencies are pre-built once in a connected environment and
+# committed alongside the source tree. Copy them into the intermediate stage so
+# the runtime image can reuse the cached layer without re-downloading anything.
+COPY vendor/ /app/vendor
 
 ################################################################################
 # PHP Build Stage
@@ -30,7 +30,7 @@ RUN --mount=type=bind,source=composer.json,target=composer.json \
 # - https://github.com/docker-library/docs/tree/master/php#php-core-extensions
 # - https://github.com/docker-library/docs/tree/master/php#how-to-install-more-php-extensions
 
-FROM php:8.3-apache AS final
+FROM localhost:5000/adamrms-php:8.3-apache AS final
 
 # Local-only build metadata
 LABEL org.opencontainers.image.source="local"
@@ -40,13 +40,9 @@ LABEL org.opencontainers.image.vendor="Local"
 LABEL org.opencontainers.image.description="Local self-hosted build"
 LABEL org.opencontainers.image.licenses="local"
 
-# Install PHP extensions
-RUN apt-get update && apt-get install -y \
-    libicu-dev \ 
-    libzip-dev \
-    libpng-dev \
-    && rm -rf /var/lib/apt/lists/* \
-    && docker-php-ext-install -j$(nproc) gd pdo pdo_mysql mysqli intl zip
+# Build the required PHP extensions against the dependencies baked into the
+# base image.
+RUN docker-php-ext-install -j$(nproc) gd pdo pdo_mysql mysqli intl zip
 
 # Copy our php.ini file
 
@@ -60,7 +56,7 @@ RUN echo "upload_max_filesize=64M\n" >> "$PHP_INI_DIR/php.ini"
 RUN sed -ri -e 's!/var/www/html!/var/www/html/src!g' /etc/apache2/sites-available/*.conf
 
 # Copy the app dependencies from the previous install stage.
-COPY --from=deps app/vendor/ /var/www/html/vendor
+COPY --from=deps /app/vendor/ /var/www/html/vendor
 # Copy the app files from the app directory.
 COPY ./src /var/www/html/src
 

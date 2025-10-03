@@ -1,6 +1,6 @@
 services:
   db:
-    image: mysql/mysql-server:8.0
+    image: localhost:5000/adamrms-mysql:8.0
     container_name: adamrms_db
     command: --default-authentication-plugin=mysql_native_password
     ports:
