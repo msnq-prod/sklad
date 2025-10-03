@@ -5,14 +5,14 @@
         <div class="card">
 			<div class="card-header">
 				<ul class="nav nav-pills">
-					<li class="nav-item"><a class="nav-link" href="{{CONFIG.ROOTURL}}/instances/navigation.php"><i class="fas fa-arrow-left"></i> Back to Settings</span></a></li>
-					<li class="nav-item"><a class="nav-link" href="{{CONFIG.ROOTURL}}/instances/billing.php">Billing</a></li>
-					<li class="nav-item"><a class="nav-link active" href="{{CONFIG.ROOTURL}}/instances/settings.php">Basic Settings</a></li>
+					<li class="nav-item"><a class="nav-link" href="{{CONFIG.ROOTURL}}/instances/navigation.php"><i class="fas fa-arrow-left"></i> Назад к настройкам</span></a></li>
+					<li class="nav-item"><a class="nav-link" href="{{CONFIG.ROOTURL}}/instances/billing.php">Биллинг</a></li>
+					<li class="nav-item"><a class="nav-link active" href="{{CONFIG.ROOTURL}}/instances/settings.php">Основные настройки</a></li>
 					{% if CONFIG.FILES_ENABLED == "Enabled" and USERDATA.instance.instances_storageEnabled == 1 %}
-					<li class="nav-item"><a class="nav-link" href="{{CONFIG.ROOTURL}}/instances/configuration/logo.php">Logo</a></li>
+					<li class="nav-item"><a class="nav-link" href="{{CONFIG.ROOTURL}}/instances/configuration/logo.php">Логотип</a></li>
                     {% endif %}
-					<li class="nav-item"><a class="nav-link" href="{{CONFIG.ROOTURL}}/instances/public.php">Public Site</a></li>
-					<li class="nav-item"><a class="nav-link" href="{{CONFIG.ROOTURL}}/instances/calendarSettings.php">Calendar Settings</a></li>
+					<li class="nav-item"><a class="nav-link" href="{{CONFIG.ROOTURL}}/instances/public.php">Публичный сайт</a></li>
+					<li class="nav-item"><a class="nav-link" href="{{CONFIG.ROOTURL}}/instances/calendarSettings.php">Настройки календаря</a></li>
 				</ul>
 			</div>
 		</div>
@@ -23,36 +23,36 @@
         <div class="card">
             <form id="basicSettings">
                 <div class="card-header">
-                    <h3 class="card-title">Basics</h3>
+                    <h3 class="card-title">Основное</h3>
                     <div class="card-tools pull-right">
-                        <a href="{{ CONFIG.LINKS_USERGUIDEURL }}business/business-settings" target="_blank" type="button" class="btn btn-info btn-sm">Help</a>
+                        <a href="{{ CONFIG.LINKS_USERGUIDEURL }}business/business-settings" target="_blank" type="button" class="btn btn-info btn-sm">Помощь</a>
                     </div>
                 </div>
                 <div class="card-body">
                         <div class="form-group">
-                            <label>Name</label>
-                            <input type="text" required class="form-control" value="{{ USERDATA.instance.instances_name }}" name="instances_name" placeholder="Your Busineses Name">
+                            <label>Название</label>
+                            <input type="text" required class="form-control" value="{{ USERDATA.instance.instances_name }}" name="instances_name" placeholder="Название компании">
                         </div>
                         <div class="form-group">
-                            <label>Street Address</label>
+                            <label>Адрес</label>
                             <textarea required class="form-control" rows="6" name="instances_address">{{ USERDATA.instance.instances_address }}</textarea>
                         </div>
                         <div class="form-group">
-                            <label>Public Email address</label>
+                            <label>Публичный адрес эл. почты</label>
                             <input type="email" class="form-control" value="{{ USERDATA.instance.instances_email }}" name="instances_email">
                         </div>
                         <div class="form-group">
-                            <label>Public Phone Number</label>
+                            <label>Публичный номер телефона</label>
                             <input type="phone" class="form-control" value="{{ USERDATA.instance.instances_phone }}" name="instances_phone">
                         </div>
                         <div class="form-group">
-                            <label>Website</label>
+                            <label>Веб-сайт</label>
                             <input required type="url" class="form-control" value="{{ USERDATA.instance.instances_website }}" name="instances_website">
                         </div>
                 </div>
                 <div class="card-footer">
                     {% if "BUSINESS:BUSINESS_SETTINGS:EDIT"|instancePermissions %}
-                    <button type="submit" class="btn btn-default">Save</button>
+                    <button type="submit" class="btn btn-default">Сохранить</button>
                     {% endif %}
                 </div>
             </form>

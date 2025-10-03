@@ -9,14 +9,14 @@
         <div class="card">
 			<div class="card-header">
 				<ul class="nav nav-pills">
-					<li class="nav-item"><a class="nav-link" href="{{CONFIG.ROOTURL}}/instances/navigation.php"><i class="fas fa-arrow-left"></i> Back to Settings</span></a></li>
-					<li class="nav-item"><a class="nav-link" href="{{CONFIG.ROOTURL}}/instances/billing.php">Billing</a></li>
-					<li class="nav-item"><a class="nav-link" href="{{CONFIG.ROOTURL}}/instances/settings.php">Basic Settings</a></li>
+					<li class="nav-item"><a class="nav-link" href="{{CONFIG.ROOTURL}}/instances/navigation.php"><i class="fas fa-arrow-left"></i> Назад к настройкам</span></a></li>
+                                        <li class="nav-item"><a class="nav-link" href="{{CONFIG.ROOTURL}}/instances/billing.php">Биллинг</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="{{CONFIG.ROOTURL}}/instances/settings.php">Основные настройки</a></li>
 					{% if CONFIG.FILES_ENABLED == "Enabled" and USERDATA.instance.instances_storageEnabled == 1 %}
-					<li class="nav-item"><a class="nav-link" href="{{CONFIG.ROOTURL}}/instances/configuration/logo.php">Logo</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="{{CONFIG.ROOTURL}}/instances/configuration/logo.php">Логотип</a></li>
                     {% endif %}
-					<li class="nav-item"><a class="nav-link" href="{{CONFIG.ROOTURL}}/instances/public.php">Public Site</a></li>
-					<li class="nav-item"><a class="nav-link active" href="{{CONFIG.ROOTURL}}/instances/calendarSettings.php">Calendar Settings</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="{{CONFIG.ROOTURL}}/instances/public.php">Публичный сайт</a></li>
+                                        <li class="nav-item"><a class="nav-link active" href="{{CONFIG.ROOTURL}}/instances/calendarSettings.php">Настройки календаря</a></li>
 				</ul>
 			</div>
 		</div>
@@ -27,38 +27,38 @@
         <div class="card">
             <form id="calendarSettings">
                 <div class="card-header">
-                    <div class="card-title">Calendar Settings</div>
+                    <div class="card-title">Настройки календаря</div>
                 </div>
                 <div class="card-body">
-                    <p>These settings only apply to calendars across the dashboard. <br />
-                    <small>iCal calendars and those in the app are not affected by these settings.</small></p>
+                    <p>Эти параметры применяются только к календарям на панели управления. <br />
+                    <small>Календарь iCal и календари в приложении не затрагиваются.</small></p>
                     <div class="form-check py-2">
                         <input type="checkbox" class="form-check-input" name="showProjectStatus" {{ calendarSettings.showProjectStatus ? 'checked' : '' }}>
-                        <label class="form-check-label">Show Project Statuses with Project Name</label>
+                        <label class="form-check-label">Показывать статусы проектов рядом с названием</label>
                     </div>
                     <div class="form-check py-2">
                         <input type="checkbox" class="form-check-input" name="showSubProjects" {{ calendarSettings.showSubProjects ? 'checked' : '' }}>
-                        <label class="form-check-label">Show SubProjects on calendars</label>
+                        <label class="form-check-label">Отображать подпроекты в календарях</label>
                     </div>
                     <div class="form-check py-2">
                         <input type="checkbox" class="form-check-input" name="useCustomWeekNumbers" {{ calendarSettings.useCustomWeekNumbers ? 'checked' : '' }} aria-describedby="useCustomWeekNumbersHelp">
-                        <label class="form-check-label">Use Custom Week Labels</label>
-                        <small id="useCustomWeekNumbersHelp" class="form-text text-muted">Does not apply to asset calendars</small>
+                        <label class="form-check-label">Использовать собственные подписи недель</label>
+                        <small id="useCustomWeekNumbersHelp" class="form-text text-muted">Не применяется к календарям оборудования</small>
                     </div>
                     <div class="form-group py-2">
-                        <label for="defaultView">Default Calendar View</label>
+                        <label for="defaultView">Вид календаря по умолчанию</label>
                         <select class="form-control" id="defaultView" name="defaultView"  aria-describedby="defaultViewHelp">
-                            <option value="dayGridMonth" {{ (calendarSettings.defaultView == 'dayGridMonth') ? 'selected' : '' }}>Month View</option>
-                            <option value="timeGridWeek" {{ (calendarSettings.defaultView == 'timeGridWeek') ? 'selected' : '' }}>Week View</option>
-                            <option value="timeGridDay" {{ (calendarSettings.defaultView == 'timeGridDay') ? 'selected' : '' }}>Day View</option>
-                            <option value="listWeek" {{ (calendarSettings.defaultView == 'listWeek') ? 'selected' : '' }}>List View</option>
+                            <option value="dayGridMonth" {{ (calendarSettings.defaultView == 'dayGridMonth') ? 'selected' : '' }}>Месяц</option>
+                            <option value="timeGridWeek" {{ (calendarSettings.defaultView == 'timeGridWeek') ? 'selected' : '' }}>Неделя</option>
+                            <option value="timeGridDay" {{ (calendarSettings.defaultView == 'timeGridDay') ? 'selected' : '' }}>День</option>
+                            <option value="listWeek" {{ (calendarSettings.defaultView == 'listWeek') ? 'selected' : '' }}>Список</option>
                         </select>
-                        <small id="defaultViewHelp" class="form-text text-muted">Does not apply to asset calendars</small>
+                        <small id="defaultViewHelp" class="form-text text-muted">Не применяется к календарям оборудования</small>
                     </div>
                 </div>
                 {% if "BUSINESS:BUSINESS_SETTINGS:EDIT"|instancePermissions %}
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-default save">Save</button>
+                        <button type="submit" class="btn btn-default save">Сохранить</button>
                     </div>
                 {% endif %}
             </form>
@@ -79,14 +79,14 @@
         <div class="card">
             <form id="weekLabels">
                 <div class="card-header">
-                    <h3 class="card-title">Week Labels</h3>
+                    <h3 class="card-title">Подписи недель</h3>
                 </div>
                 <div class="card-body p-0">
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Week Start Date</th>
-                                <th>Week Label</th>
+                                <th>Дата начала недели</th>
+                                <th>Подпись недели</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -104,12 +104,12 @@
                     </table>                    
                 </div>
                 <div class="card-footer">
-                    <p class="card-subtitle mb-2">Select 'Use Custom Week Labels' in general settings to enable</p>
-                    <p style="font-style: italic;">Add week dates to change week labelling on calendars across {{ CONFIG.PROJECT_NAME }}. This is normally used by schools and universities, and so in that instance they would put the week start dates as the day term starts for each term. Leave a space in the box to leave it blank.</p>
+                    <p class="card-subtitle mb-2">Включите опцию «Использовать собственные подписи недель» в общих настройках, чтобы активировать этот блок.</p>
+                    <p style="font-style: italic;">Добавьте даты начала недель, чтобы изменить подписи в календарях {{ CONFIG.PROJECT_NAME }}. Обычно это используют школы и университеты, указывая даты начала учебных недель. Оставьте поле пустым, если подпись не требуется.</p>
                     {% if "BUSINESS:BUSINESS_SETTINGS:EDIT"|instancePermissions %}
-                    <button type="button" class="btn btn-default" id="populate3months">Add next 3 months</button>
-                    <button type="button" class="btn btn-default" id="addNewWeekValueRow">Add Row</button>
-                    <button type="submit" class="btn btn-default">Save</button>
+                    <button type="button" class="btn btn-default" id="populate3months">Добавить 3 следующие месяца</button>
+                    <button type="button" class="btn btn-default" id="addNewWeekValueRow">Добавить строку</button>
+                    <button type="submit" class="btn btn-default">Сохранить</button>
                     {% endif %}
                 </div>
             </form>
@@ -155,7 +155,7 @@
                                         <input type="date" class="form-control" name="weekStartDate" value="` + jsDate.toISOString().split('T')[0] + `" />
                                     </td>
                                     <td>
-                                        <input type="text" class="form-control" name="weekLabel" value="` + "Week " + i + `" />
+                                        <input type="text" class="form-control" name="weekLabel" value="` + "Неделя " + i + `" />
                                     </td>
                                 </tr>`);
                             }

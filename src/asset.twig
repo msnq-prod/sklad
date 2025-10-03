@@ -44,20 +44,20 @@
                                 {% endif %}
                             {% endfor %}
                             <li class="list-group-item">
-                                <b>Mass</b> <span class="float-right text-primary">{{ (assets[0]['assets_mass'] ? assets[0]['assets_mass']|mass : (asset.assetTypes_mass != "" and asset.assetTypes_mass != 0 ? asset.assetTypes_mass|mass : '?')) }}</span>
+                                <b>Масса</b> <span class="float-right text-primary">{{ (assets[0]['assets_mass'] ? assets[0]['assets_mass']|mass : (asset.assetTypes_mass != "" and asset.assetTypes_mass != 0 ? asset.assetTypes_mass|mass : '?')) }}</span>
                             </li>
                             <li class="list-group-item">
-                                <b>Value</b> <span class="float-right text-primary">{{ (assets[0]['assets_value'] ?: asset.assetTypes_value)|money(ASSET_INSTANCE['instances_config_currency']) }}</span>
+                                <b>Стоимость</b> <span class="float-right text-primary">{{ (assets[0]['assets_value'] ?: asset.assetTypes_value)|money(ASSET_INSTANCE['instances_config_currency']) }}</span>
                             </li>
                             <li class="list-group-item">
-                                <b>Day Rate</b> <span class="float-right text-primary">{{ (assets[0]['assets_dayRate'] ?: asset.assetTypes_dayRate)|money(ASSET_INSTANCE['instances_config_currency']) }}</span>
+                                <b>Цена за день</b> <span class="float-right text-primary">{{ (assets[0]['assets_dayRate'] ?: asset.assetTypes_dayRate)|money(ASSET_INSTANCE['instances_config_currency']) }}</span>
                             </li>
                             <li class="list-group-item">
-                                <b>Week Rate</b> <span class="float-right text-primary">{{ (assets[0]['assets_weekRate'] ?: asset.assetTypes_weekRate)|money(ASSET_INSTANCE['instances_config_currency']) }}</span>
+                                <b>Цена за неделю</b> <span class="float-right text-primary">{{ (assets[0]['assets_weekRate'] ?: asset.assetTypes_weekRate)|money(ASSET_INSTANCE['instances_config_currency']) }}</span>
                             </li>
                             {% if assets[0]['storage_location'] %}
                             <li class="list-group-item">
-                                <b>Storage Location</b>
+                                <b>Место хранения</b>
                                 {% if "LOCATIONS:VIEW"|instancePermissions %}
                                     <a class="float-right" href="{{ CONFIG.ROOTURL }}/location/">{{assets[0]['storage_location'][0]['locations_name']}}</a>
                                 {% else %}
@@ -67,10 +67,10 @@
                             {% endif %}
                         </ul>
                         {% if "ASSETS:ARCHIVE"|instancePermissions and (assets[0].assets_endDate is null or assets[0].assets_endDate|date("U") > "now"|date("U"))  and ASSET_INSTANCE.instances_id == USERDATA.instance.instances_id  %}
-                        <button class="btn btn-warning btn-block archiveAssetButton" data-assetid="{{ assets[0]['assets_id'] }}" style="margin-bottom: 10px;">Archive</button>
+                        <button class="btn btn-warning btn-block archiveAssetButton" data-assetid="{{ assets[0]['assets_id'] }}" style="margin-bottom: 10px;">Архивировать</button>
                         {% endif %}
                         {% if "ASSETS:DELETE"|instancePermissions and ASSET_INSTANCE.instances_id == USERDATA.instance.instances_id  %}
-                        <button class="btn btn-danger btn-block deleteAssetButton" data-assetid="{{ assets[0]['assets_id'] }}" style="margin-bottom: 10px;">Delete</button>
+                        <button class="btn btn-danger btn-block deleteAssetButton" data-assetid="{{ assets[0]['assets_id'] }}" style="margin-bottom: 10px;">Удалить</button>
                         {% endif %}
                     </div>
                 </div>
@@ -94,30 +94,30 @@
                     <ul class="list-group list-group-unbordered mb-3">
                         {% if asset.assetTypes_productLink != null %}
                         <li class="list-group-item">
-                            <b>Product Web Link</b> <a class="float-right" href="{{ asset.assetTypes_productLink }}" target="_blank">{{ asset.assetTypes_productLink|length > 25 ? asset.assetTypes_productLink|slice(0, 25) ~ '...': asset.assetTypes_productLink  }}</a>
+                            <b>Ссылка на продукт</b> <a class="float-right" href="{{ asset.assetTypes_productLink }}" target="_blank">{{ asset.assetTypes_productLink|length > 25 ? asset.assetTypes_productLink|slice(0, 25) ~ '...': asset.assetTypes_productLink  }}</a>
                         </li>
                         {% endif %}
                         <li class="list-group-item">
-                            <b>Category</b> {{ asset.assetCategoriesGroups_name }} - {{ asset.assetCategories_name }}
+                            <b>Категория</b> {{ asset.assetCategoriesGroups_name }} - {{ asset.assetCategories_name }}
                         </li>
                         <li class="list-group-item">
-                            <b>Manufacturer</b> {{ asset.manufacturers_name }}
+                            <b>Производитель</b> {{ asset.manufacturers_name }}
                         </li>
                         <li class="list-group-item">
-                            <b>Mass</b> <span class="float-right text-primary">{{asset.assetTypes_mass != "" and asset.assetTypes_mass != 0 ? asset.assetTypes_mass|mass : "?" }}</span>
+                            <b>Масса</b> <span class="float-right text-primary">{{asset.assetTypes_mass != "" and asset.assetTypes_mass != 0 ? asset.assetTypes_mass|mass : "?" }}</span>
                         </li>
                         <li class="list-group-item">
-                            <b>Value</b> <span class="float-right text-primary">{{ asset.assetTypes_value|money(ASSET_INSTANCE['instances_config_currency']) }}</span>
+                            <b>Стоимость</b> <span class="float-right text-primary">{{ asset.assetTypes_value|money(ASSET_INSTANCE['instances_config_currency']) }}</span>
                         </li>
                         <li class="list-group-item">
-                            <b>Day Rate</b> <span class="float-right text-primary">{{ asset.assetTypes_dayRate|money(ASSET_INSTANCE['instances_config_currency']) }}</span>
+                            <b>Цена за день</b> <span class="float-right text-primary">{{ asset.assetTypes_dayRate|money(ASSET_INSTANCE['instances_config_currency']) }}</span>
                         </li>
                         <li class="list-group-item">
-                            <b>Week Rate</b> <span class="float-right text-primary">{{ asset.assetTypes_weekRate|money(ASSET_INSTANCE['instances_config_currency']) }}</span>
+                            <b>Цена за неделю</b> <span class="float-right text-primary">{{ asset.assetTypes_weekRate|money(ASSET_INSTANCE['instances_config_currency']) }}</span>
                         </li>
                     </ul>
                     {% if asset.oneasset %}
-                        <a href="?id={{asset.assetTypes_id}}" class="btn btn-info btn-block"><b>View All</b></a>
+                        <a href="?id={{asset.assetTypes_id}}" class="btn btn-info btn-block"><b>Показать все</b></a>
                     {% endif %}
                     
                 </div>
@@ -128,7 +128,7 @@
         <div class="col-md-9">
             {% if ASSET_INSTANCE.instances_id != USERDATA.instance.instances_id %}
                 <div class="alert alert-info">
-                    <h5>Showing assets from business {{ ASSET_INSTANCE.instances_name }}</h5>
+                    <h5>Показ оборудования компании {{ ASSET_INSTANCE.instances_name }}</h5>
                 </div>
             {% endif %}
             {% if assets|length == 1 %}
@@ -149,14 +149,14 @@
                 {% if assets[0]['linkedToThis'] %}
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Assets linked to this asset</h3>
+                            <h3 class="card-title">Оборудование, связанное с этим оборудованием</h3>
                         </div>
                         <div class="card-body p-0">
                             <table class="table table-sm">
                                 <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Name</th>
+                                    <th>Название</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -187,11 +187,11 @@
                 <div class="card-header p-2">
                     <ul class="nav nav-pills">
                         <li class="nav-item"><a class="nav-link active" href="#calendarBoxAsset" data-toggle="tab"><i class="far fa-calendar-alt"></i></a></li>
-                        {% if "ASSETS:EDIT"|instancePermissions %}<li class="nav-item"><a class="nav-link" href="#editAsset" data-toggle="tab">Edit {{ assets[0].assets_tag|aTag }}</a></li>{% endif %}
-                        {% if CONFIG.FILES_ENABLED == "Enabled" and USERDATA.instance.instances_storageEnabled == 1 and "ASSETS:ASSET_FILE_ATTACHMENTS:VIEW"|instancePermissions %}<li class="nav-item"><a class="nav-link" href="#files" data-toggle="tab">Asset Files</a></li>{% endif %}
-                        <li class="nav-item"><a class="nav-link" href="#location" data-toggle="tab">Location</a></li>
-                        {% if "ASSETS:ASSET_BARCODES:VIEW"|instancePermissions %}<li class="nav-item"><a class="nav-link" href="#barcodes" data-toggle="tab">Barcodes</a></li>{% endif %}
-                        {% if  "MAINTENANCE_JOBS:VIEW"|instancePermissions %}<li class="nav-item"><a class="nav-link" href="#maintenance" data-toggle="tab">Maintenance</a></li>{% endif %}
+                        {% if "ASSETS:EDIT"|instancePermissions %}<li class="nav-item"><a class="nav-link" href="#editAsset" data-toggle="tab">Редактировать {{ assets[0].assets_tag|aTag }}</a></li>{% endif %}
+                        {% if CONFIG.FILES_ENABLED == "Enabled" and USERDATA.instance.instances_storageEnabled == 1 and "ASSETS:ASSET_FILE_ATTACHMENTS:VIEW"|instancePermissions %}<li class="nav-item"><a class="nav-link" href="#files" data-toggle="tab">Файлы оборудования</a></li>{% endif %}
+                        <li class="nav-item"><a class="nav-link" href="#location" data-toggle="tab">Расположение</a></li>
+                        {% if "ASSETS:ASSET_BARCODES:VIEW"|instancePermissions %}<li class="nav-item"><a class="nav-link" href="#barcodes" data-toggle="tab">Штрихкоды</a></li>{% endif %}
+                        {% if  "MAINTENANCE_JOBS:VIEW"|instancePermissions %}<li class="nav-item"><a class="nav-link" href="#maintenance" data-toggle="tab">Обслуживание</a></li>{% endif %}
                     </ul>
                 </div><!-- /.card-header -->
                 <div class="card-body" style="padding: 0;">
@@ -265,13 +265,13 @@
                                 <div class="card" style="margin-bottom:0;">
                                     <div class="card-header p-2">
                                         <ul class="nav nav-pills">
-                                            <li class="nav-item"><a class="nav-link active" href="#editAssetDetails" data-toggle="tab">Details</a></li>
-                                            <li class="nav-item"><a class="nav-link" href="#linked" data-toggle="tab">Asset Link</a></li>
-                                            <li class="nav-item"><a class="nav-link" href="#groups" data-toggle="tab">Groups</a></li>
-                                            {% if assetFieldsLength > 0 %}<li class="nav-item"><a class="nav-link" href="#editAssetFields" data-toggle="tab">Custom Fields</a></li>{% endif %}
-                                            {% if "ASSETS:EDIT:OVVERRIDES"|instancePermissions %}<li class="nav-item"><a class="nav-link" href="#editAssetDetailsOverrides" data-toggle="tab">Asset Type Overrides</a></li>{% endif %}
-                                            <li class="nav-item"><a class="nav-link" href="#editAssetType" data-toggle="tab">Change Type</a></li>
-                                            {% if "ASSETS:TRANSFER"|instancePermissions and assets[0].assets_endDate is null %}<li class="nav-item"><a class="nav-link" href="#moveAsset" data-toggle="tab">Transfer Asset</a></li>{% endif %}
+                                            <li class="nav-item"><a class="nav-link active" href="#editAssetDetails" data-toggle="tab">Данные</a></li>
+                                            <li class="nav-item"><a class="nav-link" href="#linked" data-toggle="tab">Связь оборудования</a></li>
+                                            <li class="nav-item"><a class="nav-link" href="#groups" data-toggle="tab">Группы</a></li>
+                                            {% if assetFieldsLength > 0 %}<li class="nav-item"><a class="nav-link" href="#editAssetFields" data-toggle="tab">Пользовательские поля</a></li>{% endif %}
+                                            {% if "ASSETS:EDIT:OVVERRIDES"|instancePermissions %}<li class="nav-item"><a class="nav-link" href="#editAssetDetailsOverrides" data-toggle="tab">Переопределения типа оборудования</a></li>{% endif %}
+                                            <li class="nav-item"><a class="nav-link" href="#editAssetType" data-toggle="tab">Изменить тип</a></li>
+                                            {% if "ASSETS:TRANSFER"|instancePermissions and assets[0].assets_endDate is null %}<li class="nav-item"><a class="nav-link" href="#moveAsset" data-toggle="tab">Передать оборудование</a></li>{% endif %}
                                         </ul>
                                     </div><!-- /.card-header -->
                                     <div class="card-body" style="padding: 0;">
@@ -279,20 +279,20 @@
                                             <div class="active tab-pane" style="padding: 1.25rem" id="editAssetDetails">
                                                 <form id="editAssetDetailsForm">
                                                     <div class="input-group">
-                                                        <div class="input-group-prepend"><span class="input-group-text">Asset ID</span></div>
+                                                        <div class="input-group-prepend"><span class="input-group-text">ID оборудования</span></div>
                                                         <input class="form-control" name="assets_tag" value="{{ assets[0]['assets_tag'] }}" />
                                                     </div>
                                                     <div class="input-group">
-                                                        <div class="input-group-prepend"><span class="input-group-text">Asset Notes</span></div>
+                                                        <div class="input-group-prepend"><span class="input-group-text">Заметки об оборудовании</span></div>
                                                         <textarea class="form-control" rows="2" name="assets_notes" placeholder="">{{ assets[0]['assets_notes'] }}</textarea>
                                                     </div>
                                                     <div class="input-group">
                                                         <div class="input-group-prepend">
-                                                            <span class="input-group-text">Storage Location</span>
+                                                            <span class="input-group-text">Место хранения</span>
                                                         </div>
                                                         <select class="form-control select2bs4" name="assets_storageLocation" id="editAssetStoredLocation">
                                                             {% if assets[0]['storage_location'] == [] %}
-                                                                <option value="" disabled selected>No Location Selected....</option>
+                                                                <option value="" disabled selected>Место не выбрано....</option>
                                                             {% endif %}
                                                             {% for location in locations %}
                                                                 <option value="{{ location.locations_id }}" {{ assets[0]['storage_location'][0]['locations_id'] == location.locations_id ? 'selected' }} {{ location.locations_archived == 1 ? 'disabled' }}>{{ location.locations_archived == 1 ? '[Archived] ' }}{{ location.locations_name }}</option>
@@ -305,7 +305,7 @@
                                                         </select>
                                                     </div>
                                                 </form>
-                                                <button class="btn btn-default float-right" id="saveAssetSettingsButton" style="margin-top:10px;margin-bottom:10px;">Save</button>
+                                                <button class="btn btn-default float-right" id="saveAssetSettingsButton" style="margin-top:10px;margin-bottom:10px;">Сохранить</button>
                                             </div>
                                             <div class="tab-pane" style="padding: 1.25rem" id="linked">
                                                 <div class="callout">
@@ -321,9 +321,9 @@
                                                         <option value="{{ assets[0]['assets_linkedTo'] }}" selected>{{ assets[0]['link']['assets_tag']|aTag }} ({{ assets[0]['link']['assetTypes_name'] }})</option>
                                                     {% endif %}
                                                 </select>
-                                                <button class="btn btn-default float-right" id="saveAssetLinkChangeButton" style="margin-top:10px;margin-bottom:10px;">Save</button>
+                                                <button class="btn btn-default float-right" id="saveAssetLinkChangeButton" style="margin-top:10px;margin-bottom:10px;">Сохранить</button>
                                                 {% if assets[0]['assets_linkedTo'] %}
-                                                    <button class="btn btn-warning float-right" id="removeAssetLinkChangeButton" style="margin-top:10px;margin-bottom:10px;">Remove Link</button>
+                                                    <button class="btn btn-warning float-right" id="removeAssetLinkChangeButton" style="margin-top:10px;margin-bottom:10px;">Удалить связь</button>
                                                 {% endif %}
 
                                             </div>
@@ -345,7 +345,7 @@
                                                         {% endif %}
                                                     {% endfor %}
                                                 </form>
-                                                <button class="btn btn-default float-right" id="saveAssetDefinableFieldButton" style="margin-top:10px;margin-bottom:10px;">Save</button>
+                                                <button class="btn btn-default float-right" id="saveAssetDefinableFieldButton" style="margin-top:10px;margin-bottom:10px;">Сохранить</button>
                                             </div>
                                             {% if "ASSETS:EDIT:OVVERRIDES"|instancePermissions %}
                                                 <div class="tab-pane" style="padding: 1.25rem" id="editAssetDetailsOverrides">
@@ -367,7 +367,7 @@
                                                         <div class="input-group">
                                                             <div class="input-group-prepend">
                                                     <span class="input-group-text">
-                                                      Value - {{ moneySymbol() }}
+                                                      Стоимость - {{ moneySymbol() }}
                                                     </span>
                                                             </div>
                                                             <input type="number" step="0.001" min="0" name="assets_value" value="{{ assets[0].assets_value|moneyDecimal }}" class="form-control" />
@@ -376,7 +376,7 @@
                                                         <div class="input-group">
                                                             <div class="input-group-prepend">
                                                     <span class="input-group-text">
-                                                      Day Rate - {{ moneySymbol() }}
+                                                      Дневная ставка - {{ moneySymbol() }}
                                                     </span>
                                                             </div>
                                                             <input type="number" step="0.001" min="0" name="assets_dayRate" value="{{ assets[0].assets_dayRate|moneyDecimal }}" class="form-control"  />
@@ -384,47 +384,47 @@
                                                         <div class="input-group">
                                                             <div class="input-group-prepend">
                                                             <span class="input-group-text">
-                                                              Weekly Rate - {{ moneySymbol() }}
+                                                              Недельная ставка - {{ moneySymbol() }}
                                                             </span>
                                                             </div>
                                                             <input type="number" step="0.001" min="0" name="assets_weekRate" class="form-control" value="{{ assets[0].assets_weekRate|moneyDecimal }}" />
                                                         </div>
                                                     </form>
-                                                    <button class="btn btn-default float-right" id="editAssetDetailsOverridesButton" style="margin-top:10px;margin-bottom:10px;">Save</button>
+                                                    <button class="btn btn-default float-right" id="editAssetDetailsOverridesButton" style="margin-top:10px;margin-bottom:10px;">Сохранить</button>
                                                 </div>
                                             {% endif %}
                                             <div class="tab-pane" style="padding: 1.25rem" id="editAssetType">
                                                 <div class="callout callout-danger">
-                                                    Changing the asset type for this asset can have significant implications especially with cost of existing projects and definable fields
+                                                    Изменение типа для этого оборудования может серьёзно повлиять на стоимость действующих проектов и пользовательские поля.
                                                 </div>
                                                 <select class="form-control  select2bs4 assetSelect2" id="assetTypeChange" placeholder="{{ asset.assetTypes_name }}" value="{{ asset.assetTypes_id }}"></select>
-                                                <button class="btn btn-default float-right" id="saveAssetTypeChangeButton" style="margin-top:10px;margin-bottom:10px;">Save</button>
+                                                <button class="btn btn-default float-right" id="saveAssetTypeChangeButton" style="margin-top:10px;margin-bottom:10px;">Сохранить</button>
                                             </div>
                                             {% if "ASSETS:TRANSFER"|instancePermissions %}
                                             <div class="tab-pane" style="padding: 1.25rem" id="moveAsset">
                                                 <div class="callout callout-danger">
-                                                    <p>Transferring an asset to another business will archive it in this business, which will affect existing projects. When transferring, the following paramenters are not copied across to the other business: maintenance jobs, flags/blocks, file attachments, images, assignments to projects, barcodes, barcode scans &amp; groups</p>
-                                                    <p>You can only transfer assets if you have the <code>ASSETS:TRANSFER</code> permission for the business you are transfering the asset into.</p> 
+                                                    <p>Передача оборудования в другую компанию архивирует его в текущей, что повлияет на существующие проекты. При передаче не копируются следующие параметры: задачи обслуживания, блокировки, вложенные файлы, изображения, назначения в проекты, штрихкоды, сканы штрихкодов и группы.</p>
+                                                    <p>Вы можете передавать оборудование только при наличии права <code>ASSETS:TRANSFER</code> в компании, в которую происходит перенос.</p>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="assetMigrateInstance">Business to transfer asset to</label>
-                                                    <select class="form-control select2bs4" id="assetMigrateInstance" placeholder="Select an Instance"></select>
+                                                    <label for="assetMigrateInstance">Компания для передачи оборудования</label>
+                                                    <select class="form-control select2bs4" id="assetMigrateInstance" placeholder="Выберите компанию"></select>
                                                 </div>
                                                 <div class="form-group" style="display: none;">
-                                                    <label for="assetMigrateAssetType">Asset Type for asset in new business</label>
-                                                    <select class="form-control select2bs4" id="assetMigrateAssetType" placeholder="Select an Asset Type"></select>
+                                                    <label for="assetMigrateAssetType">Тип оборудования в новой компании</label>
+                                                    <select class="form-control select2bs4" id="assetMigrateAssetType" placeholder="Выберите тип оборудования"></select>
                                                 </div>
                                                 <div class="form-group mt-2" style="display: none;">
-                                                    <label for="assetMigrateManufacturer">New Asset Type Manufacturer</label>
+                                                    <label for="assetMigrateManufacturer">Производитель нового типа оборудования</label>
                                                     <select class="form-control select2bs4" id="assetMigrateManufacturer" placeholder="Select a Manufacturer" aria-describedby="assetMigrateManufacturerHelp"></select>
-                                                    <small id="assetMigrateManufacturerHelp" class="form-text text-muted">Select the manufacturer that this copied asset type should use</small>
+                                                    <small id="assetMigrateManufacturerHelp" class="form-text text-muted">Выберите производителя, который будет использоваться для скопированного типа оборудования</small>
                                                 </div>
                                                 <div class="form-group" style="display: none;">
-                                                    <label for="assetMigrateCategory">New Asset Type Category</label>
-                                                    <select class="form-control select2bs4" id="assetMigrateCategory" placeholder="Select a Category" aria-describedby="assetMigrateCategoryHelp"></select>
-                                                    <small id="assetMigrateCategoryHelp" class="form-text text-muted">Which category should this asset type be placed in?</small>
+                                                    <label for="assetMigrateCategory">Категория нового типа оборудования</label>
+                                                    <select class="form-control select2bs4" id="assetMigrateCategory" placeholder="Выберите категорию" aria-describedby="assetMigrateCategoryHelp"></select>
+                                                    <small id="assetMigrateCategoryHelp" class="form-text text-muted">В какую категорию поместить этот тип оборудования?</small>
                                                 </div> 
-                                                <button class="btn btn-default float-right" id="assetMigrate" style="margin-top:10px;margin-bottom:10px;">Migrate</button>                 
+                                                <button class="btn btn-default float-right" id="assetMigrate" style="margin-top:10px;margin-bottom:10px;">Перенести</button>                 
                                             </div>
                                             {% endif %}
                                         </div>
@@ -438,7 +438,7 @@
                             <div class="tab-pane" style="padding: 1.25rem"  id="files">
                                 {% if "ASSETS:ASSET_FILE_ATTACHMENTS:CREATE"|instancePermissions %}
                                     <div class="callout callout-default">
-                                        Use this area to store files relevant to one asset such as an order confirmation or purchase invoice
+                                        Используйте этот раздел для хранения файлов, относящихся к конкретному оборудованию, например подтверждения заказа или счёта
                                     </div>
 {% embed 'assets/templates/uppy.twig' with {'type': 'ASSET-FILE', 'paste': false, 'typeId': 4, 'subTypeId': assets[0]['assets_id'], 'imagesOnly': false } %}
 
@@ -501,12 +501,12 @@
                             </table>
                             {% if "LOCATIONS:VIEW"|instancePermissions and assets[0].barcodes[0] %}
                             <div class="callout callout-info m-2">
-                                <p>Use the buttons below to set the location of this asset without scanning a barcode.</p>
+                                <p>Используйте кнопки ниже, чтобы указать расположение этого оборудования без сканирования штрихкода.</p>
                             </div>
                             <div class="btn-group m-2">
-                                <button class="btn btn-info" id="setAssetLocationButton">Manually pick location from list</button>
-                                <button class="btn btn-info" id="setAssetLocationAssetButton">Manually set location to be within another Asset</button>
-                                <button class="btn btn-info" id="setCustomLocationButton">Manually set Custom Location</button>
+                                <button class="btn btn-info" id="setAssetLocationButton">Выбрать расположение вручную из списка</button>
+                                <button class="btn btn-info" id="setAssetLocationAssetButton">Установить расположение вручную внутри другого оборудования</button>
+                                <button class="btn btn-info" id="setCustomLocationButton">Установить пользовательское расположение вручную</button>
                             </div>
                             {% endif %}
                         </div>
@@ -618,15 +618,15 @@
                                                 </style>
                                                 <form id="addNewJobForm">
                                                     <div class="input-group">
-                                                        <div class="input-group-prepend"><span class="input-group-text">Asset</span></div>
+                                                        <div class="input-group-prepend"><span class="input-group-text">Оборудование</span></div>
                                                         <input type="text" class="form-control" disabled value="{{ assets[0].assets_tag|aTag }}" />
                                                     </div>
                                                     <div class="input-group">
-                                                        <div class="input-group-prepend"><span class="input-group-text">Title</span></div>
+                                                        <div class="input-group-prepend"><span class="input-group-text">Название</span></div>
                                                         <input type="text" class="form-control" name="maintenanceJobs_title" id="maintenanceJobstitle" placeholder="Drum revolve key missing" />
                                                     </div>
                                                     <div class="input-group">
-                                                        <div class="input-group-prepend"><span class="input-group-text">Fault Description</span></div>
+                                                        <div class="input-group-prepend"><span class="input-group-text">Описание неисправности</span></div>
                                                         <textarea class="form-control" rows="5" name="maintenanceJobs_faultDescription" id="maintenanceJobsfaultDescription" placeholder="Details of the fault"></textarea>
                                                     </div>
                                                     <div class="input-group">
@@ -642,13 +642,13 @@
                                                         </select>
                                                     </div>
                                                     <div class="input-group">
-                                                        <label>Tag Users</label>
+                                                        <label>Отметить пользователей</label>
                                                         <select class="form-control" multiple="multiple" placeholder="Select users to be tagged for updates in the job" id="tagUserInJob">
                                                         </select>
                                                     </div>
                                                 </form>
 
-                                                <button class="btn btn-default float-right" id="addNewJobButton" style="margin-top:10px;margin-bottom:10px;">Save</button>
+                                                <button class="btn btn-default float-right" id="addNewJobButton" style="margin-top:10px;margin-bottom:10px;">Сохранить</button>
                                             </div>
                                             <div class="active tab-pane" style="padding: 1.25rem" id="maintenance-flags">
                                                 {% for flag in assets[0].flagsblocks.BLOCK %}
@@ -839,7 +839,7 @@
                                                                     {% if job.maintenanceJobsStatuses_name %}
                                                                         <span class="badge badge-default">{{ job.maintenanceJobsStatuses_name }}</span>
                                                                     {% else %}
-                                                                        <span class="badge badge-default">Awaiting Sorting</span>
+                                                                        <span class="badge badge-default">Ожидает сортировки</span>
                                                                     {% endif %}
                                                                 </td>
                                                                 <td >
@@ -873,9 +873,9 @@
                 <div class="card-header p-2">
                     <ul class="nav nav-pills">
                         {% if asset.oneasset %}
-                            <li class="nav-item"><a class="nav-link" href="?id={{asset.assetTypes_id}}&instance={{ASSET_INSTANCE.instances_id}}">View All</a></li>
+                            <li class="nav-item"><a class="nav-link" href="?id={{asset.assetTypes_id}}&instance={{ASSET_INSTANCE.instances_id}}">Показать все</a></li>
                         {% elseif assets|length > 1 %}
-                            <li class="nav-item"><a class="nav-link" href="#assets" data-toggle="tab">Assets</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#assets" data-toggle="tab">Оборудование</a></li>
                         {% endif %}
 
                         {% if assets|length > 1 and ASSET_INSTANCE.instances_id == USERDATA.instance.instances_id %}
@@ -884,13 +884,13 @@
 
 
                         {% if "ASSETS:ASSET_TYPES:EDIT"|instancePermissions and ASSET_INSTANCE.instances_id == USERDATA.instance.instances_id  %}
-                            <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Edit Type</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Редактировать тип</a></li>
                         {% endif %}
                         {% if CONFIG.FILES_ENABLED == "Enabled" and USERDATA.instance.instances_storageEnabled == 1 and "ASSETS:ASSET_TYPE_FILE_ATTACHMENTS:VIEW"|instancePermissions and ASSET_INSTANCE.instances_id == USERDATA.instance.instances_id  %}
-                            <li class="nav-item"><a class="nav-link" href="#typeFiles" data-toggle="tab">Type Files</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#typeFiles" data-toggle="tab">Файлы типа</a></li>
                         {% endif %}
                         {% if "ASSETS:ASSET_BARCODES:VIEW"|instancePermissions  and ASSET_INSTANCE.instances_id == USERDATA.instance.instances_id %}
-                            <li class="nav-item"><a class="nav-link" href="{{ CONFIG.ROOTURL }}/maintenance/barcodeGenerator.php?type={{ asset.assetTypes_id }}">Generate/Export Barcodes</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ CONFIG.ROOTURL }}/maintenance/barcodeGenerator.php?type={{ asset.assetTypes_id }}">Создать/экспортировать штрихкоды</a></li>
                         {% endif %}
                     </ul>
                 </div><!-- /.card-header -->
@@ -903,10 +903,10 @@
                                     {% for field in asset.fields %}
                                         <th>{{ field }}</th>
                                     {% endfor %}
-                                    <th>Notes</th>
-                                    <th>Value</th>
-                                    <th>Cost/day</th>
-                                    <th>Cost/week</th>
+                                    <th>Примечания</th>
+                                    <th>Стоимость</th>
+                                    <th>Стоимость/день</th>
+                                    <th>Стоимость/неделя</th>
                                     <th title="File attachments"><i class="fas fa-paperclip"></i></th>
                                     <th style="width:1%"><i class="fas fa-flag"></i></th>
                                     <th style="width:1%"><i class="fas fa-ban"></i></th>
@@ -1094,38 +1094,38 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label>Category</label>
+                                                <label>Категория</label>
                                                 <select class="form-control  select2bs4 assetSelect2" id="category" name="assetCategories_id">
                                                     {% for category in categories %}
                                                         <option  {%  if category.assetCategories_id == asset.assetCategories_id %} selected {% endif %} value="{{ category.assetCategories_id }}">{{ category.assetCategoriesGroups_name }} - {{ category.assetCategories_name }}</option>
                                                     {% endfor %}
                                                 </select>
                                             </div>
-                                            <label>Manufacturer</label>
+                                            <label>Производитель</label>
                                             <select class="form-control  select2bs4 assetSelect2" id="manufacturer">
                                                 {% for manufacturer in manufacturers %}
                                                     <option {%  if manufacturer.manufacturers_id == asset.manufacturers_id %} selected {% endif %} value="{{ manufacturer.manufacturers_id }}">{{ manufacturer.manufacturers_name }}</option>
                                                 {% endfor %}
                                             </select>
                                             </form>
-                                            <button class="btn btn-default float-right" id="saveSettingsButton" style="margin-top:10px;margin-bottom:10px;">Save</button>
+                                            <button class="btn btn-default float-right" id="saveSettingsButton" style="margin-top:10px;margin-bottom:10px;">Сохранить</button>
                                         </div>
                                         <div class="tab-pane" style="padding: 1.25rem" id="fields">
                                             <div class="callout callout-info">
-                                                <p>Definable fields are specific attributes for assets of this type - for a lighting fixture this might be the lens fitted</p>
+                                                <p>Настраиваемые поля — это дополнительные атрибуты для оборудования данного типа; например, для светильника это может быть установленная линза.</p>
                                             </div>
                                             <form id="editDefinableFieldsType">
                                             {% for field in asset.fields %}
                                                 <div class="input-group definableFieldsGroup" data-fieldcount="{{loop.index}}">
-                                                    <div class="input-group-prepend"><span class="input-group-text">Definable Field {{loop.index}}</span></div>
+                                                    <div class="input-group-prepend"><span class="input-group-text">Настраиваемое поле {{loop.index}}</span></div>
                                                     <input type="text" class="definableFieldsInput form-control" name="asset_definableFields_{{ loop.index }}" value="{{field}}" data-fieldcount="{{loop.index}}" />
                                                 </div>
                                             {% endfor %}
                                             </form>
                                             <div class="callout callout-danger">
-                                                <p>Leave a field blank to delete it</p>
+                                                <p>Оставьте поле пустым, чтобы удалить его</p>
                                             </div>
-                                            <button class="btn btn-default float-right" id="saveTypeDefinableFieldButton" style="margin-top:10px;margin-bottom:10px;">Save</button>
+                                            <button class="btn btn-default float-right" id="saveTypeDefinableFieldButton" style="margin-top:10px;margin-bottom:10px;">Сохранить</button>
                                         </div>
                                         <div class="tab-pane" style="padding: 1.25rem" id="thumbnail">
 {% if CONFIG.FILES_ENABLED == "Enabled" and USERDATA.instance.instances_storageEnabled == 1 and "ASSETS:ASSET_TYPE_FILE_ATTACHMENTS:CREATE"|instancePermissions %}
@@ -1152,8 +1152,8 @@
                         {% elseif "ASSETS:ASSET_TYPES:EDIT"|instancePermissions %}
                         <div class="tab-pane" style="padding: 1.25rem" id="settings">
                             <div class="alert alert-info" role="alert">
-<h4 class="alert-heading">Asset type maintained by the {{ CONFIG.PROJECT_NAME }}</h4>Sorry - this asset type is shared between a number of different businesses as a pre-defined template, to edit it please
-<a href="{{ CONFIG.LINKS_SUPPORTURL }}">get in touch with support</a>
+<h4 class="alert-heading">Тип оборудования поддерживается {{ CONFIG.PROJECT_NAME }}</h4>Этот тип оборудования используется несколькими компаниями как преднастроенный шаблон. Чтобы изменить его,
+<a href="{{ CONFIG.LINKS_SUPPORTURL }}">свяжитесь с поддержкой</a>
 
                             </div>
                         </div>
@@ -1164,7 +1164,7 @@
                         <div class="tab-pane" style="padding: 1.25rem"  id="typeFiles">
                             {% if "ASSETS:ASSET_TYPE_FILE_ATTACHMENTS:CREATE"|instancePermissions %}
                             <div class="callout callout-default">
-                                Use this area to store files relevant to all assets of this type such as instruction manuals
+                                Используйте этот раздел для хранения файлов, относящихся ко всем единицам этого типа, например инструкций
                             </div>
 {% embed 'assets/templates/uppy.twig' with {'type': 'ASSET-TYPE-FILE', 'paste': false, 'typeId': 3, 'subTypeId': asset.assetTypes_id, 'imagesOnly': false } %}
 
@@ -1186,10 +1186,10 @@
                                 <div class="card" style="margin-bottom:0;">
                                     <div class="card-header p-2">
                                         <ul class="nav nav-pills">
-                                            <li class="nav-item"><a class="nav-link" href="#maintenance-newJob" data-toggle="tab">New Job</a></li>
-                                            <li class="nav-item"><a class="nav-link active" href="#maintenance-flags" data-toggle="tab">Blocks &amp; Flags</a></li>
-                                            <li class="nav-item"><a class="nav-link" href="#maintenance-jobsOutstanding" data-toggle="tab">Jobs Outstanding</a></li>
-                                            <li class="nav-item"><a class="nav-link" href="#maintenance-jobsCompleted" data-toggle="tab">Jobs Completed</a></li>
+                                            <li class="nav-item"><a class="nav-link" href="#maintenance-newJob" data-toggle="tab">Новая задача</a></li>
+                                            <li class="nav-item"><a class="nav-link active" href="#maintenance-flags" data-toggle="tab">Блокировки и флаги</a></li>
+                                            <li class="nav-item"><a class="nav-link" href="#maintenance-jobsOutstanding" data-toggle="tab">Незавершённые задачи</a></li>
+                                            <li class="nav-item"><a class="nav-link" href="#maintenance-jobsCompleted" data-toggle="tab">Выполненные задачи</a></li>
                                         </ul>
                                     </div><!-- /.card-header -->
                                     <div class="card-body" style="padding: 0;">
@@ -1202,15 +1202,15 @@
                                                 </style>
                                                 <form id="addNewJobForm">
                                                     <div class="input-group">
-                                                        <div class="input-group-prepend"><span class="input-group-text">Asset</span></div>
+                                                        <div class="input-group-prepend"><span class="input-group-text">Оборудование</span></div>
                                                         <input type="text" class="form-control" disabled value="{{ assets[0].assets_tag|aTag }}" />
                                                     </div>
                                                     <div class="input-group">
-                                                        <div class="input-group-prepend"><span class="input-group-text">Title</span></div>
+                                                        <div class="input-group-prepend"><span class="input-group-text">Название</span></div>
                                                         <input type="text" class="form-control" name="maintenanceJobs_title" id="maintenanceJobstitle" placeholder="Drum revolve key missing" />
                                                     </div>
                                                     <div class="input-group">
-                                                        <div class="input-group-prepend"><span class="input-group-text">Fault Description</span></div>
+                                                        <div class="input-group-prepend"><span class="input-group-text">Описание неисправности</span></div>
                                                         <textarea class="form-control" rows="5" name="maintenanceJobs_faultDescription" id="maintenanceJobsfaultDescription" placeholder="Details of the fault"></textarea>
                                                     </div>
                                                     <div class="input-group">
@@ -1226,13 +1226,13 @@
                                                         </select>
                                                     </div>
                                                     <div class="input-group">
-                                                        <label>Tag Users</label>
+                                                        <label>Отметить пользователей</label>
                                                         <select class="form-control" multiple="multiple" placeholder="Select users to be tagged for updates in the job" id="tagUserInJob">
                                                         </select>
                                                     </div>
                                                 </form>
 
-                                                <button class="btn btn-default float-right" id="addNewJobButton" style="margin-top:10px;margin-bottom:10px;">Save</button>
+                                                <button class="btn btn-default float-right" id="addNewJobButton" style="margin-top:10px;margin-bottom:10px;">Сохранить</button>
                                             </div>
                                             <div class="active tab-pane" style="padding: 1.25rem" id="maintenance-flags">
                                                 {% for flag in assets[0].flagsblocks.BLOCK %}
@@ -1327,7 +1327,7 @@
                                                                 {% if job.maintenanceJobsStatuses_name %}
                                                                     <span class="badge badge-default">{{ job.maintenanceJobsStatuses_name }}</span>
                                                                 {% else %}
-                                                                    <span class="badge badge-default">Awaiting Sorting</span>
+                                                                    <span class="badge badge-default">Ожидает сортировки</span>
                                                                 {% endif %}
                                                             </td>
                                                             <td >
@@ -1423,7 +1423,7 @@
                                                                     {% if job.maintenanceJobsStatuses_name %}
                                                                         <span class="badge badge-default">{{ job.maintenanceJobsStatuses_name }}</span>
                                                                     {% else %}
-                                                                        <span class="badge badge-default">Awaiting Sorting</span>
+                                                                        <span class="badge badge-default">Ожидает сортировки</span>
                                                                     {% endif %}
                                                                 </td>
                                                                 <td >
@@ -1459,20 +1459,20 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Set Asset Location to another Asset</h4>
+                    <h4 class="modal-title">Установить расположение как у другого оборудования</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>Set this asset's location to another asset - for example if it is stored within a flight case or storage box</p>
+                    <p>Установите расположение этого оборудования по другому объекту, например если оно хранится в кофре или ящике</p>
                     <div class="input-group my-3">
                         <select class="form-control" multiple="multiple" id="setAssetLocationAssetModal-assets" placeholder="Enter asset tags here"></select>
                     </div>
                     
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="setAssetLocationAssetModal-button">Set location</button>
+                    <button type="button" class="btn btn-primary" id="setAssetLocationAssetModal-button">Установить расположение</button>
                 </div>
             </div>
         </div>

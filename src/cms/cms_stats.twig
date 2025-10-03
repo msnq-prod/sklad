@@ -8,11 +8,11 @@
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">
-                        Views over time
+                        Просмотры по времени
                     </h3>
                     <div class="card-tools pull-right">
                         <div class="input-group input-group-sm">
-                            <a type="button" class="btn btn-default btn-sm" title="View Page" href="{{ CONFIG.ROOTURL }}/cms/?p={{ PAGE.cmsPages_id }}">View Page</a>
+                            <a type="button" class="btn btn-default btn-sm" title="Открыть страницу" href="{{ CONFIG.ROOTURL }}/cms/?p={{ PAGE.cmsPages_id }}">Открыть страницу</a>
                         </div>
                     </div>
                 </div>
@@ -20,9 +20,9 @@
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>Today</th>
-                                <th>This Week</th>
-                                <th>All Time</th>
+                                <th>Сегодня</th>
+                                <th>На этой неделе</th>
+                                <th>За всё время</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -41,12 +41,12 @@
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">
-                            Views By User
+                            Просмотры по пользователям
                         </h3>
                         <div class="card-tools pull-right">
                             <div class="input-group input-group-sm">
                                 {% if "CMS:CMS_PAGES:VIEW:ACCESS_LOG"|instancePermissions %}
-                                    <a href="{{ CONFIG.ROOTURL }}/cms/log.php?p={{ PAGE.cmsPages_id }}" type="button" class="btn btn-default btn-sm" title="Page View Log"><i class="fas fa-binoculars"></i></a>
+                                    <a href="{{ CONFIG.ROOTURL }}/cms/log.php?p={{ PAGE.cmsPages_id }}" type="button" class="btn btn-default btn-sm" title="Журнал просмотров страницы"><i class="fas fa-binoculars"></i></a>
                                 {% endif %}
                             </div>
                         </div>
@@ -55,9 +55,9 @@
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
-                                    <th>Username</th>
-                                    <th>Times Accessed</th>
-                                    <th>Last Accessed</th>
+                                    <th>Имя пользователя</th>
+                                    <th>Количество просмотров</th>
+                                    <th>Последний просмотр</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -73,7 +73,7 @@
                                                     {{ entry.user.users_name1 }} {{ entry.user.users_name2 }}
                                                 {% endif %}
                                             {% else %}
-                                                Public access
+                                                Публичный доступ
                                             {% endif %}
                                         </td>
                                         <td>{{ entry.accessed }}</td>
