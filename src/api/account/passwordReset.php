@@ -12,8 +12,8 @@ $code = $DBLIB->getOne('passwordResetCodes');
 if (isset($code) and $code['passwordResetCodes_valid'] == '1') {
 	if (strtotime($code['passwordResetCodes_timestamp']) < (time() - (60 * 60 * 48))) { //48 hours
 		//Code has expired - send another
-		if ($AUTH->forgotPassword()) die("Sorry - Your code has expired - we've sent you another one instead");
-		else die("Sorry - Your code has expired - please try to create another code or contact the support team");
+                if ($AUTH->forgotPassword()) die("Срок действия вашего кода истёк — мы отправили вам новый");
+                else die("Срок действия вашего кода истёк — попробуйте создать новый код или обратитесь в службу поддержки");
 	}
 	$DBLIB->where('users_userid', $code['users_userid']);
 	$DBLIB->update('users', ["users_password" => "RESET", "users_changepass" => 1]); //Verify E-Mail

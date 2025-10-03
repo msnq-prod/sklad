@@ -6,8 +6,8 @@ if ($CONFIGCLASS->get("AUTH_SIGNUP_ENABLED") !== 'Enabled') {
 }
 
 if (isset($_POST['name1']) and isset($_POST['password']) and isset($_POST['username']) and isset($_POST['email']) and isset($_POST['name2'])) {
-    if ($AUTH->usernameTaken($GLOBALS['bCMS']->sanitizeString(strtolower($_POST['username'])))) finish(false, ["code" => null, "message" => "Sorry that username is taken, please try another"]);
-    if ($AUTH->emailTaken($GLOBALS['bCMS']->sanitizeString(strtolower($_POST['email'])))) finish(false, ["code" => null, "message" => "Sorry, you already have an account with that email address"]);
+    if ($AUTH->usernameTaken($GLOBALS['bCMS']->sanitizeString(strtolower($_POST['username'])))) finish(false, ["code" => null, "message" => "Такое имя пользователя уже занято, попробуйте другое"]);
+    if ($AUTH->emailTaken($GLOBALS['bCMS']->sanitizeString(strtolower($_POST['email'])))) finish(false, ["code" => null, "message" => "Учётная запись с этим адресом эл. почты уже существует"]);
     $data = Array (
         'users_email' => strtolower($bCMS->sanitizeString($_POST['email'])),
         'users_username' => strtolower($bCMS->sanitizeString($_POST['username'])),
@@ -19,13 +19,13 @@ if (isset($_POST['name1']) and isset($_POST['password']) and isset($_POST['usern
     );
     $data["users_password"] = hash($data['users_hash'], $data['users_salty1'] . $_POST['password'] . $data['users_salty2']);
     $newUser = $DBLIB->insert("users", $data);
-    if (!$newUser) finish(false, ["code" => null, "message" => "Can't create user due to database error"]);
+    if (!$newUser) finish(false, ["code" => null, "message" => "Не удалось создать пользователя из-за ошибки базы данных"]);
     else {
         $bCMS->auditLog("INSERT", "users", json_encode($data), null,$newUser);
         $AUTH->verifyEmail($newUser);
         finish(true);
     }
-} else finish(false, ["code" => null, "message" => "Parameter error"]);
+} else finish(false, ["code" => null, "message" => "Ошибка параметров"]);
 
 /** @OA\Post(
  *     path="/login/signup.php", 

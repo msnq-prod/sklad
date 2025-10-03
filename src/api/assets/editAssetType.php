@@ -5,7 +5,7 @@ use Money\Currency;
 use Money\Money;
 use Money\Currencies\ISOCurrencies;
 use Money\Parser\DecimalMoneyParser;
-if (!$AUTH->instancePermissionCheck("ASSETS:ASSET_TYPES:EDIT")) die("Sorry - you can't access this page");
+if (!$AUTH->instancePermissionCheck("ASSETS:ASSET_TYPES:EDIT")) die("К сожалению, у вас нет доступа к этой странице");
 
 $array = [];
 foreach ($_POST['formData'] as $item) {

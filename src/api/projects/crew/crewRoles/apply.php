@@ -23,15 +23,15 @@ $DBLIB->where("projectsVacantRoles_open",1);
 $DBLIB->where("(projectsVacantRoles.projectsVacantRoles_deadline IS NULL OR projectsVacantRoles.projectsVacantRoles_deadline >= '" . date("Y-m-d H:i:s") . "')");
 $DBLIB->where("projectsVacantRoles_id",$array['projectsVacantRoles_id']);
 $role = $DBLIB->getOne("projectsVacantRoles",['projectsVacantRoles_id','projectsVacantRoles.projects_id','projects_manager','projects_name','projectsVacantRoles_name',"users.users_userid", "users.users_name1", "users.users_name2", "users.users_email","projectsVacantRoles_firstComeFirstServed","projectsVacantRoles_slots","projectsVacantRoles_slotsFilled","projects.projects_dates_use_end","projects.projects_dates_use_start"]);
-if (!$role) finish(false, ['message' => "Sorry, this role is not available"]);
+if (!$role) finish(false, ['message' => "Эта роль недоступна"]);
 
-if ($role['projectsVacantRoles_firstComeFirstServed'] == 1 and $role['projectsVacantRoles_slotsFilled'] >= $role['projectsVacantRoles_slots']) finish(false, ["message" => "Sorry this role is fully subscribed"]);
+if ($role['projectsVacantRoles_firstComeFirstServed'] == 1 and $role['projectsVacantRoles_slotsFilled'] >= $role['projectsVacantRoles_slots']) finish(false, ["message" => "Свободных мест для этой роли не осталось"]);
 
 $DBLIB->where("projectsVacantRoles_id",$role['projectsVacantRoles_id']);
 $DBLIB->where("users_userid", $AUTH->data['users_userid']);
 $DBLIB->where("projectsVacantRolesApplications_deleted",0);
 $DBLIB->where("projectsVacantRolesApplications_withdrawn",0);
-if ($DBLIB->getOne("projectsVacantRolesApplications",["projectsVacantRolesApplications_id"])) finish(false, ['message' => "Sorry you can't apply twice"]);
+if ($DBLIB->getOne("projectsVacantRolesApplications",["projectsVacantRolesApplications_id"])) finish(false, ['message' => "Вы уже подали заявку на эту роль"]);
 $array['users_userid'] = $AUTH->data['users_userid'];
 $array['projectsVacantRolesApplications_submitted'] = date("Y-m-d H:i:s");
 if ($role['projectsVacantRoles_firstComeFirstServed']) {

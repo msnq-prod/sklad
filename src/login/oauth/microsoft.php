@@ -3,7 +3,7 @@ require_once __DIR__ . '/../../common/head.php';
 
 use \Firebase\JWT\JWT;
 
-$PAGEDATA['pageConfig'] = ["TITLE" => "Login with Microsoft"];
+$PAGEDATA['pageConfig'] = ["TITLE" => "Вход через Microsoft"];
 $PAGEDATA['microsoftAuthAvailable'] = $CONFIGCLASS->get("AUTH_PROVIDERS_MICROSOFT_APP_ID") != false and $CONFIGCLASS->get("AUTH_PROVIDERS_MICROSOFT_KEYS_SECRET") != false;
 
 if (!$PAGEDATA['microsoftAuthAvailable']) {
@@ -27,7 +27,7 @@ try {
 	$adapter->authenticate();
 } catch (\Exception $e) {
 	//Issue with auth state, which is a problem with the user's browser. We can't do anything about this, so just show an error
-	$PAGEDATA['ERROR'] = "Sorry, something went wrong authenticating with Microsoft.";
+        $PAGEDATA['ERROR'] = "К сожалению, произошла ошибка при аутентификации через Microsoft.";
 	die($TWIG->render('login/error.twig', $PAGEDATA));
 }
 $accessToken = $adapter->getAccessToken(); //We don't actually use this - we could in theory just drop it?
@@ -35,7 +35,7 @@ $userProfile = $adapter->getUserProfile();
 $adapter->disconnect(); //Disconnect this authentication from the session, so they can pick another account
 if (strlen($userProfile->identifier) < 1) {
 	//ISSUE WITH PROFILE
-	$PAGEDATA['ERROR'] = "Sorry, something went wrong authenticating with Microsoft";
+        $PAGEDATA['ERROR'] = "К сожалению, произошла ошибка при аутентификации через Microsoft";
 	echo $TWIG->render('login/error.twig', $PAGEDATA);
 	exit;
 }
@@ -45,7 +45,7 @@ $DBLIB->where("users_deleted", 0);
 $user = $DBLIB->getOne("users", ["users.users_suspended", "users.users_userid", "users.users_hash", "users.users_email"]);
 if ($user) {
 	if ($user['users_suspended'] != '0') {
-		$PAGEDATA['ERROR'] = "Sorry, your user account is suspended";
+                $PAGEDATA['ERROR'] = "К сожалению, ваша учётная запись заблокирована";
 		echo $TWIG->render('login/error.twig', $PAGEDATA);
 		exit;
 	}
@@ -60,7 +60,7 @@ if ($user) {
 	$DBLIB->where("users_email", strtolower($userProfile->email));
 	$user = $DBLIB->getOne("users", ["users.users_suspended", "users.users_userid", "users.users_hash"]);
 	if ($user) {
-		$PAGEDATA['ERROR'] = "An AdamRMS account associated with the email address you selected has been found. Please login again using your AdamRMS username & password to link your account to a Microsoft Account in AdamRMS account settings";
+                $PAGEDATA['ERROR'] = "Мы нашли учётную запись AdamRMS, связанную с выбранным адресом эл. почты. Войдите снова, используя имя пользователя и пароль AdamRMS, чтобы привязать аккаунт к Microsoft в настройках AdamRMS.";
 		echo $TWIG->render('login/error.twig', $PAGEDATA);
 		exit;
 	}
@@ -68,7 +68,7 @@ if ($user) {
 
 // They don't have an account already. Check whether we can create them an account.
 if ($CONFIGCLASS->get("AUTH_SIGNUP_ENABLED") !== 'Enabled') {
-	$PAGEDATA['ERROR'] = "We couldn't find an existing account and signups are disabled. Please contact your business administrator to sign up.";
+        $PAGEDATA['ERROR'] = "Мы не нашли существующую учётную запись, а регистрация отключена. Свяжитесь с администратором компании, чтобы зарегистрироваться.";
 	echo $TWIG->render('login/error.twig', $PAGEDATA);
 	exit;
 }
@@ -89,13 +89,13 @@ $data = array(
 );
 $newUser = $DBLIB->insert("users", $data);
 if (!$newUser) {
-	$PAGEDATA['ERROR'] = "Sorry something went wrong trying to create a new user account";
+        $PAGEDATA['ERROR'] = "К сожалению, не удалось создать новую учётную запись";
 	echo $TWIG->render('login/error.twig', $PAGEDATA);
 	exit;
 }
 $bCMS->auditLog("INSERT", "users", json_encode($data), null, $newUser);
 if (!$_SESSION['return'] and isset($_SESSION['app-oauth'])) {
-	$PAGEDATA['ERROR'] = "Account created - please restart app and login again";
+        $PAGEDATA['ERROR'] = "Учётная запись создана — перезапустите приложение и войдите снова";
 	echo $TWIG->render('login/error.twig', $PAGEDATA);
 	exit;
 } else {

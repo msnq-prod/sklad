@@ -130,7 +130,7 @@ ignoreURLs: ['searchUser.php'] // Ignore user searches
                         var errorMessage = "";
                         }
                         bootbox.alert(
-                            "{{ CONFIG.PROJECT_NAME }} encountered an error.{% if CONFIG.LINKS_SUPPORTURL|length > 0 %} <a href='{{ CONFIG.LINKS_SUPPORTURL }}' target='_blank'>Contact Support</a>{% endif %}<br/><br/>" +
+                            "В {{ CONFIG.PROJECT_NAME }} произошла ошибка.{% if CONFIG.LINKS_SUPPORTURL|length > 0 %} <a href='{{ CONFIG.LINKS_SUPPORTURL }}' target='_blank'>Связаться с поддержкой</a>{% endif %}<br/><br/>" +
                             errorMessage,
                         function () {
                             if (reloadIfError) {
@@ -145,7 +145,7 @@ ignoreURLs: ['searchUser.php'] // Ignore user searches
                     console.log(jqXHR, textStatus, errorThrown);
                     console.log("Connection Error");
                     bootbox.alert(
-                        "Sorry we couldn't connect to the internet - please check your connection",
+                        "Не удалось подключиться к интернету — проверьте соединение",
                         function () {
                         if (reloadIfError) {
                             location.reload();
@@ -265,11 +265,11 @@ ignoreURLs: ['searchUser.php'] // Ignore user searches
 					{% endif %}
 					{% if USERDATA.viewSiteAs != false %}
 						<li class="nav-item">
-							<a href="{{ CONFIG.ROOTURL }}/api/account/viewSiteAs_terminate.php" class="nav-link">Back to Admin</a>
+                                                        <a href="{{ CONFIG.ROOTURL }}/api/account/viewSiteAs_terminate.php" class="nav-link">Вернуться к администрированию</a>
 						</li>
 					{% else %}
 						<li class="nav-item">
-							<a href="{{ CONFIG.ROOTURL }}/login/?logout" class="nav-link">Logout</a>
+                                                        <a href="{{ CONFIG.ROOTURL }}/login/?logout" class="nav-link">Выйти</a>
 						</li>
 					{% endif %}
 				</ul>

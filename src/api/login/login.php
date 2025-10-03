@@ -4,7 +4,7 @@ use \Firebase\JWT\JWT;
 if (isset($_POST['formInput']) and isset($_POST['password'])) {
 	$input = trim(strtolower($GLOBALS['bCMS']->sanitizeString($_POST['formInput'])));
     $password = $GLOBALS['bCMS']->sanitizeString($_POST['password']);
-	if ($input == "" || $password == "") finish(false, ["code" => null, "message" => "No data specified"]);
+        if ($input == "" || $password == "") finish(false, ["code" => null, "message" => "Данные не указаны"]);
 	else {
         if (filter_var($input, FILTER_VALIDATE_EMAIL)) $DBLIB->where ("users_email", $input);
         else $DBLIB->where ("users_username", $input);
@@ -34,9 +34,9 @@ if (isset($_POST['formInput']) and isset($_POST['password'])) {
             "loginAttempts_successful" => ($successful ? '1' : '0')
         ]);
 
-        if ($bruteforceattempt) finish(false, ["code" => null, "message" => "Sorry - you've tried too many times to login - please try again in 5 minutes"]);
-        elseif (!$successful) finish(false, ["code" => null, "message" => "Username, email or password incorrect"]);
-        elseif ($user['users_suspended'] != '0') finish(false, ["code" => null, "message" => "User account is suspended"]);
+        if ($bruteforceattempt) finish(false, ["code" => null, "message" => "Слишком много попыток входа — повторите через 5 минут"]);
+        elseif (!$successful) finish(false, ["code" => null, "message" => "Неверные имя пользователя, адрес эл. почты или пароль"]);
+        elseif ($user['users_suspended'] != '0') finish(false, ["code" => null, "message" => "Учётная запись заблокирована"]);
         else {
             if (!$_SESSION['return'] and isset($_SESSION['app-oauth'])) {
                 $token = $GLOBALS['AUTH']->generateToken($user['users_userid'], false, "App OAuth", "app-v1");
@@ -48,7 +48,7 @@ if (isset($_POST['formInput']) and isset($_POST['password'])) {
             }
         }
 	}
-} else finish(false, ["code" => null, "message" => "Unknown error"]);
+} else finish(false, ["code" => null, "message" => "Неизвестная ошибка"]);
 
 /**
  *  @OA\Post(

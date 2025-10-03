@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../apiHeadSecure.php';
 
-if (!$AUTH->instancePermissionCheck("ASSETS:ARCHIVE")) die("Sorry - you can't access this page");
+if (!$AUTH->instancePermissionCheck("ASSETS:ARCHIVE")) die("К сожалению, у вас нет доступа к этой странице");
 
 if (!isset($_POST['assets_id'])) finish(false, ["code" => "PARAM-ERROR", "message"=> "No data for action"]);
 

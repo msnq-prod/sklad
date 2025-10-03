@@ -121,8 +121,8 @@ $(document).ready(function() {
 				if (result == '1') {
 					$("#loading").hide();
                     location.reload();
-				} else {
-					bootbox.alert(result + "Sorry - Operation could not be completed! Please try again!", function() {
+                                } else {
+                                        bootbox.alert(result + " К сожалению, выполнить операцию не удалось. Повторите попытку.", function() {
 						location.reload();
 					});
 				}
@@ -137,9 +137,9 @@ $(document).ready(function() {
 		let cautionText = checkbox.data("cautiontext")
 		//show a popup if this is a signup code permission
 		if (checkbox.is(":checked") && cautionText !== null && cautionText.length > 0) {
-			bootbox.confirm({
-				title: "Warning - potential privilege escalation",
-				message: cautionText + "<br /><br />This permission is normally only enabled for administrators in a business. Are you sure you want to enable it?",
+                        bootbox.confirm({
+                                title: "Предупреждение — возможно повышение привилегий",
+                                message: cautionText + "<br /><br />Обычно это разрешение включают только администраторы компании. Вы уверены, что хотите его включить?",
 				buttons: {
 					confirm: {
 						label: 'Да',

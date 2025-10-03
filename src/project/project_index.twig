@@ -1117,11 +1117,11 @@
                             message: message + "</table>",
                             buttons: {
                                 cancel: {
-                                    label: 'No - cancel date change',
+                                    label: 'Нет — отменить изменение даты',
                                     className: 'btn-success'
                                 },
                                 confirm: {
-                                    label: 'Yes',
+                                    label: 'Да',
                                     className: 'btn-danger'
                                 }
                             },
@@ -1139,7 +1139,7 @@
                                         changeProjectDeliverDates(start, end);
                                     });
                                     {% else %}
-                                    bootbox.alert("Sorry - you don't have permission to remove these assets");
+                                    bootbox.alert("К сожалению, у вас нет прав на удаление этих активов");
                                     {% endif %}
                                 }
                             }

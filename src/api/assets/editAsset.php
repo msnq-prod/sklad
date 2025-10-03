@@ -6,7 +6,7 @@ use Money\Money;
 use Money\Currencies\ISOCurrencies;
 use Money\Parser\DecimalMoneyParser;
 
-if (!$AUTH->instancePermissionCheck("ASSETS:EDIT")) die("Sorry - you can't access this page");
+if (!$AUTH->instancePermissionCheck("ASSETS:EDIT")) die("К сожалению, у вас нет доступа к этой странице");
 $array = [];
 
 foreach ($_POST as $key=>$value) {
@@ -35,7 +35,7 @@ if (isset($array['assets_tag']) and $array['assets_tag'] != $asset['assets_tag']
     $DBLIB->where("assets.assets_tag", $array['assets_tag']);
     $DBLIB->where("assets.assets_deleted", 0); //Deleted assets can't be restored, so can be used
     $duplicateAssetTag = $DBLIB->getValue ("assets", "count(*)");
-    if ($duplicateAssetTag > 0) finish(false,["message" => "Sorry that Asset Tag is a duplicate of one already in your Business"]);
+    if ($duplicateAssetTag > 0) finish(false,["message" => "Этот инвентарный номер уже используется в вашей компании"]);
 }
 
 $DBLIB->where("assets_id", $array['assets_id']);

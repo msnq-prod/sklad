@@ -3,7 +3,7 @@ require_once 'loginAjaxHead.php';
 
 if (isset($_POST['formInput'])) {
     $input = trim(strtolower($GLOBALS['bCMS']->sanitizeString($_POST['formInput'])));
-    if ($input == "") finish(false, ["code" => null, "message" => "No data specified"]);
+    if ($input == "") finish(false, ["code" => null, "message" => "Данные не указаны"]);
     else {
         if (filter_var($input, FILTER_VALIDATE_EMAIL)) $DBLIB->where ("users_email", $input);
         else $DBLIB->where ("users_username", $input);
@@ -15,7 +15,7 @@ if (isset($_POST['formInput'])) {
             finish(true, null, true);
         } else finish(true, null, true);
     }
-} else finish(false, ["code" => null, "message" => "Unknown error"]);
+} else finish(false, ["code" => null, "message" => "Неизвестная ошибка"]);
 
 /** @OA\Post(
  *     path="/login/forgotPassword.php", 
