@@ -1,20 +1,26 @@
 <?php
 require_once 'head.php';
+
+/*
+ * Публичный виджет вакансий работает только после включения параметра enableVacancies
+ * в публичных настройках инстанса. При отключенном флаге прекращаем выполнение,
+ * чтобы исключить утечку данных через встроенные iframe.
+ */
 if (!isset($PAGEDATA['INSTANCE']['publicData']['enableVacancies']) or !$PAGEDATA['INSTANCE']['publicData']['enableVacancies']) die("Disabled by your AdamRMS administrator");
 
 $PAGEDATA['pageConfig'] = ["TITLE" => "Crew Role Vacancies", "BREADCRUMB" => false];
 $DBLIB->where("projectsVacantRoles.projectsVacantRoles_deleted",0);
 $DBLIB->where("projectsVacantRoles.projectsVacantRoles_open",1);
-$DBLIB->where("projectsVacantRoles.projectsVacantRoles_visibleToGroups IS NULL"); //if only visible to certain groups, should not be public - this is just a check
-$DBLIB->where("(projectsVacantRoles.projectsVacantRoles_deadline IS NULL OR projectsVacantRoles.projectsVacantRoles_deadline >= '" . date("Y-m-d H:i:s") . "')");
-$DBLIB->where("(projectsVacantRoles.projectsVacantRoles_slots > projectsVacantRoles.projectsVacantRoles_slotsFilled)");
+$DBLIB->where("projectsVacantRoles.projectsVacantRoles_visibleToGroups IS NULL"); // Публичный список не должен показывать роли, ограниченные по группам.
+$DBLIB->where("(projectsVacantRoles.projectsVacantRoles_deadline IS NULL OR projectsVacantRoles.projectsVacantRoles_deadline >= '" . date("Y-m-d H:i:s") . "')"); // Скрываем роли с истекшим дедлайном.
+$DBLIB->where("(projectsVacantRoles.projectsVacantRoles_slots > projectsVacantRoles.projectsVacantRoles_slotsFilled)"); // Требуем наличие свободных слотов.
 $DBLIB->join("projects","projectsVacantRoles.projects_id=projects.projects_id","LEFT");
 $DBLIB->join("clients", "projects.clients_id=clients.clients_id", "LEFT");
 $DBLIB->join("users", "projects.projects_manager=users.users_userid", "LEFT");
 $DBLIB->where("projects.instances_id", $PAGEDATA['INSTANCE']['instances_id']);
 $DBLIB->where("projects.projects_deleted", 0);
 $DBLIB->where("projects.projects_archived", 0);
-$DBLIB->where("projectsVacantRoles_showPublic",1);
+$DBLIB->where("projectsVacantRoles_showPublic",1); // Требование явного разрешения на публикацию.
 $DBLIB->orderBy("projects.projects_dates_use_start","ASC");
 $DBLIB->orderBy("projectsVacantRoles.projects_id","ASC");
 $DBLIB->orderBy("projectsVacantRoles.projectsVacantRoles_deadline","ASC");
